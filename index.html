@@ -1,0 +1,1833 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ботанический сад Петра Великого</title>
+  <style>
+    @font-face {
+      font-family: "Manrope";
+      src: url("fonts/Manrope-VariableFont_wght.ttf") format("truetype");
+      font-weight: 200 800;
+      font-style: normal;
+      font-display: block;
+    }
+
+    @font-face {
+      font-family: "Philosopher";
+      src: url("fonts/Philosopher-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: block;
+    }
+
+    :root {
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-synthesis: none;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a,
+    button {
+      font: inherit;
+    }
+
+    .stage {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #ffffff;
+      color: var(--white);
+    }
+
+    .stage__scaled {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      transform-origin: top left;
+      background: #07110d;
+    }
+
+    .hero {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background: #07110d url("frames/frame_000001.jpg") center center / cover no-repeat;
+    }
+
+    .hero__sequence {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      display: block;
+      opacity: 1;
+    }
+
+    .walk__sequence {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 3;
+      width: 1920px;
+      height: 1080px;
+      display: block;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .walk__sequence.is-active {
+      opacity: 1;
+    }
+
+    .zero-screen {
+      position: absolute;
+      inset: 0;
+      z-index: 30;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      color: var(--white);
+      background: #07110d;
+      opacity: 1;
+      pointer-events: auto;
+      transition: opacity 1400ms cubic-bezier(0.16, 1, 0.3, 1), filter 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .zero-screen.is-hidden {
+      opacity: 0;
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .zero-screen.is-starting .zero-screen__button {
+      pointer-events: none;
+      opacity: 0.64;
+    }
+
+    .zero-screen__bg {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      display: block;
+      object-fit: cover;
+      transform: scale(1.025);
+      animation: zero-breathe 9200ms ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .zero-screen__shade {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.16) 34%, rgba(0, 0, 0, 0.52) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.08) 43%, rgba(0, 0, 0, 0.48) 100%);
+      pointer-events: none;
+    }
+
+    .zero-screen__content {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 800px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--white);
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+
+    .zero-screen__loader {
+      position: relative;
+      width: 132px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(10px);
+      filter: blur(5px);
+      animation: copy-in 2200ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+    }
+
+    .zero-screen__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow:
+        0 0 16px rgba(255, 255, 255, 0.42),
+        0 0 38px rgba(255, 255, 255, 0.2);
+      animation: zero-loader-dot 1500ms ease-in-out infinite;
+    }
+
+    .zero-screen__dot:nth-child(2) {
+      animation-delay: 150ms;
+    }
+
+    .zero-screen__dot:nth-child(3) {
+      animation-delay: 300ms;
+    }
+
+    .zero-screen__dot:nth-child(4) {
+      animation-delay: 450ms;
+    }
+
+    .zero-screen__text {
+      width: 560px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1.32;
+      letter-spacing: 0;
+      opacity: 0;
+      transform: translateY(12px);
+      filter: blur(6px);
+      animation: copy-in 2600ms cubic-bezier(0.16, 1, 0.3, 1) 320ms both;
+    }
+
+    .zero-screen__actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 36px;
+      opacity: 0;
+      transform: translateY(14px);
+      filter: blur(6px);
+      animation: copy-in 2600ms cubic-bezier(0.16, 1, 0.3, 1) 520ms both;
+    }
+
+    .zero-screen__button {
+      position: relative;
+      width: 222px;
+      height: 55px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 999px;
+      background: rgba(115, 115, 115, 0.42);
+      color: var(--white);
+      backdrop-filter: blur(14px);
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: 0;
+      box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+      transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+    }
+
+    .zero-screen__button:hover,
+    .zero-screen__button:focus-visible {
+      border-color: rgba(255, 255, 255, 0.98);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow:
+        0 0 24px rgba(255, 255, 255, 0.28),
+        0 0 58px rgba(255, 255, 255, 0.17);
+      transform: translateY(-4px);
+    }
+
+    .zero-screen__button-label {
+      position: relative;
+      z-index: 1;
+    }
+
+    .stage.is-zero-active .nav__logo,
+    .stage.is-zero-active .nav__link,
+    .stage.is-zero-active .ticket,
+    .stage.is-zero-active .walk-start,
+    .stage.is-zero-active .hero__title,
+    .stage.is-zero-active .hero__subtitle {
+      animation: none !important;
+      opacity: 0 !important;
+      filter: blur(8px);
+    }
+
+    .map-screen {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      background: transparent;
+      perspective: 1900px;
+      perspective-origin: 65% 47%;
+      touch-action: none;
+      transition: opacity 2400ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .map-screen.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .map-screen__bg {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      display: block;
+      object-fit: cover;
+      opacity: 0;
+      filter: blur(10px) brightness(0.72) saturate(0.86);
+      transform: scale(1.07);
+      transition: opacity 2400ms cubic-bezier(0.16, 1, 0.3, 1), transform 3100ms cubic-bezier(0.16, 1, 0.3, 1), filter 2700ms cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .map-screen.is-active .map-screen__bg {
+      opacity: 1;
+      filter: blur(0) brightness(1) saturate(1);
+      transform: scale(1);
+    }
+
+    .map-screen__map-layer {
+      position: absolute;
+      left: 615px;
+      top: 80px;
+      width: 1248px;
+      height: 936px;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+      transform-origin: 50% 50%;
+      transform-style: preserve-3d;
+      transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    .map-screen__map-layer.is-dragging {
+      cursor: grabbing;
+      transition: none;
+    }
+
+    .map-screen__map {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0;
+      transform: translateY(82px) translateZ(-130px) scale(1.12);
+      filter:
+        blur(7px)
+        drop-shadow(0 42px 56px rgba(0, 0, 0, 0.46))
+        drop-shadow(0 0 38px rgba(255, 255, 255, 0.08));
+      -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 82%, rgba(0, 0, 0, 0.7) 92%, rgba(0, 0, 0, 0.08) 100%);
+      mask-image: linear-gradient(180deg, #000 0%, #000 82%, rgba(0, 0, 0, 0.7) 92%, rgba(0, 0, 0, 0.08) 100%);
+      pointer-events: none;
+      transition: opacity 2300ms cubic-bezier(0.16, 1, 0.3, 1) 360ms, transform 2800ms cubic-bezier(0.16, 1, 0.3, 1) 360ms, filter 2600ms cubic-bezier(0.16, 1, 0.3, 1) 360ms;
+    }
+
+    .map-screen.is-active .map-screen__map {
+      opacity: 1;
+      transform: translateY(0) translateZ(0) scale(1);
+      filter:
+        blur(0)
+        drop-shadow(0 42px 56px rgba(0, 0, 0, 0.46))
+        drop-shadow(0 0 38px rgba(255, 255, 255, 0.08));
+    }
+
+    .map-screen__hints {
+      position: absolute;
+      left: 1240px;
+      top: 944px;
+      display: flex;
+      align-items: center;
+      gap: 38px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1) 900ms, transform 1300ms cubic-bezier(0.16, 1, 0.3, 1) 900ms;
+      pointer-events: none;
+    }
+
+    .hero.is-map-active .walk__sequence.is-active {
+      opacity: 0;
+      transition: opacity 2400ms cubic-bezier(0.16, 1, 0.3, 1) 420ms;
+    }
+
+    .map-screen.is-active .map-screen__hints {
+      opacity: 0.88;
+      transform: translateY(0);
+    }
+
+    .map-screen.has-interacted .map-screen__hints {
+      opacity: 0;
+      transform: translateY(10px);
+      transition-delay: 0ms;
+    }
+
+    .map-screen__hint {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 57px;
+      height: 57px;
+    }
+
+    .map-screen__hint::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.44) 0%, rgba(255, 255, 255, 0.2) 31%, rgba(255, 255, 255, 0.07) 56%, rgba(255, 255, 255, 0) 73%);
+      filter: blur(8px);
+      opacity: 0.52;
+      transform: translate(-50%, -50%);
+      animation: map-hint-glow 2600ms ease-in-out infinite;
+    }
+
+    .map-screen__hint-icon {
+      position: relative;
+      z-index: 1;
+      display: block;
+      filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.45));
+    }
+
+    .map-screen__hint-icon--mouse {
+      width: 28px;
+      height: 37px;
+      animation: mouse-hint 2400ms ease-in-out infinite;
+    }
+
+    .map-screen__hint-icon--finger {
+      width: 32px;
+      height: 36px;
+      animation: finger-hint 2200ms ease-in-out infinite;
+    }
+
+    .hero__shade {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.08) 31%, rgba(0, 0, 0, 0.15) 57%, rgba(0, 0, 0, 0.58) 100%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.46) 0%, rgba(0, 0, 0, 0.18) 28%, rgba(0, 0, 0, 0.04) 52%, rgba(0, 0, 0, 0.20) 100%);
+    }
+
+    .cursor-light {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.76) 0%, rgba(255, 255, 255, 0.36) 18%, rgba(255, 255, 255, 0.16) 42%, rgba(255, 255, 255, 0.04) 64%, rgba(255, 255, 255, 0) 78%);
+      filter: blur(10px);
+      transform: translate3d(-90px, -90px, 0);
+      transition: opacity 260ms ease;
+      will-change: transform, opacity;
+    }
+
+    .cursor-light.is-visible {
+      opacity: 0.92;
+    }
+
+    @media (pointer: coarse) {
+      .cursor-light {
+        display: none;
+      }
+    }
+
+    .nav {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 5;
+      width: 1920px;
+      height: 80px;
+      color: var(--white);
+      transition: opacity 1200ms cubic-bezier(0.16, 1, 0.3, 1), filter 1200ms cubic-bezier(0.16, 1, 0.3, 1), transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, filter, transform;
+    }
+
+    .nav__logo {
+      position: absolute;
+      left: 63px;
+      top: 40px;
+      width: 371px;
+      height: 90px;
+      display: block;
+      transform-origin: left center;
+      animation: logo-in 1250ms cubic-bezier(0.22, 1, 0.36, 1) 140ms both;
+    }
+
+    .nav__menu {
+      position: absolute;
+      left: 760px;
+      top: 73.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 43px;
+      white-space: nowrap;
+    }
+
+    .nav__link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      height: 24px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: 0;
+      opacity: 0;
+      transform: translateY(-8px);
+      filter: blur(4px);
+      animation: nav-in 3200ms cubic-bezier(0.16, 1, 0.3, 1) 700ms both;
+      text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+      transition: filter 220ms ease, text-shadow 220ms ease, opacity 220ms ease;
+    }
+
+    .nav__link:hover,
+    .nav__link:focus-visible,
+    .nav__link.is-active {
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.62));
+      text-shadow:
+        0 0 14px rgba(255, 255, 255, 0.9),
+        0 0 34px rgba(255, 255, 255, 0.58),
+        0 0 62px rgba(255, 255, 255, 0.26);
+    }
+
+    .nav__link:focus-visible,
+    .ticket:focus-visible,
+    .walk-start:focus-visible,
+    .zero-screen__button:focus-visible {
+      outline: 1px solid rgba(255, 255, 255, 0.88);
+      outline-offset: 8px;
+    }
+
+    .ticket {
+      position: absolute;
+      left: 1671px;
+      top: 52.5px;
+      width: 186px;
+      height: 55px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 999px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: 0;
+      background: rgba(115, 115, 115, 0.42);
+      backdrop-filter: blur(14px);
+      opacity: 0;
+      transform: translateY(12px);
+      filter: blur(5px);
+      animation: copy-in 3200ms cubic-bezier(0.16, 1, 0.3, 1) 700ms both;
+      box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+      transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease, opacity 1200ms cubic-bezier(0.16, 1, 0.3, 1), filter 1200ms cubic-bezier(0.16, 1, 0.3, 1), transform 220ms ease;
+    }
+
+    .ticket__label {
+      position: relative;
+      z-index: 1;
+    }
+
+    .ticket:hover,
+    .ticket:focus-visible {
+      border-color: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.11);
+      box-shadow:
+        0 0 24px rgba(255, 255, 255, 0.28),
+        0 0 58px rgba(255, 255, 255, 0.17);
+      transform: translateY(-10px);
+    }
+
+    .walk-start {
+      position: absolute;
+      left: 813.5px;
+      top: 948px;
+      z-index: 4;
+      width: 293px;
+      height: 62px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      border-radius: 999px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: 0;
+      background: rgba(115, 115, 115, 0.42);
+      backdrop-filter: blur(14px);
+      opacity: 0;
+      transform: translateY(12px);
+      filter: blur(5px);
+      animation: copy-in 3200ms cubic-bezier(0.16, 1, 0.3, 1) 700ms both;
+      box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+      transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease, opacity 1200ms cubic-bezier(0.16, 1, 0.3, 1), filter 1200ms cubic-bezier(0.16, 1, 0.3, 1), transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .walk-start__label {
+      position: relative;
+      z-index: 1;
+    }
+
+    .walk-start:hover,
+    .walk-start:focus-visible {
+      border-color: rgba(255, 255, 255, 0.98);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow:
+        0 0 24px rgba(255, 255, 255, 0.28),
+        0 0 58px rgba(255, 255, 255, 0.17);
+      transform: translateY(12px);
+    }
+
+    .hero__copy {
+      position: absolute;
+      left: 619px;
+      top: 686px;
+      z-index: 4;
+      width: 683px;
+      height: 136px;
+      color: var(--white);
+      pointer-events: none;
+      transition: opacity 1200ms cubic-bezier(0.16, 1, 0.3, 1), filter 1200ms cubic-bezier(0.16, 1, 0.3, 1), transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, filter, transform;
+    }
+
+    .hero.is-walking .nav,
+    .hero.is-walking .hero__copy,
+    .hero.is-walking .walk-start {
+      opacity: 0 !important;
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .hero.is-walking .nav {
+      transform: translateY(-14px);
+    }
+
+    .hero.is-walking .hero__copy {
+      transform: translateY(-10px);
+    }
+
+    .hero.is-walking .walk-start {
+      transform: translateY(18px);
+    }
+
+    .hero__title {
+      width: 683px;
+      height: 136px;
+      margin: 0;
+      font-family: "Philosopher", sans-serif;
+      font-size: 65px;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1.01;
+      letter-spacing: 0.005em;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(12px);
+      filter: blur(8px);
+      animation: copy-in 3200ms cubic-bezier(0.16, 1, 0.3, 1) 700ms both;
+    }
+
+    .hero__subtitle {
+      position: absolute;
+      left: 13.5px;
+      top: 164px;
+      width: 656px;
+      height: 48px;
+      margin: 0;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1.27;
+      letter-spacing: 0;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(10px);
+      filter: blur(6px);
+      animation: copy-in 3200ms cubic-bezier(0.16, 1, 0.3, 1) 700ms both;
+    }
+
+    @keyframes logo-in {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(1.055);
+        filter: blur(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes nav-in {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+        filter: blur(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes copy-in {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+        filter: blur(10px);
+      }
+      55% {
+        opacity: 0.58;
+        filter: blur(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes zero-breathe {
+      from {
+        transform: scale(1.025);
+        filter: saturate(0.94) brightness(0.94);
+      }
+      to {
+        transform: scale(1.055);
+        filter: saturate(1.04) brightness(1.02);
+      }
+    }
+
+    @keyframes zero-loader-dot {
+      0%,
+      100% {
+        opacity: 0.32;
+        transform: translateY(0) scale(0.72);
+      }
+      42% {
+        opacity: 1;
+        transform: translateY(-8px) scale(1);
+      }
+      68% {
+        opacity: 0.62;
+        transform: translateY(0) scale(0.86);
+      }
+    }
+
+    @keyframes map-hint-glow {
+      0%,
+      100% {
+        opacity: 0.38;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+      50% {
+        opacity: 0.68;
+        transform: translate(-50%, -50%) scale(1.04);
+      }
+    }
+
+    @keyframes mouse-hint {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    @keyframes finger-hint {
+      0%,
+      100% {
+        transform: translateX(0) rotate(0deg);
+      }
+      45% {
+        transform: translateX(10px) rotate(2deg);
+      }
+      70% {
+        transform: translateX(-5px) rotate(-1deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav__logo,
+      .nav__link,
+      .ticket,
+      .walk-start,
+      .hero__title,
+      .hero__subtitle {
+        animation-duration: 1ms;
+        animation-delay: 0ms;
+      }
+
+      .zero-screen__bg,
+      .zero-screen__dot {
+        animation: none;
+      }
+
+      .map-screen__bg,
+      .map-screen__map,
+      .map-screen__hints {
+        transition-duration: 1ms;
+        transition-delay: 0ms;
+      }
+
+      .map-screen__hint::before,
+      .map-screen__hint-icon--mouse,
+      .map-screen__hint-icon--finger {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage is-zero-active" aria-label="Ботанический сад Петра Великого">
+    <div class="stage__scaled" id="scaled">
+      <section class="hero" aria-label="Оранжерея Ботанического сада Петра Великого">
+        <canvas class="hero__sequence" id="heroSequence" width="1920" height="1080" aria-hidden="true"></canvas>
+        <canvas class="walk__sequence" id="walkSequence" width="1920" height="1080" data-frame-count="144" aria-hidden="true"></canvas>
+        <section class="map-screen" id="mapScreen" aria-label="Интерактивная карта сада" aria-hidden="true">
+          <img class="map-screen__bg" src="frames/back.jpg" alt="" width="1920" height="1080" aria-hidden="true">
+          <div class="map-screen__map-layer" id="mapLayer">
+            <img class="map-screen__map" src="frames/map.png" alt="3D-карта Ботанического сада" width="1404" height="1053" draggable="false">
+          </div>
+          <div class="map-screen__hints" aria-hidden="true">
+            <span class="map-screen__hint">
+              <img class="map-screen__hint-icon map-screen__hint-icon--mouse" src="frames/mouse.svg" alt="" width="28" height="37" draggable="false">
+            </span>
+            <span class="map-screen__hint">
+              <img class="map-screen__hint-icon map-screen__hint-icon--finger" src="frames/finger.svg" alt="" width="32" height="36" draggable="false">
+            </span>
+          </div>
+        </section>
+        <audio id="beeAudio" preload="none" data-src="audio/bees.mp3" aria-hidden="true"></audio>
+        <audio id="walkAudio" preload="auto" data-src="audio/after-bees.m4a" aria-hidden="true"></audio>
+        <div class="cursor-light" id="cursorLight" aria-hidden="true"></div>
+        <div class="hero__shade" aria-hidden="true"></div>
+
+        <header class="nav" aria-label="Основная навигация">
+          <img class="nav__logo" src="frames/logo.svg" alt="Ботанический сад Петра Великого" width="371" height="90">
+
+          <nav class="nav__menu" aria-label="Разделы сайта">
+            <a class="nav__link" href="#about">О саде</a>
+            <a class="nav__link" href="#events">Мероприятия</a>
+            <a class="nav__link" href="#visitors">Посетителям</a>
+            <a class="nav__link" href="#map">3D-карта</a>
+            <a class="nav__link" href="#contacts">Контакты</a>
+          </nav>
+
+          <a class="ticket" href="#tickets">
+            <span class="ticket__label">Купить билет</span>
+          </a>
+        </header>
+
+        <div class="hero__copy">
+          <h1 class="hero__title">Ботанический сад Петра Великого</h1>
+          <p class="hero__subtitle">Старейший ботанический сад Петербурга—<br>оранжереи, маршруты и интерактивная карта сада.</p>
+        </div>
+
+        <a class="walk-start" href="#walk">
+          <span class="walk-start__label">Начать прогулку по саду</span>
+        </a>
+      </section>
+
+      <section class="zero-screen" id="zeroScreen" aria-label="Выбор звука перед прогулкой">
+        <img class="zero-screen__bg" src="frames/zero.jpg" alt="" width="1920" height="1080" aria-hidden="true">
+        <div class="zero-screen__shade" aria-hidden="true"></div>
+        <div class="zero-screen__content">
+          <div class="zero-screen__loader" aria-hidden="true">
+            <span class="zero-screen__dot"></span>
+            <span class="zero-screen__dot"></span>
+            <span class="zero-screen__dot"></span>
+            <span class="zero-screen__dot"></span>
+          </div>
+          <p class="zero-screen__text">Сад звучит тише, чем город.<br>Выберите, как начать прогулку.</p>
+          <div class="zero-screen__actions">
+            <button class="zero-screen__button" type="button" data-sound-choice="on">
+              <span class="zero-screen__button-label">Со звуком</span>
+            </button>
+            <button class="zero-screen__button" type="button" data-sound-choice="off">
+              <span class="zero-screen__button-label">Без звука</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var DESIGN_WIDTH = 1920;
+      var DESIGN_HEIGHT = 1080;
+      var FRAME_WIDTH = DESIGN_WIDTH;
+      var FRAME_HEIGHT = DESIGN_HEIGHT;
+      var FRAME_COUNT = 192;
+      var FPS = 24;
+      var WALK_FPS = 56;
+      var FRAME_EXT = "jpg";
+      var stage = document.querySelector(".stage");
+      var scaled = document.getElementById("scaled");
+      var hero = document.querySelector(".hero");
+      var canvas = document.getElementById("heroSequence");
+      var walkCanvas = document.getElementById("walkSequence");
+      var mapScreen = document.getElementById("mapScreen");
+      var mapLayer = document.getElementById("mapLayer");
+      var zeroScreen = document.getElementById("zeroScreen");
+      var zeroButtons = document.querySelectorAll(".zero-screen__button");
+      var beeAudio = document.getElementById("beeAudio");
+      var walkAudio = document.getElementById("walkAudio");
+      var cursorLight = document.getElementById("cursorLight");
+      var ctx = canvas.getContext("2d", { alpha: false });
+      var walkCtx = walkCanvas.getContext("2d", { alpha: false });
+      var cache = new Map();
+      var pending = new Map();
+      var walkCache = new Map();
+      var walkPending = new Map();
+      var preloadQueue = [];
+      var queued = new Set();
+      var activeLoads = 0;
+      var lastPainted = 0;
+      var currentFrame = 1;
+      var lastFrameTime = 0;
+      var animationComplete = false;
+      var heroStarted = false;
+      var audioStarted = false;
+      var userChoseSound = false;
+      var soundEnabled = false;
+      var audioFadeRequest = 0;
+      var walkStarted = false;
+      var mapScreenShown = false;
+      var walkCurrentFrame = 1;
+      var walkLastFrameTime = 0;
+      var mapX = 0;
+      var mapY = 0;
+      var mapZoom = 1;
+      var mapRotateX = 0;
+      var mapRotateY = 0;
+      var mapSpin = 0;
+      var mapDragStartX = 0;
+      var mapDragStartY = 0;
+      var mapStartRotateX = 0;
+      var mapStartRotateY = 0;
+      var mapStartSpin = 0;
+      var mapDragging = false;
+      var layoutScale = 1;
+      var layoutOffsetX = 0;
+      var layoutOffsetY = 0;
+      var lightTargetX = DESIGN_WIDTH / 2;
+      var lightTargetY = DESIGN_HEIGHT / 2;
+      var lightX = lightTargetX;
+      var lightY = lightTargetY;
+      var lightAnimating = false;
+      var WALK_FRAME_COUNT = Number(walkCanvas.dataset.frameCount || 0);
+      var MAX_ACTIVE_LOADS = 3;
+      var PRELOAD_AHEAD = 18;
+      var WALK_PRELOAD_AHEAD = 72;
+      var WALK_FRAME_STEP = 2;
+      var KEEP_BEHIND = 4;
+      var FRAME_INTERVAL = 1000 / FPS;
+      var WALK_FRAME_INTERVAL = 1000 / WALK_FPS;
+      var HERO_START_BUFFER = 18;
+      var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function resize() {
+        var scale = Math.min(window.innerWidth / DESIGN_WIDTH, window.innerHeight / DESIGN_HEIGHT);
+        var sx = (window.innerWidth - DESIGN_WIDTH * scale) / 2;
+        var sy = (window.innerHeight - DESIGN_HEIGHT * scale) / 2;
+        layoutScale = scale;
+        layoutOffsetX = sx;
+        layoutOffsetY = sy;
+        scaled.style.transform = "translate(" + sx + "px," + sy + "px) scale(" + scale + ")";
+      }
+
+      function framePath(index) {
+        return "frames/frame_" + String(index).padStart(6, "0") + "." + FRAME_EXT;
+      }
+
+      function walkFramePath(index) {
+        return "frames/walk/frame_" + String(index).padStart(6, "0") + "." + FRAME_EXT;
+      }
+
+      function isFrameInRange(index) {
+        return index >= 1 && index <= FRAME_COUNT;
+      }
+
+      function isWalkFrameInRange(index) {
+        return index >= 1 && index <= WALK_FRAME_COUNT;
+      }
+
+      function loadFrame(index) {
+        if (!isFrameInRange(index)) {
+          return Promise.reject(new Error("Frame out of range: " + index));
+        }
+
+        if (cache.has(index)) {
+          return Promise.resolve(cache.get(index));
+        }
+
+        if (pending.has(index)) {
+          return pending.get(index);
+        }
+
+        var promise = new Promise(function (resolve, reject) {
+          var img = new Image();
+          img.decoding = "async";
+          img.onload = function () {
+            if ("createImageBitmap" in window) {
+              createImageBitmap(img, {
+                resizeWidth: FRAME_WIDTH,
+                resizeHeight: FRAME_HEIGHT,
+                resizeQuality: "high"
+              })
+                .then(function (bitmap) {
+                  img.removeAttribute("src");
+                  cache.set(index, bitmap);
+                  pending.delete(index);
+                  resolve(bitmap);
+                })
+                .catch(function () {
+                  cache.set(index, img);
+                  pending.delete(index);
+                  resolve(img);
+                });
+              return;
+            }
+
+            cache.set(index, img);
+            pending.delete(index);
+            resolve(img);
+          };
+          img.onerror = function () {
+            pending.delete(index);
+            reject(new Error("Frame load failed: " + framePath(index)));
+          };
+          img.src = framePath(index);
+        });
+
+        pending.set(index, promise);
+        return promise;
+      }
+
+      function drawFrame(index) {
+        if (!isFrameInRange(index)) {
+          return false;
+        }
+
+        var img = cache.get(index);
+
+        if (!img) {
+          loadFrame(index).catch(function () {});
+          return false;
+        }
+
+        ctx.globalAlpha = 1;
+        ctx.drawImage(img, 0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        lastPainted = index;
+        return true;
+      }
+
+      function loadWalkFrame(index) {
+        if (!isWalkFrameInRange(index)) {
+          return Promise.reject(new Error("Walk frame out of range: " + index));
+        }
+
+        if (walkCache.has(index)) {
+          return Promise.resolve(walkCache.get(index));
+        }
+
+        if (walkPending.has(index)) {
+          return walkPending.get(index);
+        }
+
+        var promise = new Promise(function (resolve, reject) {
+          var img = new Image();
+          img.decoding = "async";
+          img.onload = function () {
+            if ("createImageBitmap" in window) {
+              createImageBitmap(img, {
+                resizeWidth: FRAME_WIDTH,
+                resizeHeight: FRAME_HEIGHT,
+                resizeQuality: "high"
+              })
+                .then(function (bitmap) {
+                  img.removeAttribute("src");
+                  walkCache.set(index, bitmap);
+                  walkPending.delete(index);
+                  resolve(bitmap);
+                })
+                .catch(function () {
+                  walkCache.set(index, img);
+                  walkPending.delete(index);
+                  resolve(img);
+                });
+              return;
+            }
+
+            walkCache.set(index, img);
+            walkPending.delete(index);
+            resolve(img);
+          };
+          img.onerror = function () {
+            walkPending.delete(index);
+            reject(new Error("Walk frame load failed: " + walkFramePath(index)));
+          };
+          img.src = walkFramePath(index);
+        });
+
+        walkPending.set(index, promise);
+        return promise;
+      }
+
+      function drawWalkFrame(index) {
+        if (!isWalkFrameInRange(index)) {
+          return false;
+        }
+
+        var img = walkCache.get(index);
+
+        if (!img) {
+          loadWalkFrame(index).catch(function () {});
+          return false;
+        }
+
+        walkCtx.globalAlpha = 1;
+        walkCtx.drawImage(img, 0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        return true;
+      }
+
+      function warmWalkFrames(from) {
+        var to = Math.min(WALK_FRAME_COUNT, from + WALK_PRELOAD_AHEAD);
+
+        for (var i = from; i <= to; i += 1) {
+          loadWalkFrame(i).catch(function () {});
+        }
+      }
+
+      function pruneWalkFrames(current) {
+        walkCache.forEach(function (_img, index) {
+          if (index !== current && index < current - KEEP_BEHIND) {
+            if (typeof _img.close === "function") {
+              _img.close();
+            }
+
+            walkCache.delete(index);
+          }
+        });
+      }
+
+      function enqueueFrame(index) {
+        if (!isFrameInRange(index) || cache.has(index) || pending.has(index) || queued.has(index)) {
+          return;
+        }
+
+        queued.add(index);
+        preloadQueue.push(index);
+      }
+
+      function pumpPreloadQueue() {
+        while (activeLoads < MAX_ACTIVE_LOADS && preloadQueue.length) {
+          var index = preloadQueue.shift();
+          queued.delete(index);
+
+          if (cache.has(index) || pending.has(index)) {
+            continue;
+          }
+
+          activeLoads += 1;
+          loadFrame(index)
+            .catch(function () {})
+            .finally(function () {
+              activeLoads -= 1;
+              pumpPreloadQueue();
+            });
+        }
+      }
+
+      function warmFrames(from) {
+        for (var i = 0; i <= PRELOAD_AHEAD; i += 1) {
+          enqueueFrame(from + i);
+        }
+
+        pumpPreloadQueue();
+      }
+
+      function countReadyFrames(limit) {
+        var ready = 0;
+
+        for (var i = 1; i <= limit; i += 1) {
+          if (cache.has(i)) {
+            ready += 1;
+          }
+        }
+
+        return ready;
+      }
+
+      function waitForHeroBuffer(minFrames, timeout) {
+        return new Promise(function (resolve) {
+          var started = Date.now();
+
+          function check() {
+            if (reducedMotion || countReadyFrames(minFrames) >= minFrames || Date.now() - started >= timeout) {
+              resolve();
+              return;
+            }
+
+            window.setTimeout(check, 120);
+          }
+
+          check();
+        });
+      }
+
+      function pruneFrames(current) {
+        cache.forEach(function (_img, index) {
+          if (index !== current && index !== lastPainted && index < current - KEEP_BEHIND) {
+            if (typeof _img.close === "function") {
+              _img.close();
+            }
+
+            cache.delete(index);
+          }
+        });
+      }
+
+      function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+      }
+
+      function getMapBounds() {
+        var zoomExtraX = (mapZoom - 1) * 860;
+        var zoomExtraY = (mapZoom - 1) * 640;
+
+        return {
+          x: 290 + zoomExtraX,
+          y: 170 + zoomExtraY
+        };
+      }
+
+      function updateMapTransform() {
+        if (!mapLayer) {
+          return;
+        }
+
+        mapZoom = clamp(mapZoom, 0.84, 1.52);
+        var bounds = getMapBounds();
+        mapX = clamp(mapX, -bounds.x, bounds.x);
+        mapY = clamp(mapY, -bounds.y, bounds.y);
+        mapRotateX = clamp(mapRotateX, -22, 24);
+        mapRotateY = clamp(mapRotateY, -10, 10);
+        mapLayer.style.transform = "translate3d(" + mapX + "px," + mapY + "px,0) rotateX(" + mapRotateX + "deg) rotateY(" + mapRotateY + "deg) rotateZ(" + mapSpin + "deg) scale(" + mapZoom + ")";
+      }
+
+      function showMapScreen() {
+        if (mapScreenShown || !mapScreen) {
+          return;
+        }
+
+        mapScreenShown = true;
+        updateMapTransform();
+        hero.classList.add("is-map-active");
+        mapScreen.classList.add("is-active");
+        mapScreen.setAttribute("aria-hidden", "false");
+      }
+
+      function completeWalkSequence() {
+        drawWalkFrame(WALK_FRAME_COUNT);
+        window.setTimeout(showMapScreen, 260);
+      }
+
+      function prepareBeeAudio() {
+        if (!beeAudio || !beeAudio.dataset.src) {
+          return false;
+        }
+
+        if (!beeAudio.getAttribute("src")) {
+          beeAudio.src = beeAudio.dataset.src;
+          beeAudio.volume = 0.38;
+          beeAudio.loop = true;
+        }
+
+        return true;
+      }
+
+      function prepareWalkAudio() {
+        if (!walkAudio || !walkAudio.dataset.src) {
+          return false;
+        }
+
+        if (!walkAudio.getAttribute("src")) {
+          walkAudio.src = walkAudio.dataset.src;
+          walkAudio.volume = 0.58;
+        }
+
+        return true;
+      }
+
+      function playWalkAudio() {
+        if (!userChoseSound || !prepareWalkAudio()) {
+          return;
+        }
+
+        try {
+          walkAudio.currentTime = 0;
+        } catch (_error) {
+          // Audio metadata may still be loading on first click.
+        }
+
+        walkAudio.volume = 0.58;
+        var playPromise = walkAudio.play();
+
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(function () {});
+        }
+      }
+
+      function startBeeAudio() {
+        if (reducedMotion || animationComplete || walkStarted || audioStarted || !soundEnabled || !prepareBeeAudio()) {
+          return;
+        }
+
+        if (audioFadeRequest) {
+          window.cancelAnimationFrame(audioFadeRequest);
+          audioFadeRequest = 0;
+        }
+
+        beeAudio.volume = 0.38;
+        var playPromise = beeAudio.play();
+
+        if (playPromise && typeof playPromise.then === "function") {
+          playPromise
+            .then(function () {
+              if (!soundEnabled || animationComplete || walkStarted) {
+                stopBeeAudio();
+                return;
+              }
+
+              audioStarted = true;
+            })
+            .catch(function () {
+              audioStarted = false;
+              soundEnabled = false;
+            });
+        } else {
+          audioStarted = true;
+        }
+      }
+
+      function stopBeeAudio() {
+        if (!beeAudio) {
+          return;
+        }
+
+        if (audioFadeRequest) {
+          window.cancelAnimationFrame(audioFadeRequest);
+          audioFadeRequest = 0;
+        }
+
+        beeAudio.pause();
+
+        try {
+          beeAudio.currentTime = 0;
+        } catch (_error) {
+          // Audio metadata may be unavailable until the file is added.
+        }
+
+        beeAudio.volume = 0.38;
+        audioStarted = false;
+      }
+
+      function finishBeeSound() {
+        soundEnabled = false;
+        stopBeeAudio();
+      }
+
+      function fadeOutBeeAudio(duration) {
+        if (!beeAudio || beeAudio.paused) {
+          finishBeeSound();
+          return;
+        }
+
+        if (audioFadeRequest) {
+          window.cancelAnimationFrame(audioFadeRequest);
+        }
+
+        var startVolume = beeAudio.volume;
+        var started = 0;
+
+        function fade(now) {
+          if (!started) {
+            started = now;
+          }
+
+          var progress = Math.min(1, (now - started) / duration);
+          beeAudio.volume = startVolume * (1 - progress);
+
+          if (progress < 1) {
+            audioFadeRequest = window.requestAnimationFrame(fade);
+            return;
+          }
+
+          audioFadeRequest = 0;
+          finishBeeSound();
+        }
+
+        audioFadeRequest = window.requestAnimationFrame(fade);
+      }
+
+      function startHeroAnimation() {
+        if (reducedMotion) {
+          currentFrame = FRAME_COUNT;
+          drawFrame(FRAME_COUNT);
+          animationComplete = true;
+          return;
+        }
+
+        currentFrame = 1;
+        lastFrameTime = 0;
+        animationComplete = false;
+        drawFrame(currentFrame);
+        warmFrames(currentFrame + 1);
+        window.requestAnimationFrame(animate);
+      }
+
+      function dismissZeroScreen(withSound) {
+        if (heroStarted) {
+          return;
+        }
+
+        heroStarted = true;
+
+        if (zeroScreen) {
+          zeroScreen.classList.add("is-starting");
+        }
+
+        heroWarmupPromise
+          .catch(function () {})
+          .then(function () {
+            if (stage) {
+              stage.classList.remove("is-zero-active");
+            }
+
+            if (zeroScreen) {
+              zeroScreen.classList.add("is-hidden");
+              zeroScreen.setAttribute("aria-hidden", "true");
+            }
+
+            userChoseSound = Boolean(withSound) && !reducedMotion;
+            soundEnabled = userChoseSound;
+            prepareWalkAudio();
+            startHeroAnimation();
+
+            if (soundEnabled) {
+              startBeeAudio();
+            }
+
+            window.setTimeout(function () {
+              if (zeroScreen) {
+                zeroScreen.style.display = "none";
+              }
+            }, 1500);
+          });
+      }
+
+      function animate(now) {
+        if (animationComplete) {
+          return;
+        }
+
+        if (!lastFrameTime) {
+          lastFrameTime = now;
+        }
+
+        if (currentFrame >= FRAME_COUNT) {
+          drawFrame(FRAME_COUNT);
+          animationComplete = true;
+          finishBeeSound();
+          return;
+        }
+
+        var nextFrame = currentFrame + 1;
+        var currentImage = cache.get(currentFrame);
+        var nextImage = cache.get(nextFrame);
+
+        warmFrames(nextFrame);
+
+        if (!currentImage) {
+          drawFrame(currentFrame);
+          lastFrameTime = now;
+          window.requestAnimationFrame(animate);
+          return;
+        }
+
+        if (!nextImage) {
+          ctx.globalAlpha = 1;
+          ctx.drawImage(currentImage, 0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+          lastFrameTime = now;
+          window.requestAnimationFrame(animate);
+          return;
+        }
+
+        var progress = Math.min(1, (now - lastFrameTime) / FRAME_INTERVAL);
+
+        ctx.globalAlpha = 1;
+        ctx.drawImage(currentImage, 0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        ctx.globalAlpha = progress;
+        ctx.drawImage(nextImage, 0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        ctx.globalAlpha = 1;
+
+        if (progress >= 1) {
+          currentFrame = nextFrame;
+          lastFrameTime = now;
+          lastPainted = currentFrame;
+          pruneFrames(currentFrame);
+
+          if (currentFrame >= FRAME_COUNT) {
+            drawFrame(FRAME_COUNT);
+            animationComplete = true;
+            finishBeeSound();
+            return;
+          }
+        }
+
+        window.requestAnimationFrame(animate);
+      }
+
+      function animateWalk(now) {
+        if (!walkStarted) {
+          return;
+        }
+
+        if (!walkLastFrameTime) {
+          walkLastFrameTime = now;
+        }
+
+        if (walkCurrentFrame >= WALK_FRAME_COUNT) {
+          completeWalkSequence();
+          return;
+        }
+
+        var nextFrame = Math.min(WALK_FRAME_COUNT, walkCurrentFrame + WALK_FRAME_STEP);
+        var currentImage = walkCache.get(walkCurrentFrame);
+        var nextImage = walkCache.get(nextFrame);
+
+        warmWalkFrames(Math.min(WALK_FRAME_COUNT, walkCurrentFrame + 1));
+
+        if (!currentImage) {
+          drawWalkFrame(walkCurrentFrame);
+          walkLastFrameTime = now;
+          window.requestAnimationFrame(animateWalk);
+          return;
+        }
+
+        if (!nextImage) {
+          walkCtx.globalAlpha = 1;
+          walkCtx.drawImage(currentImage, 0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+          walkLastFrameTime = now;
+          window.requestAnimationFrame(animateWalk);
+          return;
+        }
+
+        var progress = Math.min(1, (now - walkLastFrameTime) / WALK_FRAME_INTERVAL);
+
+        walkCtx.globalAlpha = 1;
+        walkCtx.drawImage(currentImage, 0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        walkCtx.globalAlpha = progress;
+        walkCtx.drawImage(nextImage, 0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        walkCtx.globalAlpha = 1;
+
+        if (progress >= 1) {
+          walkCurrentFrame = nextFrame;
+          walkLastFrameTime = now;
+          pruneWalkFrames(walkCurrentFrame);
+
+          if (walkCurrentFrame >= WALK_FRAME_COUNT) {
+            completeWalkSequence();
+            return;
+          }
+        }
+
+        window.requestAnimationFrame(animateWalk);
+      }
+
+      function startWalkSequence() {
+        if (walkStarted || WALK_FRAME_COUNT <= 0) {
+          return;
+        }
+
+        walkStarted = true;
+        walkCurrentFrame = 1;
+        walkLastFrameTime = 0;
+        hero.classList.add("is-walking");
+        walkCanvas.classList.add("is-active");
+        fadeOutBeeAudio(1600);
+        playWalkAudio();
+
+        drawWalkFrame(1);
+        warmWalkFrames(2);
+        window.requestAnimationFrame(animateWalk);
+
+        loadWalkFrame(1)
+          .then(function () {
+            drawWalkFrame(1);
+            warmWalkFrames(2);
+          })
+          .catch(function () {
+            walkStarted = false;
+            hero.classList.remove("is-walking");
+            walkCanvas.classList.remove("is-active");
+          });
+      }
+
+      function prepareWalkSequence() {
+        if (WALK_FRAME_COUNT <= 0) {
+          return;
+        }
+
+        loadWalkFrame(1)
+          .then(function () {
+            drawWalkFrame(1);
+            warmWalkFrames(2);
+          })
+          .catch(function () {});
+
+        warmWalkFrames(2);
+      }
+
+      function positionCursorLight() {
+        lightX += (lightTargetX - lightX) * 0.34;
+        lightY += (lightTargetY - lightY) * 0.34;
+        cursorLight.style.transform = "translate3d(" + (lightX - 90) + "px," + (lightY - 90) + "px,0)";
+
+        if (Math.abs(lightTargetX - lightX) > 0.1 || Math.abs(lightTargetY - lightY) > 0.1) {
+          window.requestAnimationFrame(positionCursorLight);
+          return;
+        }
+
+        lightAnimating = false;
+      }
+
+      function startCursorLightLoop() {
+        if (lightAnimating) {
+          return;
+        }
+
+        lightAnimating = true;
+        window.requestAnimationFrame(positionCursorLight);
+      }
+
+      function bindCursorLight() {
+        if (!cursorLight || window.matchMedia("(pointer: coarse)").matches) {
+          return;
+        }
+
+        window.addEventListener("pointermove", function (event) {
+          lightTargetX = (event.clientX - layoutOffsetX) / layoutScale;
+          lightTargetY = (event.clientY - layoutOffsetY) / layoutScale;
+          cursorLight.classList.add("is-visible");
+          startCursorLightLoop();
+        }, { passive: true });
+
+        document.addEventListener("pointerleave", function () {
+          cursorLight.classList.remove("is-visible");
+        });
+      }
+
+      function bindInteractions() {
+        var walkStart = document.querySelector(".walk-start");
+        var navLinks = document.querySelectorAll(".nav__link");
+
+        zeroButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            dismissZeroScreen(button.dataset.soundChoice === "on");
+          });
+        });
+
+        if (walkStart) {
+          walkStart.addEventListener("click", function (event) {
+            event.preventDefault();
+            startWalkSequence();
+          });
+        }
+
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function (event) {
+            navLinks.forEach(function (item) {
+              item.classList.remove("is-active");
+            });
+
+            link.classList.add("is-active");
+          });
+        });
+      }
+
+      function bindMapInteractions() {
+        if (!mapScreen || !mapLayer) {
+          return;
+        }
+
+        mapScreen.addEventListener("pointerdown", function (event) {
+          if (!mapScreenShown) {
+            return;
+          }
+
+          event.preventDefault();
+          mapDragging = true;
+          mapDragStartX = event.clientX;
+          mapDragStartY = event.clientY;
+          mapStartRotateX = mapRotateX;
+          mapStartRotateY = mapRotateY;
+          mapStartSpin = mapSpin;
+          mapScreen.classList.add("has-interacted");
+          mapLayer.classList.add("is-dragging");
+
+          try {
+            mapLayer.setPointerCapture(event.pointerId);
+          } catch (_error) {
+            // Some browsers can release a pointer before capture is assigned.
+          }
+        });
+
+        mapScreen.addEventListener("pointermove", function (event) {
+          if (!mapDragging) {
+            return;
+          }
+
+          var deltaX = (event.clientX - mapDragStartX) / layoutScale;
+          var deltaY = (event.clientY - mapDragStartY) / layoutScale;
+          mapSpin = mapStartSpin + deltaX * 0.34;
+          mapRotateY = mapStartRotateY + deltaX * 0.012;
+          mapRotateX = mapStartRotateX - deltaY * 0.05;
+          updateMapTransform();
+        });
+
+        function stopMapDrag(event) {
+          if (!mapDragging) {
+            return;
+          }
+
+          mapDragging = false;
+          mapLayer.classList.remove("is-dragging");
+
+          if (event && typeof mapLayer.releasePointerCapture === "function") {
+            try {
+              mapLayer.releasePointerCapture(event.pointerId);
+            } catch (_error) {
+              // The pointer can already be released if the gesture leaves the page.
+            }
+          }
+        }
+
+        mapScreen.addEventListener("pointerup", stopMapDrag);
+        mapScreen.addEventListener("pointercancel", stopMapDrag);
+        mapScreen.addEventListener("lostpointercapture", stopMapDrag);
+
+        mapScreen.addEventListener("wheel", function (event) {
+          if (!mapScreenShown) {
+            return;
+          }
+
+          event.preventDefault();
+          mapScreen.classList.add("has-interacted");
+          mapZoom = clamp(mapZoom - event.deltaY * 0.001, 0.84, 1.52);
+          updateMapTransform();
+        }, { passive: false });
+
+        mapScreen.addEventListener("dblclick", function () {
+          if (!mapScreenShown) {
+            return;
+          }
+
+          mapZoom = 1;
+          mapRotateX = 0;
+          mapRotateY = 0;
+          mapSpin = 0;
+          updateMapTransform();
+        });
+
+        updateMapTransform();
+      }
+
+      window.addEventListener("resize", resize, { passive: true });
+      resize();
+      bindCursorLight();
+      bindInteractions();
+      bindMapInteractions();
+      prepareWalkSequence();
+
+      var heroWarmupPromise = loadFrame(reducedMotion ? FRAME_COUNT : 1)
+        .then(function () {
+          currentFrame = reducedMotion ? FRAME_COUNT : 1;
+          drawFrame(currentFrame);
+
+          if (!reducedMotion) {
+            warmFrames(1);
+            return waitForHeroBuffer(HERO_START_BUFFER, 5200);
+          }
+        })
+        .catch(function () {
+          canvas.style.display = "none";
+        });
+    })();
+  </script>
+</body>
+</html>
