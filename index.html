@@ -229,6 +229,12 @@
       text-align: center;
       text-shadow: 0 2px 18px rgba(0, 0, 0, 0.34);
       transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 520ms var(--ease-out);
+    }
+
+    .zero-screen.is-assets-ready .zero-screen__text {
+      opacity: 1;
     }
 
     .zero-screen__actions {
@@ -242,7 +248,7 @@
       transform: translateX(-50%);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 520ms var(--ease-out);
+      transition: opacity 520ms var(--ease-out) 260ms;
     }
 
     .zero-screen.is-assets-ready .zero-screen__actions {
@@ -1824,7 +1830,6 @@
       border-radius: 40px;
       background: rgba(255, 255, 255, 0.1);
       box-shadow:
-        0 18px 44px rgba(0, 0, 0, 0.24),
         inset 0 1px 0 rgba(255, 255, 255, 0.12);
       opacity: 0;
       transform: translate3d(0, 22px, 0) scale(0.985);
