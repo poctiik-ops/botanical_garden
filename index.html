@@ -240,6 +240,20 @@
       justify-content: center;
       gap: 28px;
       transform: translateX(-50%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 520ms var(--ease-out);
+    }
+
+    .zero-screen.is-assets-ready .zero-screen__actions {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .zero-screen.is-assets-ready .zero-screen__dot {
+      animation: none;
+      opacity: 0.9;
+      transform: scale(1);
     }
 
     .zero-screen__button {
@@ -4928,6 +4942,7 @@
       zeroAssetsReady.then(function () {
         if (zeroScreen) {
           zeroScreen.setAttribute("aria-busy", "false");
+          zeroScreen.classList.add("is-assets-ready");
         }
 
         startButtons.forEach(function (button) {
