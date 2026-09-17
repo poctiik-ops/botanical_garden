@@ -12,12 +12,12 @@
   <link rel="preload" href="frames/гора.png" as="image">
   <link rel="preload" href="frames/туман.png" as="image">
   <link rel="preload" href="frames/calendar.png" as="image">
-  <link rel="preload" href="frames/orangery-main.png" as="image">
-  <link rel="preload" href="frames/subtropical.png" as="image">
-  <link rel="preload" href="frames/tropical.png" as="image">
-  <link rel="preload" href="frames/water.png" as="image">
+  <link rel="preload" href="frames/оранж комплекс/оранжерея.png" as="image">
+  <link rel="preload" href="frames/оранж комплекс/субтропический .png" as="image">
+  <link rel="preload" href="frames/оранж комплекс/тропический.png" as="image">
+  <link rel="preload" href="frames/оранж комплекс/водный.png" as="image">
   <link rel="preload" href="frames/bees.mp4" as="video" type="video/mp4">
-  <link rel="preload" href="audio/volshebnyiy-dzyin--skazochnyiy.mp3" as="audio" type="audio/mpeg">
+  <link rel="preload" href="dist/audio/volshebnyiy-dzyin--skazochnyiy.mp3" as="audio" type="audio/mpeg">
   <link rel="preload" href="frames/walk/frame_001.jpg" as="image">
   <link rel="preload" href="frames/walk/frame_241.png" as="image">
   <link rel="preload" href="frames/map.png" as="image">
@@ -1171,7 +1171,6 @@
       bottom: 32px;
       z-index: 2;
       width: 705px;
-      min-height: 96px;
       text-align: left;
       text-shadow: 0 18px 46px rgba(0, 0, 0, 0.62);
       transform: translate3d(0, 0, 0);
@@ -4232,7 +4231,7 @@
           <article class="about-card" id="about">
             <img class="about-card__image about-card__image--primary" src="frames/about.png" alt="Оранжерея Ботанического сада Петра Великого">
             <img class="about-card__image about-card__image--park" src="frames/park.png" alt="Парк-дендрарий Ботанического сада">
-            <img class="about-card__image about-card__image--orangery" src="frames/orangery-main.png" width="1066" height="1040" decoding="async" alt="Оранжерейный комплекс Ботанического сада">
+            <img class="about-card__image about-card__image--orangery" src="frames/оранж комплекс/оранжерея.png" width="1066" height="1040" decoding="async" alt="Оранжерейный комплекс Ботанического сада">
 
             <div class="about-card__content">
               <h2 class="about-card__title"><span class="about-card__script">О</span> саде</h2>
@@ -4301,7 +4300,7 @@
 
           <aside class="about-routes" id="aboutRoutes" aria-label="Маршруты оранжерейного комплекса" aria-hidden="true">
             <button class="about-route-card" type="button" aria-label="Субтропический маршрут">
-              <img class="about-route-card__image" src="frames/subtropical.png" width="791" height="337" decoding="async" alt="">
+              <img class="about-route-card__image" src="frames/оранж комплекс/субтропический .png" width="791" height="337" decoding="async" alt="">
               <span class="about-route-card__copy">
                 <span class="about-route-card__title">Субтропический маршрут</span>
                 <span class="about-route-card__subtitle">Наведите курсор, чтобы узнать больше</span>
@@ -4310,7 +4309,7 @@
             </button>
 
             <button class="about-route-card" type="button" aria-label="Тропический маршрут">
-              <img class="about-route-card__image" src="frames/tropical.png" width="791" height="337" decoding="async" alt="">
+              <img class="about-route-card__image" src="frames/оранж комплекс/тропический.png" width="791" height="337" decoding="async" alt="">
               <span class="about-route-card__copy">
                 <span class="about-route-card__title">Тропический маршрут</span>
                 <span class="about-route-card__subtitle">Наведите курсор, чтобы узнать больше</span>
@@ -4319,7 +4318,7 @@
             </button>
 
             <button class="about-route-card" type="button" aria-label="Водный маршрут">
-              <img class="about-route-card__image" src="frames/water.png" width="791" height="337" decoding="async" alt="">
+              <img class="about-route-card__image" src="frames/оранж комплекс/водный.png" width="791" height="337" decoding="async" alt="">
               <span class="about-route-card__copy">
                 <span class="about-route-card__title">Водный маршрут</span>
                 <span class="about-route-card__subtitle">Наведите курсор, чтобы узнать больше</span>
@@ -4497,7 +4496,7 @@
       var walkTransition = document.getElementById("walkTransition");
       var walkFrameImage = document.getElementById("walkFrameImage");
       var startButtons = document.querySelectorAll("[data-start-mode]");
-      var UI_CLICK_SOUND_SRC = "audio/volshebnyiy-dzyin--skazochnyiy.mp3";
+      var UI_CLICK_SOUND_SRC = "dist/audio/volshebnyiy-dzyin--skazochnyiy.mp3";
       var uiClickAudio = window.Audio ? new Audio(UI_CLICK_SOUND_SRC) : null;
       var heroImageReady = preloadImage("frames/hero screen.png");
       var aboutAssetsReady = Promise.all([
@@ -4507,10 +4506,10 @@
         preloadImage("frames/гора.png"),
         preloadImage("frames/туман.png"),
         preloadImage("frames/calendar.png"),
-        preloadImage("frames/orangery-main.png"),
-        preloadImage("frames/subtropical.png"),
-        preloadImage("frames/tropical.png"),
-        preloadImage("frames/water.png")
+        preloadImage("frames/оранж комплекс/оранжерея.png"),
+        preloadImage("frames/оранж комплекс/субтропический .png"),
+        preloadImage("frames/оранж комплекс/тропический.png"),
+        preloadImage("frames/оранж комплекс/водный.png")
       ]);
       var mapEntryReady = preloadImage("frames/map.png");
       var WALK_FRAME_COUNT = 241;
