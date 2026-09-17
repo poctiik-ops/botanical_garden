@@ -1598,7 +1598,7 @@
     .bloom-calendar__mode:focus-visible {
       border-color: rgba(255, 255, 255, 0.74);
       color: rgba(255, 255, 255, 0.96);
-      background: rgba(172, 172, 172, 0.1);
+      background: rgba(22, 30, 26, 0.48);
       box-shadow:
         0 0 22px var(--button-glow),
         0 0 58px rgba(255, 255, 255, 0.22),
@@ -1636,7 +1636,7 @@
     }
 
     .bloom-calendar__month-track.is-sliding .bloom-calendar__month.is-active {
-      background: rgba(172, 172, 172, 0.1);
+      background: rgba(22, 30, 26, 0.48);
       box-shadow: none;
     }
 
@@ -1664,7 +1664,7 @@
       border: 0;
       border-radius: 999px;
       color: rgba(255, 255, 255, 0.82);
-      background: rgba(172, 172, 172, 0.1);
+      background: rgba(22, 30, 26, 0.48);
       cursor: pointer;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -1687,7 +1687,7 @@
     .bloom-calendar__day:focus-visible,
     .bloom-calendar__day.is-selected {
       color: rgba(255, 255, 255, 0.96);
-      background: rgba(172, 172, 172, 0.1);
+      background: rgba(22, 30, 26, 0.48);
       box-shadow:
         0 0 15px rgba(255, 255, 255, 0.36),
         0 0 42px rgba(255, 255, 255, 0.18),
@@ -1698,7 +1698,7 @@
     .bloom-calendar__month:hover,
     .bloom-calendar__month:focus-visible {
       color: rgba(255, 255, 255, 0.96);
-      background: rgba(172, 172, 172, 0.1);
+      background: rgba(22, 30, 26, 0.48);
       outline: none;
     }
 
@@ -1745,7 +1745,7 @@
     .bloom-calendar__day.is-muted:hover {
       transform: none;
       box-shadow: none;
-      background: rgba(172, 172, 172, 0.1);
+      background: rgba(22, 30, 26, 0.48);
     }
 
     .bloom-calendar__plants-title {
@@ -5348,6 +5348,11 @@
 
         if (stage.classList.contains("is-about-park-expanded")) {
           event.preventDefault();
+
+          if (event.deltaY < 0) {
+            closeAboutExploreLayer();
+          }
+
           return;
         }
 
@@ -5649,7 +5654,7 @@
         image.className = "bloom-plant__image";
         image.src = plant.image;
         image.alt = isClone ? "" : plant.name;
-        image.loading = "lazy";
+        image.loading = "eager";
         name.className = "bloom-plant__name";
         name.textContent = typographText(plant.name);
         card.appendChild(image);
