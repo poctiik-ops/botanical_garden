@@ -686,6 +686,123 @@
       pointer-events: none;
     }
 
+    .events-screen {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      overflow: hidden;
+      background: #0b1511 url("frames/events/мероприятия бэк.png") center / cover no-repeat;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 900ms var(--ease-about-soft), visibility 0s linear 900ms;
+    }
+
+    .stage.is-events-open .events-screen {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
+
+    .events-screen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 14, 10, 0.36);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      pointer-events: none;
+    }
+
+    .events-gallery {
+      position: absolute;
+      left: 0;
+      top: 174px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      width: max-content;
+      height: 715px;
+      transform: translateX(-248px);
+      transition: transform 720ms var(--ease-about-slide);
+      will-change: transform;
+    }
+
+    .events-gallery__card {
+      flex: 0 0 505px;
+      height: 715px;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      border-radius: 36px;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transform: scale(0.9);
+      filter: blur(10px) saturate(0.72);
+      opacity: 0.74;
+      transition: transform 720ms var(--ease-about-slide), filter 720ms var(--ease-about-slide), opacity 720ms ease;
+    }
+
+    .events-gallery__card.is-active {
+      transform: scale(1);
+      filter: none;
+      opacity: 1;
+    }
+
+    .events-gallery__card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .events-screen__title {
+      position: absolute;
+      left: 64px;
+      bottom: 58px;
+      z-index: 2;
+      margin: 0;
+      color: white;
+      font-size: 68px;
+      font-weight: 300;
+      line-height: 1;
+      text-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .events-screen__controls {
+      position: absolute;
+      right: 64px;
+      bottom: 68px;
+      z-index: 2;
+      display: flex;
+      gap: 12px;
+    }
+
+    .events-screen__control {
+      width: 58px;
+      height: 58px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.64);
+      border-radius: 50%;
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      font-size: 28px;
+      transition: background 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+    }
+
+    .events-screen__control:hover,
+    .events-screen__control:focus-visible {
+      background: rgba(255, 255, 255, 0.24);
+      box-shadow: 0 0 28px rgba(255, 255, 255, 0.28);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
     .about-screen::before {
       content: "";
       position: absolute;
@@ -4235,7 +4352,7 @@
 
           <nav class="nav__menu" id="navMenu" aria-label="Разделы сайта">
             <a class="nav__link" id="aboutNavLink" href="#about">О саде</a>
-            <a class="nav__link" href="#events">Мероприятия</a>
+            <a class="nav__link" id="eventsNavLink" href="#events">Мероприятия</a>
             <a class="nav__link" href="#visitors">Посетителям</a>
             <a class="nav__link" href="#map">3D-карта</a>
             <a class="nav__link" href="#contacts">Контакты</a>
@@ -4283,6 +4400,21 @@
             <button class="about-card__dot" type="button" data-about-panel="2" aria-label="Третий экран раздела о саде"></button>
             <button class="about-card__dot" type="button" data-about-panel="3" aria-label="Четвертый экран раздела о саде" aria-disabled="true"></button>
           </div>
+
+          <section class="events-screen" id="eventsScreen" aria-label="Мероприятия" aria-hidden="true">
+            <div class="events-gallery" id="eventsGallery">
+              <button class="events-gallery__card" type="button" data-event-index="0"><img src="frames/events/1.png" alt="Мероприятие 1"></button>
+              <button class="events-gallery__card" type="button" data-event-index="1"><img src="frames/events/2.png" alt="Мероприятие 2"></button>
+              <button class="events-gallery__card is-active" type="button" data-event-index="2"><img src="frames/events/3.png" alt="Мероприятие 3"></button>
+              <button class="events-gallery__card" type="button" data-event-index="3"><img src="frames/events/4.png" alt="Мероприятие 4"></button>
+              <button class="events-gallery__card" type="button" data-event-index="4"><img src="frames/events/5.png" alt="Мероприятие 5"></button>
+            </div>
+            <h1 class="events-screen__title">Текущие мероприятия в саду</h1>
+            <div class="events-screen__controls" aria-label="Переключение афиш">
+              <button class="events-screen__control" id="eventsPrevious" type="button" aria-label="Предыдущая афиша">←</button>
+              <button class="events-screen__control" id="eventsNext" type="button" aria-label="Следующая афиша">→</button>
+            </div>
+          </section>
 
           <aside class="bloom-calendar" id="bloomCalendar" aria-label="Календарь цветения" data-source="https://botsad-spb.com/ru/oranzherei/kalendar-cveteniya">
             <div class="bloom-calendar__inner">
@@ -4505,6 +4637,13 @@
       var beesVideo = document.getElementById("beesVideo");
       var startWalkButton = document.getElementById("startWalk");
       var aboutNavLink = document.getElementById("aboutNavLink");
+      var eventsNavLink = document.getElementById("eventsNavLink");
+      var eventsScreen = document.getElementById("eventsScreen");
+      var eventsGallery = document.getElementById("eventsGallery");
+      var eventsCards = document.querySelectorAll("[data-event-index]");
+      var eventsPrevious = document.getElementById("eventsPrevious");
+      var eventsNext = document.getElementById("eventsNext");
+      var eventsIndex = 2;
       var aboutScreen = document.getElementById("aboutScreen");
       var aboutDetail = document.getElementById("aboutDetail");
       var aboutGreenhouse = document.querySelector(".about-greenhouse");
@@ -4556,6 +4695,34 @@
       var walkFrame = 0;
       var walkStartPending = false;
       var heroEnterPending = false;
+
+      function setEventsIndex(index) {
+        var cardWidth = 529;
+        eventsIndex = (index + eventsCards.length) % eventsCards.length;
+        eventsCards.forEach(function (card) {
+          card.classList.toggle("is-active", Number(card.dataset.eventIndex) === eventsIndex);
+        });
+        if (eventsGallery) {
+          eventsGallery.style.transform = "translateX(" + (-(eventsIndex * cardWidth) + 728) + "px)";
+        }
+      }
+
+      function toggleEvents(event) {
+        if (event) {
+          event.preventDefault();
+        }
+        var isOpen = stage.classList.toggle("is-events-open");
+        if (eventsScreen) {
+          eventsScreen.setAttribute("aria-hidden", isOpen ? "false" : "true");
+        }
+        if (eventsNavLink) {
+          eventsNavLink.textContent = typographText(isOpen ? "Главная" : "Мероприятия");
+          eventsNavLink.setAttribute("href", isOpen ? "#hero" : "#events");
+        }
+        if (isOpen) {
+          setEventsIndex(eventsIndex);
+        }
+      }
 
       if (uiClickAudio) {
         uiClickAudio.preload = "auto";
@@ -5547,6 +5714,30 @@
       if (aboutNavLink) {
         aboutNavLink.addEventListener("click", openAboutScreen);
       }
+
+      if (eventsNavLink) {
+        eventsNavLink.addEventListener("click", toggleEvents);
+      }
+
+      eventsCards.forEach(function (card) {
+        card.addEventListener("click", function () {
+          setEventsIndex(Number(card.dataset.eventIndex));
+        });
+      });
+
+      if (eventsPrevious) {
+        eventsPrevious.addEventListener("click", function () {
+          setEventsIndex(eventsIndex - 1);
+        });
+      }
+
+      if (eventsNext) {
+        eventsNext.addEventListener("click", function () {
+          setEventsIndex(eventsIndex + 1);
+        });
+      }
+
+      setEventsIndex(eventsIndex);
 
       aboutPanelDots.forEach(function (dot) {
         dot.addEventListener("click", function () {
