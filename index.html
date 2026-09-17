@@ -837,7 +837,7 @@
     .about-card__content {
       position: absolute;
       left: 55px;
-      bottom: 25px;
+      bottom: 80px;
       z-index: 3;
       width: 980px;
       color: rgba(255, 255, 255, 0.9);
@@ -1282,6 +1282,9 @@
     .about-route-card:hover .about-route-card__subtitle,
     .about-route-card:focus .about-route-card__subtitle,
     .about-route-card:focus-visible .about-route-card__subtitle {
+      position: absolute;
+      left: 0;
+      top: 0;
       opacity: 0;
       filter: blur(8px);
       transform: translate3d(0, -8px, 0);
@@ -1291,7 +1294,7 @@
     .about-route-card:focus .about-route-card__description,
     .about-route-card:focus-visible .about-route-card__description {
       position: static;
-      margin-top: 22px;
+      margin-top: 20px;
       opacity: 1;
       filter: blur(0);
       transform: translate3d(0, 0, 0);
