@@ -691,7 +691,7 @@
       inset: 0;
       z-index: 6;
       overflow: hidden;
-      background: #0b1511 url("frames/events/мероприятия бэк.png") center / cover no-repeat;
+      background: url("frames/events/мероприятия бэк.png") center / cover no-repeat;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -705,13 +705,25 @@
       transition-delay: 0s;
     }
 
+    .stage.is-events-open:has(.events-gallery__card.is-expanded) .events-screen {
+      z-index: 20;
+    }
+
+    .stage.is-events-open:has(.events-gallery__card.is-expanded) .nav {
+      z-index: 1;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 420ms var(--ease-about-soft), visibility 0s linear 420ms;
+    }
+
     .events-screen::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(5, 14, 10, 0.36);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(5, 14, 10, 0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       pointer-events: none;
     }
 
@@ -736,20 +748,38 @@
       padding: 0;
       overflow: hidden;
       border: 0;
-      border-radius: 36px;
+      border-radius: 50px;
       background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+      box-shadow: none;
       cursor: pointer;
       transform: scale(0.9);
       filter: blur(10px) saturate(0.72);
       opacity: 0.74;
-      transition: transform 720ms var(--ease-about-slide), filter 720ms var(--ease-about-slide), opacity 720ms ease;
+      transition: transform 980ms var(--ease-about-slide), filter 980ms var(--ease-about-slide), opacity 980ms var(--ease-about-soft);
     }
 
     .events-gallery__card.is-active {
       transform: scale(1);
       filter: none;
       opacity: 1;
+    }
+
+    .events-gallery__card.is-expanded {
+      position: relative;
+      z-index: 20;
+      transform: scale(1.42);
+      filter: none;
+      box-shadow: none;
+    }
+
+    .events-screen__title {
+      transition: opacity 520ms var(--ease-about-soft), transform 520ms var(--ease-about-soft);
+    }
+
+    .events-screen:has(.events-gallery__card.is-expanded) .events-screen__title {
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
     }
 
     .events-gallery__card img {
@@ -773,12 +803,18 @@
       text-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
     }
 
+    .events-screen__title-script {
+      font-family: "Good Vibes Pro", "GoodVibesCyr", "Inter", sans-serif;
+      font-size: 1.12em;
+      font-weight: 400;
+    }
+
     .events-screen__controls {
       position: absolute;
       right: 64px;
       bottom: 68px;
       z-index: 2;
-      display: flex;
+      display: none;
       gap: 12px;
     }
 
@@ -875,6 +911,17 @@
     }
 
     .about-card__image--orangery {
+      opacity: 0;
+      filter: blur(14px);
+      transform: scale(1.022);
+      object-position: center center;
+      transition:
+        opacity 1220ms var(--ease-about-soft),
+        filter 1360ms var(--ease-about-soft),
+        transform 1560ms var(--ease-about-slide);
+    }
+
+    .about-card__image--museum {
       opacity: 0;
       filter: blur(14px);
       transform: scale(1.022);
@@ -1022,10 +1069,10 @@
       bottom: 54px;
       z-index: 4;
       display: grid;
-      grid-template-columns: 150px 220px 130px 330px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       align-items: center;
       justify-content: center;
-      gap: 35px;
+      gap: 28px;
       width: 1066px;
       min-height: 116px;
       padding: 0;
@@ -1049,6 +1096,7 @@
       min-height: 52px;
       margin: 0;
       text-align: center;
+      justify-self: stretch;
       font-size: 24px;
       font-weight: 300;
       line-height: 1.1;
@@ -2455,6 +2503,54 @@
       filter: blur(0);
       transform: scale(1);
       transition-delay: 80ms;
+    }
+
+    .stage.is-about-panel-four .about-greenhouse,
+    .stage.is-about-panel-four .about-routes,
+    .stage.is-about-panel-four .about-explore {
+      opacity: 0;
+      filter: blur(18px);
+      transform: translate3d(-96px, 0, 0) scale(0.992);
+      pointer-events: none;
+    }
+
+    .stage.is-about-panel-four .about-card__facts {
+      opacity: 0;
+      filter: blur(16px);
+      transform: translate3d(0, 42px, 0);
+      pointer-events: none;
+    }
+
+    .stage.is-about-panel-four-facts .about-card__facts {
+      opacity: 1;
+      filter: blur(0);
+      transform: translate3d(0, 0, 0);
+      pointer-events: none;
+    }
+
+    .stage.is-about-panel-four-image .about-card__image--primary,
+    .stage.is-about-panel-four-image .about-card__image--park,
+    .stage.is-about-panel-four-image .about-card__image--orangery {
+      opacity: 0;
+      filter: blur(10px);
+      transform: scale(0.992);
+    }
+
+    .stage.is-about-panel-four-image .about-card__image--museum {
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1);
+      transition-delay: 80ms;
+    }
+
+    .stage.is-about-panel-four-side-copy .about-detail,
+    .stage.is-about-panel-four-side-copy .about-detail__title,
+    .stage.is-about-panel-four-side-copy .about-detail__text,
+    .stage.is-about-panel-four-side-copy .about-detail__button {
+      opacity: 1;
+      filter: blur(0);
+      transform: translate3d(0, 0, 0);
+      pointer-events: auto;
     }
 
     .stage.is-about-panel-three-copy .about-greenhouse,
@@ -4354,7 +4450,7 @@
             <a class="nav__link" id="aboutNavLink" href="#about">О саде</a>
             <a class="nav__link" id="eventsNavLink" href="#events">Мероприятия</a>
             <a class="nav__link" href="#visitors">Посетителям</a>
-            <a class="nav__link" href="#map">3D-карта</a>
+            <a class="nav__link" id="mapNavLink" href="#garden-depth">3D-карта</a>
             <a class="nav__link" href="#contacts">Контакты</a>
           </nav>
 
@@ -4375,6 +4471,7 @@
             <img class="about-card__image about-card__image--primary" src="frames/about.png" alt="Оранжерея Ботанического сада Петра Великого">
             <img class="about-card__image about-card__image--park" src="frames/park.png" alt="Парк-дендрарий Ботанического сада">
             <img class="about-card__image about-card__image--orangery" src="frames/оранж комплекс/оранжерея.png" width="1066" height="1040" decoding="async" alt="Оранжерейный комплекс Ботанического сада">
+            <img class="about-card__image about-card__image--museum" src="frames/музей/ботанический музей.png" width="1066" height="1040" decoding="async" alt="Ботанический музей">
 
             <div class="about-card__content">
               <h2 class="about-card__title"><span class="about-card__script">О</span> саде</h2>
@@ -4398,7 +4495,7 @@
             <button class="about-card__dot is-active" type="button" data-about-panel="0" aria-label="Первый экран раздела о саде" aria-current="true"></button>
             <button class="about-card__dot" type="button" data-about-panel="1" aria-label="Второй экран раздела о саде"></button>
             <button class="about-card__dot" type="button" data-about-panel="2" aria-label="Третий экран раздела о саде"></button>
-            <button class="about-card__dot" type="button" data-about-panel="3" aria-label="Четвертый экран раздела о саде" aria-disabled="true"></button>
+            <button class="about-card__dot" type="button" data-about-panel="3" aria-label="Четвертый экран раздела о саде"></button>
           </div>
 
           <section class="events-screen" id="eventsScreen" aria-label="Мероприятия" aria-hidden="true">
@@ -4409,7 +4506,7 @@
               <button class="events-gallery__card" type="button" data-event-index="3"><img src="frames/events/4.png" alt="Мероприятие 4"></button>
               <button class="events-gallery__card" type="button" data-event-index="4"><img src="frames/events/5.png" alt="Мероприятие 5"></button>
             </div>
-            <h1 class="events-screen__title">Текущие мероприятия в саду</h1>
+            <h1 class="events-screen__title"><span class="events-screen__title-script">Т</span>екущие мероприятия в саду</h1>
             <div class="events-screen__controls" aria-label="Переключение афиш">
               <button class="events-screen__control" id="eventsPrevious" type="button" aria-label="Предыдущая афиша">←</button>
               <button class="events-screen__control" id="eventsNext" type="button" aria-label="Следующая афиша">→</button>
@@ -4643,9 +4740,12 @@
       var eventsCards = document.querySelectorAll("[data-event-index]");
       var eventsPrevious = document.getElementById("eventsPrevious");
       var eventsNext = document.getElementById("eventsNext");
+      var mapNavLink = document.getElementById("mapNavLink");
       var eventsIndex = 2;
+      var eventsAutoTimer = 0;
       var aboutScreen = document.getElementById("aboutScreen");
       var aboutDetail = document.getElementById("aboutDetail");
+      var aboutFacts = document.querySelector(".about-card__facts");
       var aboutGreenhouse = document.querySelector(".about-greenhouse");
       var aboutRoutes = document.getElementById("aboutRoutes");
       var aboutExplore = document.getElementById("aboutExplore");
@@ -4674,7 +4774,14 @@
         preloadImage("frames/оранж комплекс/оранжерея.png"),
         preloadImage("frames/оранж комплекс/субтропический .png"),
         preloadImage("frames/оранж комплекс/тропический.png"),
-        preloadImage("frames/оранж комплекс/водный.png")
+        preloadImage("frames/оранж комплекс/водный.png"),
+        preloadImage("frames/музей/ботанический музей.png"),
+        preloadImage("frames/events/мероприятия бэк.png"),
+        preloadImage("frames/events/1.png"),
+        preloadImage("frames/events/2.png"),
+        preloadImage("frames/events/3.png"),
+        preloadImage("frames/events/4.png"),
+        preloadImage("frames/events/5.png")
       ]);
       var mapEntryReady = preloadImage("frames/map.png");
       var WALK_FRAME_COUNT = 241;
@@ -4707,6 +4814,73 @@
         }
       }
 
+      function advanceEventsLoop() {
+        var firstCard;
+        var targetCard;
+
+        if (!eventsGallery || document.querySelector(".events-gallery__card.is-expanded")) {
+          return;
+        }
+
+        firstCard = eventsGallery.firstElementChild;
+        targetCard = firstCard;
+        for (var targetStep = 0; targetStep < 3 && targetCard; targetStep += 1) {
+          targetCard = targetCard.nextElementSibling;
+        }
+
+        if (!firstCard || !targetCard) {
+          return;
+        }
+
+        eventsGallery.querySelectorAll(".events-gallery__card").forEach(function (card) {
+          card.classList.remove("is-active");
+        });
+        targetCard.classList.add("is-active");
+        eventsGallery.style.transform = "translateX(-859px)";
+
+        window.setTimeout(function () {
+          eventsGallery.appendChild(firstCard);
+          eventsGallery.style.transition = "none";
+          eventsGallery.style.transform = "translateX(-330px)";
+          eventsGallery.offsetHeight;
+          eventsGallery.style.transition = "transform 720ms var(--ease-about-slide)";
+          eventsIndex = Number(targetCard.dataset.eventIndex);
+        }, 720);
+      }
+
+      function retreatEventsLoop() {
+        var lastCard;
+        var activeCard;
+        var targetCard;
+
+        if (!eventsGallery || document.querySelector(".events-gallery__card.is-expanded")) {
+          return;
+        }
+
+        activeCard = eventsGallery.querySelector(".events-gallery__card.is-active");
+        lastCard = eventsGallery.lastElementChild;
+        targetCard = activeCard && activeCard.previousElementSibling;
+
+        if (!activeCard || !lastCard || !targetCard) {
+          return;
+        }
+
+        eventsGallery.querySelectorAll(".events-gallery__card").forEach(function (card) {
+          card.classList.remove("is-active");
+        });
+        targetCard.classList.add("is-active");
+        eventsGallery.style.transform = "translateX(199px)";
+
+        window.setTimeout(function () {
+          eventsGallery.insertBefore(lastCard, eventsGallery.firstElementChild);
+          eventsGallery.style.transition = "none";
+          eventsGallery.style.transform = "translateX(-330px)";
+          eventsGallery.offsetHeight;
+          eventsGallery.style.transition = "transform 720ms var(--ease-about-slide)";
+          eventsIndex = Number(targetCard.dataset.eventIndex);
+        }, 720);
+      }
+
       function toggleEvents(event) {
         if (event) {
           event.preventDefault();
@@ -4721,6 +4895,14 @@
         }
         if (isOpen) {
           setEventsIndex(eventsIndex);
+          window.clearInterval(eventsAutoTimer);
+          eventsAutoTimer = window.setInterval(function () {
+            if (!document.querySelector(".events-gallery__card.is-expanded")) {
+              advanceEventsLoop();
+            }
+          }, 5200);
+        } else {
+          window.clearInterval(eventsAutoTimer);
         }
       }
 
@@ -4749,7 +4931,7 @@
         "is-about-panel-three-routes",
         "is-about-park-expanded"
       ];
-      var ABOUT_PANEL_MAX = 2;
+      var ABOUT_PANEL_MAX = 3;
       var BLOOM_MONTH_LABELS = ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"];
       var BLOOM_MONTH_VISIBLE_RADIUS = 3;
       var BLOOM_MONTH_RENDER_RADIUS = 6;
@@ -5251,6 +5433,10 @@
           "is-about-panel-three-image",
           "is-about-panel-three-copy",
           "is-about-panel-three-routes",
+          "is-about-panel-four",
+          "is-about-panel-four-image",
+          "is-about-panel-four-side-copy",
+          "is-about-panel-four-facts",
           "is-about-park-expanded"
         );
 
@@ -5283,7 +5469,7 @@
 
       function setAboutPanelAccessibility(panel) {
         if (aboutDetail) {
-          aboutDetail.setAttribute("aria-hidden", panel === 1 ? "false" : "true");
+          aboutDetail.setAttribute("aria-hidden", panel === 1 || panel === 3 ? "false" : "true");
         }
 
         if (aboutGreenhouse) {
@@ -5308,6 +5494,9 @@
         stage.classList.toggle("is-about-panel-three-image", panel === 2);
         stage.classList.toggle("is-about-panel-three-copy", panel === 2);
         stage.classList.toggle("is-about-panel-three-routes", panel === 2);
+        stage.classList.toggle("is-about-panel-four", panel === 3);
+        stage.classList.toggle("is-about-panel-four-image", panel === 3);
+        stage.classList.toggle("is-about-panel-four-side-copy", panel === 3);
       }
 
       function closeAboutExploreLayer() {
@@ -5474,8 +5663,18 @@
         }
 
         if (panel === 2) {
+          var parkTitle = aboutDetail && aboutDetail.querySelector(".about-detail__title");
+          var parkText = aboutDetail && aboutDetail.querySelector(".about-detail__text");
+
+          if (parkTitle) {
+            parkTitle.innerHTML = '<span class="about-detail__script">П</span>арк-дендрарий';
+          }
+          if (parkText) {
+            parkText.textContent = "Парк-дендрарий Ботанического сада Ботанического института им. В.Л. Комарова РАН является одним из старейших парков России. Парковая часть занимает 16,7 га, включая площадь под деревьями, газоны, горки, цветники и питомники. Территория разбита на 145 участков. Расположение парка в центральной части города, на острове в дельте Невы, положительно влияет на микроклимат, однако большая часть территории находится лишь на 1,5-3 м выше уровня моря и подвержена наводнениям.";
+          }
+
           stage.classList.add("is-about-panel-two");
-          stage.classList.remove("is-about-panel-two-side-copy");
+          stage.classList.remove("is-about-panel-two-side-copy", "is-about-panel-four", "is-about-panel-four-image", "is-about-panel-four-facts", "is-about-panel-four-side-copy");
 
           queueAboutPanelStep(160, function () {
             stage.classList.remove("is-about-panel-two-photo-copy");
@@ -5498,6 +5697,46 @@
             stage.classList.add("is-about-panel-three-routes");
           });
 
+          queueAboutPanelStep(2420, function () {
+            aboutPanelLocked = false;
+          });
+
+          return;
+        }
+
+        if (panel === 3) {
+          var museumTitle = aboutDetail && aboutDetail.querySelector(".about-detail__title");
+          var museumText = aboutDetail && aboutDetail.querySelector(".about-detail__text");
+
+          if (museumTitle) {
+            museumTitle.innerHTML = '<span class="about-detail__script">Б</span>отанический музей';
+          }
+          if (museumText) {
+            museumText.textContent = "Ботанический музей основан в 1823 году и является одним из старейших музеев Санкт-Петербурга и России. Его экспозиции рассказывают о растительности Земли, эволюции растительного мира и роли растений в жизни человека. В фондах хранятся образцы древесины, плодов и семян, ископаемые растения, изделия из растительного сырья, фотографии и материалы научных экспедиций. Здесь ботаника раскрывается не только как наука, но и как история путешествий, открытий и отношений человека с природой.";
+          }
+
+          if (aboutFacts) {
+            var museumFacts = [
+              ["1823 год", "основание музея"],
+              ["4 коллекции", "фондовые"],
+              ["3 коллекции", "постоянные"],
+              ["более 10 тыс.", "снимков в фотоархиве"]
+            ];
+            aboutFacts.querySelectorAll(".about-card__fact").forEach(function (fact, factIndex) {
+              var factParts = fact.querySelectorAll("span");
+              if (museumFacts[factIndex] && factParts.length > 1) {
+                factParts[0].textContent = museumFacts[factIndex][0];
+                factParts[1].textContent = museumFacts[factIndex][1];
+              }
+            });
+          }
+
+          stage.classList.remove("is-about-panel-three", "is-about-panel-three-image", "is-about-panel-three-routes", "is-about-panel-three-copy");
+          stage.classList.add("is-about-panel-four", "is-about-panel-four-image");
+          queueAboutPanelStep(1040, function () {
+            stage.classList.add("is-about-panel-four-facts");
+            stage.classList.add("is-about-panel-four-side-copy");
+          });
           queueAboutPanelStep(2420, function () {
             aboutPanelLocked = false;
           });
@@ -5721,6 +5960,29 @@
 
       eventsCards.forEach(function (card) {
         card.addEventListener("click", function () {
+          if (card.classList.contains("is-active")) {
+            card.classList.toggle("is-expanded");
+            if (card.classList.contains("is-expanded")) {
+              window.clearInterval(eventsAutoTimer);
+            } else if (stage.classList.contains("is-events-open")) {
+              eventsAutoTimer = window.setInterval(advanceEventsLoop, 5200);
+            }
+            return;
+          }
+
+          if (card === eventsGallery.querySelector(".events-gallery__card.is-active").nextElementSibling) {
+            advanceEventsLoop();
+            return;
+          }
+
+          if (card === eventsGallery.querySelector(".events-gallery__card.is-active").previousElementSibling) {
+            retreatEventsLoop();
+            return;
+          }
+
+          eventsCards.forEach(function (otherCard) {
+            otherCard.classList.remove("is-expanded");
+          });
           setEventsIndex(Number(card.dataset.eventIndex));
         });
       });
@@ -6318,6 +6580,10 @@
 
       if (startWalkButton) {
         startWalkButton.addEventListener("click", startWalkTransition);
+      }
+
+      if (mapNavLink) {
+        mapNavLink.addEventListener("click", startWalkTransition);
       }
 
       function initGardenMap() {
