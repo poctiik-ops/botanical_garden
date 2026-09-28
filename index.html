@@ -8312,45 +8312,11 @@
         max-width: 250px;
       }
 
-      /* карточка объекта: единые поля 16px внутри фото, кнопки целиком на фото, ровные колонки цифр */
-      .map-info-card__intro {
-        left: 26px;
-        right: 26px;
-        top: 206px;
-        width: auto;
-      }
-
-      .map-info-card__lead {
-        width: auto;
-      }
-
-      .map-info-card__actions {
-        left: 26px;
-        right: 26px;
-        top: 268px;
-        gap: 10px;
-      }
-
-      .map-info-card__hours,
-      .map-info-card__ticket {
-        flex: 1 1 0;
-        width: auto;
-        min-width: 0;
-        height: 50px;
-        padding: 0 14px;
-        justify-content: center;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-
-      .map-info-card__hours {
-        gap: 10px;
-      }
-
+      /* раскрытая карточка: текст скроллится внутри */
       .map-info-card__details {
-        left: 26px;
-        right: 26px;
-        top: 364px;
+        left: 21px;
+        right: 22px;
+        top: 374px;
         bottom: 70px;
         width: auto;
         overflow-y: auto;
@@ -8364,18 +8330,6 @@
 
       .map-info-card.is-expanded .map-info-card__details {
         pointer-events: auto;
-      }
-
-      .map-info-card__stats {
-        margin-bottom: 26px;
-      }
-
-      .map-info-card__stat {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 0 6px;
       }
 
       .map-info-card__paragraph:last-child {
@@ -8667,6 +8621,44 @@
 
     .stage.is-fluid .second-screen__actions {
       translate: calc(var(--dx) * 2) 0;
+    }
+
+    /* Карточки объектов на карте — как в Figma «second screen map оранжерея» (1:1144):
+       кнопки стоят на нижней кромке фото (отступ 21/22 px по бокам), у всех объектов одинаково;
+       длинные подписи не вылезают за карточку — сжимается плашка с расписанием */
+    .map-info-card__actions {
+      left: 21px;
+      right: 22px;
+      top: 285px;
+      gap: 14px;
+    }
+
+    .map-info-card__hours {
+      flex: 1 1 0;
+      width: auto;
+      min-width: 0;
+      justify-content: center;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .map-info-card__hours {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .map-info-card__ticket {
+      flex: 0 0 auto;
+      padding-left: 26px;
+      padding-right: 26px;
+    }
+
+    .map-info-card__stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 6px;
     }
   </style>
 </head>
