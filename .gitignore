@@ -1,3 +1,9 @@
 .DS_Store
-dist/.git/
-dist/frames/
+# рабочие и служебные файлы — не для сайта
+dist/
+_originals/
+Claude outputs/
+_optimize-map.json
+*.zip
+index-commented.html
+index.before-fixes.html
