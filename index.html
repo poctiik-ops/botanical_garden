@@ -2,24 +2,14 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ботанический сад Петра Великого</title>
-  <meta name="description" content="Старейший ботанический сад Петербурга: оранжереи, маршруты, календарь цветения и интерактивная карта сада.">
-  <meta name="theme-color" content="#07110d">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Ботанический сад Петра Великого">
-  <meta property="og:description" content="Оранжереи, маршруты, календарь цветения и интерактивная карта сада.">
-  <meta property="og:image" content="frames/hero.webp">
-  <link rel="icon" href="frames/logo-emblem.svg" type="image/svg+xml">
-  <link rel="preload" href="fonts/manrope.woff" as="font" type="font/woff" crossorigin>
-  <link rel="preload" href="fonts/inter.woff" as="font" type="font/woff" crossorigin>
-  <link rel="preload" href="frames/zero.webp" as="image" media="(min-width: 701px) and (min-aspect-ratio: 5/4)">
-  <link rel="preload" href="frames/hero.webp" as="image" media="(min-width: 701px) and (min-aspect-ratio: 5/4)">
-  <link rel="preload" href="frames/hero-mobile.webp" as="image" media="(max-width: 700px), (max-aspect-ratio: 5/4)">
+  <link rel="preload" href="frames/zero screen.jpg" as="image">
+  <link rel="preload" href="frames/hero screen.jpg" as="image">
   <style>
     @font-face {
       font-family: "Manrope";
-      src: url("fonts/manrope.woff") format("woff");
+      src: url("fonts/Manrope-VariableFont_wght.ttf") format("truetype");
       font-weight: 200 800;
       font-style: normal;
       font-display: block;
@@ -27,7 +17,7 @@
 
     @font-face {
       font-family: "Monro";
-      src: url("fonts/manrope.woff") format("woff");
+      src: url("fonts/Manrope-VariableFont_wght.ttf") format("truetype");
       font-weight: 200 800;
       font-style: normal;
       font-display: block;
@@ -35,7 +25,7 @@
 
     @font-face {
       font-family: "Inter";
-      src: url("fonts/inter.woff") format("woff");
+      src: url("fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
       font-weight: 100 900;
       font-style: normal;
       font-display: block;
@@ -43,7 +33,7 @@
 
     @font-face {
       font-family: "Good Vibes Pro";
-      src: url("fonts/good-vibes.woff") format("woff");
+      src: url("fonts/GoodVibesCyr.ttf") format("truetype");
       font-weight: 400;
       font-style: normal;
       font-display: block;
@@ -51,7 +41,7 @@
 
     @font-face {
       font-family: "GoodVibesCyr";
-      src: url("fonts/good-vibes.woff") format("woff");
+      src: url("fonts/GoodVibesCyr.ttf") format("truetype");
       font-weight: 400;
       font-style: normal;
       font-display: block;
@@ -217,7 +207,7 @@
       width: 1920px;
       height: 1080px;
       overflow: hidden;
-      background: #20201f url("frames/zero.webp") center center / cover no-repeat;
+      background: #20201f url("frames/zero screen.jpg") center center / cover no-repeat;
       color: var(--white);
       opacity: 1;
       visibility: visible;
@@ -367,7 +357,7 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      background: #07110d url("frames/hero.webp") center center / cover no-repeat;
+      background: #07110d url("frames/hero screen.jpg") center center / cover no-repeat;
       opacity: 0.72;
       filter: blur(4px) brightness(0.88) saturate(0.92);
       transform: scale(1.035);
@@ -741,7 +731,7 @@
       inset: 0;
       z-index: 6;
       overflow: hidden;
-      background: url("frames/events/background.webp") center / cover no-repeat;
+      background: url("frames/events/background.jpg") center / cover no-repeat;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -961,7 +951,7 @@
       z-index: 40;
       overflow: hidden;
       color: white;
-      background: #1a2125 url("frames/tickets-bg.webp") center / cover no-repeat;
+      background: #1a2125 url("frames/tickets-bg-1.png") center / cover no-repeat;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -1432,7 +1422,7 @@
       inset: 20px;
       z-index: 0;
       border-radius: 40px;
-      background: url("frames/visitors-photo.webp") center / cover no-repeat;
+      background: url("frames/посетителям.jpg") center / cover no-repeat;
       pointer-events: none;
     }
 
@@ -1658,7 +1648,7 @@
       inset: 20px;
       z-index: 0;
       border-radius: 40px;
-      background: url("frames/contacts-photo.webp") center / cover no-repeat;
+      background: url("frames/контакты.jpg") center / cover no-repeat;
       pointer-events: none;
     }
 
@@ -1794,7 +1784,7 @@
       transform: scale(1);
       clip-path: inset(0 0 0 0 round 0);
       background-color: rgba(11, 16, 15, 0.88);
-      background-image: url("frames/hero.webp");
+      background-image: url("frames/hero screen.jpg");
       background-repeat: no-repeat;
       background-size: 1920px 1080px;
       background-position: 0 0;
@@ -2653,7 +2643,7 @@
       overflow: hidden;
       border-radius: 36px;
       color: rgba(255, 255, 255, 0.9);
-      background: rgba(96, 104, 99, 0.46) url("frames/calendar.webp") center center / cover no-repeat;
+      background: rgba(96, 104, 99, 0.46) url("frames/calendar.png") center center / cover no-repeat;
       box-shadow:
         0 38px 100px rgba(0, 0, 0, 0.34),
         inset 0 1px 0 rgba(255, 255, 255, 0.18),
@@ -2729,7 +2719,7 @@
       flex: 0 0 260px;
       align-items: center;
       justify-content: center;
-      height: 65px;
+      height: 57px;
       padding: 0 22px;
       overflow: hidden;
       border: 0.5px solid rgba(172, 172, 172, 0.22);
@@ -3108,12 +3098,6 @@
         transform: translate3d(0, 0, 0);
         text-shadow: 0 20px 60px rgba(0, 0, 0, 0.36);
       }
-    }
-
-    /* мягкая подложка под текстом героя: проявляется только прозрачностью, размытие постоянное */
-    @keyframes heroBackdropReveal {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     @keyframes heroTextReveal {
@@ -4606,7 +4590,7 @@
       z-index: 32;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 4px;
       opacity: 0;
       filter: blur(10px);
       transform: translate3d(0, -14px, 0);
@@ -5517,222 +5501,6 @@
       transition-delay: 1000ms;
     }
 
-    /* Слой карты размывается только во время входа на карту. Постоянный filter (даже blur(0))
-       и will-change: filter у кнопок отрезали размытие фона у «+» и у карточек — фон под ними был резким */
-    .garden-map__board {
-      filter: none;
-      will-change: transform, opacity;
-    }
-
-    .stage.is-direct-map-transition .garden-map__board {
-      filter: blur(var(--map-entry-blur));
-    }
-
-    .map-object {
-      will-change: transform;
-    }
-
-    /* Карточка объекта на карте — Figma «second screen map оранжерея» (1:1144).
-       Открытие: лёгкое размытие и небольшое увеличение, затем карточка становится чёткой */
-    .map-info-card {
-      background: rgba(172, 172, 172, 0.1);
-      box-shadow: none;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      filter: none;
-      transform: translate3d(0, 10px, 0) scale(0.96);
-      transition:
-        height 620ms var(--ease-soft),
-        opacity 280ms ease,
-        transform 460ms var(--ease-card-open);
-      will-change: opacity, transform;
-    }
-
-    .map-info-card.is-open {
-      filter: none;
-      animation: mapInfoCardOpenCrisp 620ms var(--ease-card-open) both;
-    }
-
-    @keyframes mapInfoCardOpenCrisp {
-      0% {
-        opacity: 0;
-        filter: blur(6px);
-        transform: translate3d(0, 10px, 0) scale(0.94);
-      }
-
-      55% {
-        opacity: 1;
-        filter: blur(0);
-        transform: translate3d(0, 0, 0) scale(1.012);
-      }
-
-      100% {
-        opacity: 1;
-        filter: none;
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-    }
-
-    .map-info-card__media {
-      height: 324px;
-      filter: blur(5px);
-      transform: scale(0.985);
-      transition:
-        opacity 420ms ease 80ms,
-        filter 480ms var(--ease-out) 80ms,
-        transform 560ms var(--ease-card-open) 80ms;
-    }
-
-    .map-info-card.is-open .map-info-card__media {
-      filter: none;
-    }
-
-    .map-info-card__media::before,
-    .map-info-card__media::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .map-info-card__media::before {
-      top: 0;
-      height: 46px;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0));
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      -webkit-mask-image: linear-gradient(180deg, black, transparent);
-      mask-image: linear-gradient(180deg, black, transparent);
-    }
-
-    .map-info-card__media::after {
-      bottom: 0;
-      height: 129px;
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0));
-      backdrop-filter: blur(32px);
-      -webkit-backdrop-filter: blur(32px);
-      -webkit-mask-image: linear-gradient(0deg, black 55%, transparent);
-      mask-image: linear-gradient(0deg, black 55%, transparent);
-    }
-
-    .map-info-card__image {
-      transform: scale(1.02);
-      transition: transform 620ms var(--ease-card-open) 80ms;
-    }
-
-    .map-info-card__intro {
-      filter: blur(6px);
-      transform: translate3d(0, 10px, 0);
-      transition:
-        opacity 380ms ease 200ms,
-        filter 420ms var(--ease-out) 200ms,
-        transform 480ms var(--ease-card-open) 200ms;
-    }
-
-    .map-info-card.is-open .map-info-card__intro {
-      filter: none;
-    }
-
-    .map-info-card__actions {
-      filter: blur(6px);
-      transform: translate3d(0, 10px, 0);
-      transition:
-        opacity 380ms ease 280ms,
-        filter 420ms var(--ease-out) 280ms,
-        transform 480ms var(--ease-card-open) 280ms;
-    }
-
-    .map-info-card.is-open .map-info-card__actions {
-      filter: none;
-    }
-
-    .map-info-card__toggle {
-      transition:
-        opacity 320ms ease 360ms,
-        filter 380ms var(--ease-out) 360ms;
-    }
-
-    .map-info-card.is-open .map-info-card__toggle {
-      filter: none;
-    }
-
-    .map-info-card__hours {
-      width: auto;
-      height: auto;
-      padding: 15px 30px;
-      gap: 15px;
-      background: rgba(172, 172, 172, 0.3);
-      font-weight: 300;
-      line-height: normal;
-    }
-
-    .map-info-card__calendar {
-      width: 22px;
-      height: 22px;
-      border: 0;
-      border-radius: 0;
-      background: url("frames/map-calendar.svg") center / 22px 22px no-repeat;
-    }
-
-    .map-info-card__calendar::before,
-    .map-info-card__calendar::after {
-      display: none;
-    }
-
-    .map-info-card__ticket {
-      width: auto;
-      height: auto;
-      padding: 15px 30px;
-      border: 0;
-      background: #ffffff;
-      color: #2b2b2b;
-      font-weight: 300;
-      line-height: normal;
-    }
-
-    /* Кнопки «+» на карте — Figma «second screen map» (1:1120, Group 10) */
-    .map-hotspot__plus {
-      width: 61px;
-      height: 61px;
-      border: 0.5px solid #ffffff;
-      background: rgba(172, 172, 172, 0.1);
-      box-shadow: none;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .map-hotspot__plus::before {
-      width: 24px;
-      height: 2.1px;
-      border-radius: 0;
-      background: #ffffff;
-    }
-
-    .map-hotspot__plus::after {
-      width: 2.1px;
-      height: 24px;
-      border-radius: 0;
-      background: #ffffff;
-    }
-
-    .map-object:hover .map-hotspot__plus,
-    .map-object:focus-visible .map-hotspot__plus {
-      background: rgba(172, 172, 172, 0.22);
-      box-shadow:
-        0 0 12px rgba(255, 255, 255, 0.45),
-        0 0 32px rgba(255, 255, 255, 0.22);
-    }
-
-    .map-object.is-active .map-hotspot__plus,
-    .map-object.is-active:hover .map-hotspot__plus,
-    .map-object.is-active:focus-visible .map-hotspot__plus {
-      border-color: #ffffff;
-      background: rgba(172, 172, 172, 0.22);
-      box-shadow: none;
-    }
-
     /* Экран «Ботанический музей» — Figma «о саде 4» (1:1036) */
     .about-detail[data-variant="museum"] {
       top: 310px;
@@ -6012,2654 +5780,6 @@
         transition: none;
       }
     }
-
-    /* =====================================================================
-       МОБИЛЬНАЯ ВЕРСИЯ
-       Телефоны и вертикальные планшеты. Главный экран — по Figma
-       «iPhone 13 & 14 - 1» (25:655), остальные экраны собраны в той же логике.
-       На десктопе этот блок не действует.
-       ===================================================================== */
-
-    /* Контейнеры-сцены не должны прокручиваться сами, когда браузер фокусирует элемент внутри них
-       (из-за этого раздел мог «съехать» вверх на несколько десятков пикселей) */
-    .stage,
-    .stage__scaled,
-    .hero,
-    .walk-transition,
-    .second-screen,
-    .events-screen,
-    .visitors-screen,
-    .tickets-screen {
-      overflow: clip;
-    }
-
-    .nav__emblem,
-    .nav__burger,
-    .about-card__calendar-btn,
-    .bloom-calendar__close,
-    .about-explore__return {
-      display: none;
-    }
-
-    @media (max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
-      :root {
-        --m-gap: 12px;
-        --m-side: 20px;
-        --m-photo: 46%;
-      }
-
-      html,
-      body {
-        overscroll-behavior: none;
-      }
-
-      .stage {
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      .zero-screen,
-      .hero,
-      .hero__copy,
-      .about-screen,
-      .about-card,
-      .walk-transition,
-      .garden-map,
-      .events-screen,
-      .visitors-screen,
-      .contacts-screen,
-      .tickets-screen {
-        width: 100%;
-        height: 100%;
-      }
-
-
-      .m-scroll {
-        overflow-x: hidden;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-
-      .m-scroll::-webkit-scrollbar {
-        display: none;
-      }
-
-      /* ---------- Заставка ---------- */
-      .zero-screen {
-        background: #20201f url("frames/hero-mobile.webp") center / cover no-repeat;
-      }
-
-      .zero-screen::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(20, 20, 19, 0.55);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-      }
-
-      .zero-screen__dots {
-        gap: 8px;
-      }
-
-      .zero-screen__dot {
-        width: 12px;
-        height: 12px;
-      }
-
-      .zero-screen__text {
-        top: auto;
-        bottom: 150px;
-        width: calc(100% - 48px);
-        font-size: 15px;
-        line-height: 1.3;
-      }
-
-      .zero-screen__actions {
-        top: auto;
-        bottom: 72px;
-        gap: 12px;
-      }
-
-      .zero-screen__button {
-        width: 150px;
-        height: 50px;
-        font-size: 15px;
-      }
-
-      /* ---------- Шапка ---------- */
-      .nav {
-        width: 100%;
-        height: 100%;
-      }
-
-      .stage .nav .nav__logo {
-        display: none;
-      }
-
-      .nav__emblem {
-        position: absolute;
-        left: 20px;
-        top: 20px;
-        z-index: 3;
-        display: block;
-        width: 24px;
-        height: 33px;
-        opacity: 0;
-        filter: blur(8px);
-        transform: translate3d(0, -10px, 0);
-        pointer-events: auto;
-        transition:
-          opacity 600ms var(--ease-about-soft),
-          filter 700ms var(--ease-about-soft),
-          transform 700ms var(--ease-about-slide);
-      }
-
-      .stage.is-entered .nav__emblem {
-        animation: heroNavReveal 1120ms var(--ease-out) 760ms forwards;
-      }
-
-      .stage.is-hero-ready .nav__emblem {
-        opacity: 1;
-        filter: none;
-        transform: none;
-        animation: none;
-      }
-
-      .stage .nav .ticket {
-        left: auto !important;
-        right: 65px;
-        top: 20px !important;
-        width: auto;
-        height: 33px;
-        padding: 0 20px;
-        border: 0.5px solid #ffffff;
-        background: rgba(172, 172, 172, 0.4);
-        color: #ffffff;
-        font-size: 12px;
-        line-height: 1;
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-      }
-
-      .nav__burger {
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        z-index: 4;
-        display: block;
-        width: 33px;
-        height: 33px;
-        padding: 0;
-        border: 0.5px solid #ffffff;
-        border-radius: 50%;
-        background: rgba(172, 172, 172, 0.4);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        cursor: pointer;
-        pointer-events: auto;
-        opacity: 0;
-        filter: blur(8px);
-        transform: translate3d(0, -10px, 0);
-      }
-
-      .stage.is-entered .nav__burger {
-        animation: heroNavReveal 1120ms var(--ease-out) 1460ms forwards;
-      }
-
-      .stage.is-hero-ready .nav__burger {
-        opacity: 1;
-        filter: none;
-        transform: none;
-        animation: none;
-      }
-
-      .nav__burger span {
-        position: absolute;
-        left: 10px;
-        width: 13px;
-        height: 1.2px;
-        border-radius: 1px;
-        background: #ffffff;
-        transition: transform 420ms var(--ease-about-soft), opacity 260ms ease;
-      }
-
-      .nav__burger span:nth-child(1) {
-        top: 10px;
-      }
-
-      .nav__burger span:nth-child(2) {
-        top: 15.8px;
-      }
-
-      .nav__burger span:nth-child(3) {
-        top: 21.6px;
-      }
-
-      .stage.is-menu-open .nav__burger span:nth-child(1) {
-        transform: translateY(5.8px) rotate(45deg);
-      }
-
-      .stage.is-menu-open .nav__burger span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .stage.is-menu-open .nav__burger span:nth-child(3) {
-        transform: translateY(-5.8px) rotate(-45deg);
-      }
-
-      /* меню — стеклянная панель */
-      .stage .nav .nav__menu {
-        left: var(--m-gap) !important;
-        right: var(--m-gap);
-        top: var(--m-gap) !important;
-        z-index: 2;
-        width: auto !important;
-        height: auto;
-        padding: 84px 28px 34px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 6px;
-        border: 0.5px solid rgba(255, 255, 255, 0.5);
-        border-radius: 28px;
-        background: rgba(30, 36, 33, 0.62);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-        opacity: 0 !important;
-        visibility: hidden;
-        filter: none !important;
-        transform: translate3d(0, -14px, 0) scale(0.98) !important;
-        transform-origin: 90% 0;
-        animation: none !important;
-        pointer-events: none !important;
-        transition:
-          opacity 380ms var(--ease-about-soft),
-          transform 520ms var(--ease-card-open),
-          visibility 0s linear 520ms !important;
-      }
-
-      .stage.is-menu-open .nav .nav__menu {
-        opacity: 1 !important;
-        visibility: visible;
-        transform: none !important;
-        pointer-events: auto !important;
-        transition:
-          opacity 380ms var(--ease-about-soft),
-          transform 520ms var(--ease-card-open),
-          visibility 0s linear 0s !important;
-      }
-
-      .nav__menu::before {
-        display: none;
-      }
-
-      .stage .nav .nav__link {
-        min-height: 48px;
-        font-size: 26px;
-        font-weight: 300;
-        opacity: 0;
-        transform: translate3d(0, 10px, 0);
-        transition: opacity 320ms ease, transform 420ms var(--ease-card-open), color 220ms ease;
-      }
-
-      .stage.is-menu-open .nav .nav__link {
-        opacity: 1;
-        transform: none;
-      }
-
-      .stage.is-menu-open .nav .nav__link:nth-child(1) { transition-delay: 80ms; }
-      .stage.is-menu-open .nav .nav__link:nth-child(2) { transition-delay: 120ms; }
-      .stage.is-menu-open .nav .nav__link:nth-child(3) { transition-delay: 160ms; }
-      .stage.is-menu-open .nav .nav__link:nth-child(4) { transition-delay: 200ms; }
-      .stage.is-menu-open .nav .nav__link:nth-child(5) { transition-delay: 240ms; }
-
-      /* на светлом холсте раздела «О саде» и во всех разделах шапка лежит поверх фото */
-      .stage.is-tickets-open .nav .nav__emblem {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .stage.is-tickets-open .nav .nav__burger {
-        opacity: 1;
-        filter: none;
-        transform: none;
-      }
-
-      /* ---------- Главный экран (Figma 25:655) ---------- */
-      .hero::before {
-        background: #07110d url("frames/hero-mobile.webp") center / cover no-repeat;
-      }
-
-      .hero__bees-video {
-        display: none;
-      }
-
-      .hero__copy::before {
-        content: "";
-        position: absolute;
-        left: -11px;
-        right: -11px;
-        bottom: 157px;
-        height: 174px;
-        border-radius: 200px;
-        background: rgba(0, 0, 0, 0.4);
-        filter: blur(36.65px);
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .stage.is-entered .hero__copy::before {
-        animation: heroBackdropReveal 1280ms var(--ease-out) 2000ms forwards;
-      }
-
-      .stage.is-hero-ready .hero__copy::before {
-        opacity: 1;
-        filter: blur(36.65px);
-        animation: none;
-      }
-
-      .hero__title {
-        width: 100%;
-        height: 100%;
-        font-size: 28px;
-        letter-spacing: -0.28px;
-      }
-
-      .hero__title-script {
-        font-size: 28px;
-      }
-
-      .hero__title-line--first {
-        left: calc(50% - 159px);
-        top: auto;
-        bottom: 268px;
-      }
-
-      .hero__title-line--second {
-        left: calc(50% - 85px);
-        top: auto;
-        bottom: 235px;
-      }
-
-      .hero__subtitle {
-        left: calc(50% - 175px);
-        top: auto;
-        bottom: 192px;
-        width: 350px;
-        font-size: 14px;
-        line-height: 1.19;
-        letter-spacing: 0.14px;
-      }
-
-      .hero__cta {
-        left: 0;
-        right: 0;
-        top: auto;
-        bottom: 128px;
-        width: max-content;
-        height: 50px;
-        margin: 0 auto;
-        padding: 0 20px;
-        font-size: 14px;
-        font-weight: 400;
-      }
-
-      /* ---------- Покупка билетов ---------- */
-      .tickets-screen {
-        background-position: 30% center;
-      }
-
-      .tickets-screen__panel {
-        left: var(--m-gap);
-        right: var(--m-gap);
-        top: var(--m-gap);
-        bottom: var(--m-gap);
-        width: auto;
-        height: auto;
-        border-radius: 28px;
-      }
-
-      .tickets-form {
-        left: var(--m-gap);
-        right: var(--m-gap);
-        top: var(--m-gap);
-        bottom: var(--m-gap);
-        width: auto;
-        padding: 80px 20px 32px;
-      }
-
-      .tickets-form__title {
-        height: auto;
-        margin-bottom: 14px;
-        font-size: 32px;
-        line-height: 36px;
-      }
-
-      .tickets-form__title-line {
-        height: auto;
-        line-height: 36px;
-      }
-
-      .tickets-form__script {
-        font-size: 38px;
-        line-height: 36px;
-      }
-
-      .tickets-form__lead {
-        width: auto;
-        font-size: 14px;
-        line-height: 1.35;
-      }
-
-      .tickets-form__fields {
-        gap: 16px;
-        margin-top: 28px;
-      }
-
-      .tickets-field {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        min-height: 0;
-      }
-
-      .tickets-field__label {
-        font-size: 13px;
-      }
-
-      .tickets-field__control {
-        width: 100%;
-        height: 54px;
-      }
-
-      .tickets-field__control > img {
-        left: 20px;
-        width: 20px;
-        height: 20px;
-      }
-
-      .tickets-field--date .tickets-field__control > img:first-of-type {
-        width: 22px;
-        height: 22px;
-      }
-
-      .tickets-field__control > .tickets-field__chevron {
-        right: 20px;
-        width: 22px;
-        height: 22px;
-      }
-
-      .tickets-field__input {
-        padding: 0 52px;
-        border-radius: 28px;
-        font-size: 16px;
-      }
-
-      .ticket-calendar {
-        position: fixed;
-        left: var(--m-gap);
-        right: var(--m-gap);
-        top: auto;
-        bottom: var(--m-gap);
-        z-index: 70;
-        width: auto;
-        padding: 20px;
-        border-radius: 26px;
-      }
-
-      .ticket-calendar__month {
-        font-size: 19px;
-      }
-
-      .ticket-calendar__day {
-        font-size: 15px;
-        border-radius: 12px;
-      }
-
-      .tickets-form__note {
-        margin-top: 18px;
-        font-size: 13px;
-      }
-
-      .tickets-form__submit {
-        width: 100%;
-        height: 54px;
-        margin-top: 18px;
-        font-size: 15px;
-      }
-
-      .tickets-form__terms {
-        gap: 12px;
-        margin-top: 16px;
-      }
-
-      .tickets-form__terms img {
-        flex-basis: 34px;
-        width: 34px;
-        height: 34px;
-      }
-
-      .tickets-form__terms p {
-        width: auto;
-        font-size: 12px;
-      }
-
-      .tickets-form__home {
-        height: 48px;
-        margin-top: 22px;
-        font-size: 15px;
-      }
-
-      /* ---------- О саде: общая карточка с фото ---------- */
-      .about-card {
-        padding: var(--m-gap);
-        background-image: url("frames/hero-mobile.webp");
-        background-size: cover;
-        background-position: center;
-        background-origin: border-box;
-      }
-
-      .about-card.is-backdrop-held {
-        background-origin: content-box;
-        background-size: cover !important;
-        background-position: center 35% !important;
-      }
-
-      .about-card__image,
-      .about-card__image--primary,
-      .stage.is-about-photo-card .about-card__image--primary {
-        left: var(--m-gap);
-        top: var(--m-gap);
-        width: calc(100% - 2 * var(--m-gap));
-        height: calc(100% - 2 * var(--m-gap));
-        object-fit: cover;
-        object-position: center 35%;
-      }
-
-      .about-card {
-        transition:
-          clip-path 900ms var(--ease-about-slide),
-          opacity 240ms linear !important;
-      }
-
-      .stage.is-about-photo-wide .about-card,
-      .stage.is-about-photo-card .about-card {
-        clip-path: inset(var(--m-gap) var(--m-gap) var(--m-gap) var(--m-gap) round 28px);
-        box-shadow: none;
-      }
-
-      /* Экраны, где под фото идёт текст: фото занимает верх */
-      .stage.is-about-photo-card.is-about-panel-two .about-card,
-      .stage.is-about-photo-card.is-about-panel-four .about-card,
-      .stage.is-about-photo-card.is-museum-more .about-card {
-        clip-path: inset(var(--m-gap) var(--m-gap) calc(100% - var(--m-photo)) var(--m-gap) round 28px);
-      }
-
-      .stage.is-about-photo-card.is-about-panel-three .about-card {
-        clip-path: inset(var(--m-gap) var(--m-gap) 58% var(--m-gap) round 28px);
-      }
-
-      .about-card::after {
-        height: 60%;
-        background: linear-gradient(180deg, rgba(10, 16, 15, 0) 0%, rgba(10, 16, 15, 0.45) 40%, rgba(7, 12, 11, 0.86) 100%);
-      }
-
-      .about-card::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: calc(var(--m-photo) - 190px);
-        z-index: 2;
-        height: 190px;
-        background: linear-gradient(180deg, rgba(7, 12, 11, 0) 0%, rgba(7, 12, 11, 0.72) 100%);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 600ms var(--ease-about-soft), top 900ms var(--ease-about-slide);
-      }
-
-      .stage.is-about-panel-two .about-card::before,
-      .stage.is-about-panel-four .about-card::before,
-      .stage.is-museum-more .about-card::before {
-        opacity: 1;
-      }
-
-      .stage.is-about-panel-three .about-card::before {
-        top: calc(42% - 260px);
-        height: 260px;
-        opacity: 1;
-      }
-
-      /* точки-переключатели */
-      .about-card__dots {
-        left: 27px;
-        top: 76px;
-        gap: 10px;
-      }
-
-      .about-card__dot {
-        position: relative;
-        width: 10px;
-        height: 10px;
-      }
-
-      .about-card__dot::after {
-        content: "";
-        position: absolute;
-        inset: -9px;
-      }
-
-      /* 1. «О саде» — фото на весь экран, текст поверх */
-      .about-card__content {
-        left: calc(var(--m-gap) + 20px);
-        right: calc(var(--m-gap) + 20px);
-        bottom: calc(var(--m-gap) + 24px);
-        width: auto;
-      }
-
-      .about-card__title {
-        margin-bottom: 14px;
-        font-size: 36px;
-      }
-
-      .about-card__script {
-        font-size: 46px;
-        margin-right: 4px;
-        transform: translateY(5px);
-      }
-
-      .about-card__text {
-        width: auto;
-        font-size: 14px;
-        line-height: 1.32;
-      }
-
-      .about-card__calendar-btn {
-        display: inline-flex;
-        height: 44px;
-        margin-top: 18px;
-        padding: 0 20px;
-        gap: 10px;
-        font-size: 14px;
-        font-weight: 400;
-        pointer-events: auto;
-      }
-
-      /* календарь цветения — выезжающая панель */
-      .stage .bloom-calendar {
-        left: var(--m-gap);
-        right: var(--m-gap);
-        top: 66px;
-        bottom: var(--m-gap);
-        z-index: 12;
-        width: auto;
-        height: auto;
-        border-radius: 28px;
-        overflow-x: hidden;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        opacity: 0 !important;
-        visibility: hidden;
-        filter: none !important;
-        transform: translate3d(0, 40px, 0) !important;
-        pointer-events: none !important;
-        transition:
-          opacity 420ms var(--ease-about-soft),
-          transform 620ms var(--ease-card-open),
-          visibility 0s linear 620ms !important;
-      }
-
-      .stage.is-bloom-sheet .bloom-calendar {
-        opacity: 1 !important;
-        visibility: visible;
-        transform: none !important;
-        pointer-events: auto !important;
-        transition:
-          opacity 420ms var(--ease-about-soft),
-          transform 620ms var(--ease-card-open),
-          visibility 0s linear 0s !important;
-      }
-
-      .bloom-calendar__inner {
-        height: auto;
-        min-height: 100%;
-        padding: 24px 20px 24px;
-      }
-
-      .bloom-calendar__header {
-        flex-direction: column;
-        gap: 14px;
-        padding-right: 44px;
-      }
-
-      .bloom-calendar__title {
-        font-size: 24px;
-      }
-
-      .bloom-calendar__subtitle {
-        font-size: 16px;
-      }
-
-      .bloom-calendar__mode {
-        flex: 0 0 auto;
-        height: 44px;
-        padding: 0 18px;
-        font-size: 14px;
-      }
-
-      .bloom-calendar__close {
-        position: absolute;
-        right: 16px;
-        top: 20px;
-        z-index: 5;
-        display: block;
-        width: 36px;
-        height: 36px;
-        padding: 0;
-        border: 0.5px solid rgba(255, 255, 255, 0.6);
-        border-radius: 50%;
-        background: rgba(22, 30, 26, 0.4);
-        cursor: pointer;
-      }
-
-      .bloom-calendar__close::before,
-      .bloom-calendar__close::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 14px;
-        height: 1.4px;
-        background: #ffffff;
-        transform: translate(-50%, -50%) rotate(45deg);
-      }
-
-      .bloom-calendar__close::after {
-        transform: translate(-50%, -50%) rotate(-45deg);
-      }
-
-      .bloom-calendar__months {
-        --month-gap: 8px;
-        margin-top: 16px;
-        padding: 12px 0;
-      }
-
-      .bloom-calendar__month {
-        height: 42px;
-        font-size: 14px;
-      }
-
-      .bloom-calendar__weekdays {
-        gap: 6px;
-        margin-top: 12px;
-        font-size: 15px;
-      }
-
-      .bloom-calendar__days {
-        gap: 6px;
-        margin-top: 14px;
-      }
-
-      .bloom-calendar__day {
-        height: 40px;
-        font-size: 15px;
-      }
-
-      .bloom-calendar__plants-title {
-        margin-top: 18px;
-        font-size: 20px;
-      }
-
-      .bloom-calendar__plants {
-        --bloom-plant-width: 132px;
-        --bloom-plant-gap: 8px;
-        width: calc(100% + 40px);
-        height: 160px;
-        margin-top: 16px;
-        margin-left: -20px;
-      }
-
-      .bloom-calendar__plants-track {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
-      .bloom-plant {
-        height: 160px;
-        border-radius: 26px;
-      }
-
-      .bloom-plant__image {
-        border-radius: 26px;
-      }
-
-      .bloom-plant__name {
-        bottom: 14px;
-        font-size: 16px;
-      }
-
-      .bloom-calendar__note {
-        position: static;
-        margin-top: 20px;
-        gap: 10px;
-        font-size: 14px;
-      }
-
-      .bloom-calendar__note::before {
-        width: 22px;
-        height: 22px;
-        font-size: 15px;
-      }
-
-      /* 2 и 4. Парк и музей — фото сверху, текст под ним */
-      .about-card__facts {
-        left: calc(var(--m-gap) + 16px);
-        right: calc(var(--m-gap) + 16px);
-        top: auto;
-        bottom: calc(100% - var(--m-photo) + 16px);
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px 16px;
-        width: auto;
-        min-height: 0;
-      }
-
-      .about-card__fact {
-        min-height: 0;
-        font-size: 12px;
-      }
-
-      .about-card__fact span:first-child,
-      .stage.is-about-panel-four-facts .about-card__fact span:first-child {
-        margin-bottom: 3px;
-        font-size: 19px;
-        white-space: normal;
-      }
-
-      .about-card__fact span:last-child,
-      .stage.is-about-panel-four-facts .about-card__fact span:last-child {
-        font-size: 12px;
-        white-space: normal;
-      }
-
-      .about-detail,
-      .about-detail[data-variant="museum"] {
-        left: var(--m-side);
-        right: var(--m-side);
-        top: calc(var(--m-photo) + 22px);
-        bottom: 0;
-        width: auto;
-        padding-bottom: 28px;
-        overflow-x: hidden;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        scrollbar-width: none;
-      }
-
-      .about-detail__title,
-      .about-detail[data-variant="museum"] .about-detail__title {
-        width: auto;
-        margin-bottom: 14px;
-        font-size: 30px;
-        line-height: 1.05;
-        white-space: normal;
-      }
-
-      .about-detail__script {
-        font-size: 42px;
-        transform: translateY(4px);
-      }
-
-      .about-detail[data-variant="museum"] .about-detail__script {
-        font-size: 30px;
-      }
-
-      .about-detail__text,
-      .about-detail[data-variant="museum"] .about-detail__text {
-        width: auto;
-        font-size: 14px;
-        line-height: 1.35;
-        letter-spacing: 0;
-      }
-
-      .about-detail[data-variant="museum"] .about-detail__text br {
-        display: none;
-      }
-
-      .about-detail__button,
-      .about-detail[data-variant="museum"] .about-detail__button {
-        width: auto;
-        height: 46px;
-        margin-top: 20px;
-        padding: 0 22px;
-        gap: 12px;
-        font-size: 15px;
-      }
-
-      /* 3. Оранжерея — фото с текстом сверху, маршруты под ним */
-      .about-greenhouse {
-        left: calc(var(--m-gap) + 20px);
-        right: calc(var(--m-gap) + 20px);
-        top: auto;
-        bottom: calc(58% + 18px);
-        width: auto;
-      }
-
-      .about-greenhouse__title {
-        margin-bottom: 8px;
-        font-size: 26px;
-        white-space: normal;
-      }
-
-      .about-greenhouse__script {
-        font-size: 26px;
-      }
-
-      .about-greenhouse__text {
-        width: auto;
-        font-size: 13px;
-        line-height: 1.3;
-        letter-spacing: 0;
-      }
-
-      .about-routes {
-        left: var(--m-gap);
-        right: var(--m-gap);
-        top: calc(42% + 8px);
-        bottom: var(--m-gap);
-        gap: 8px;
-        width: auto;
-        height: auto;
-      }
-
-      .about-route-card {
-        flex: 1 1 0;
-        width: 100%;
-        height: auto;
-        min-height: 0;
-        border-radius: 24px;
-      }
-
-      .about-route-card__copy,
-      .about-route-card__expanded {
-        left: 18px;
-        right: 18px;
-        width: auto;
-      }
-
-      .about-route-card__copy {
-        bottom: 16px;
-      }
-
-      .about-route-card__title,
-      .about-route-card__expanded-title {
-        font-size: 18px;
-      }
-
-      .about-route-card__subtitle {
-        font-size: 13px;
-      }
-
-      .about-route-card__expanded-title {
-        margin-bottom: 6px;
-      }
-
-      .about-route-card__description {
-        font-size: 12.5px;
-        line-height: 1.3;
-      }
-
-      .about-route-card.is-open::before {
-        opacity: 0.8;
-      }
-
-      .about-route-card.is-open .about-route-card__copy {
-        opacity: 0;
-        filter: blur(8px);
-        transform: translate3d(0, 10px, 0);
-      }
-
-      .about-route-card.is-open .about-route-card__expanded {
-        opacity: 1;
-        filter: blur(0);
-        transform: translate3d(0, -50%, 0);
-      }
-
-      /* «Узнать больше» о музее: экспозиции */
-      .museum-tours__veil {
-        display: none;
-      }
-
-      .museum-tours {
-        left: calc(var(--m-gap) + 20px);
-        right: calc(var(--m-gap) + 20px);
-        top: auto;
-        bottom: calc(100% - var(--m-photo) + 18px);
-        gap: 6px;
-        width: auto;
-      }
-
-      .museum-tours__title {
-        font-size: 26px;
-        white-space: normal;
-      }
-
-      .museum-tours__text {
-        font-size: 12.5px;
-        line-height: 1.3;
-        letter-spacing: 0;
-      }
-
-      .museum-tours__text br {
-        display: none;
-      }
-
-      .museum-exhibits__nav {
-        left: var(--m-side);
-        top: calc(var(--m-photo) + 18px);
-        gap: 10px;
-      }
-
-      .museum-exhibits__arrow {
-        width: 44px;
-        height: 44px;
-        background-size: 44px 44px;
-      }
-
-      .museum-exhibit,
-      .museum-exhibit[data-exhibit="0"] {
-        left: var(--m-side);
-        right: var(--m-side);
-        top: calc(var(--m-photo) + 76px);
-        bottom: 0;
-        gap: 12px;
-        width: auto;
-        padding-bottom: 28px;
-        overflow-y: auto;
-        scrollbar-width: none;
-        transform: translate3d(0, 20px, 0);
-      }
-
-      .museum-exhibit__title {
-        width: auto !important;
-        font-size: 26px;
-      }
-
-      .museum-exhibit__script {
-        font-size: 32px;
-      }
-
-      .museum-exhibit__text {
-        font-size: 14px;
-        line-height: 1.35;
-        letter-spacing: 0;
-      }
-
-      .museum-exhibit__text br,
-      .museum-exhibit__title br {
-        display: none;
-      }
-
-      .stage.is-museum-more .museum-exhibit.is-active {
-        transform: none;
-      }
-
-      /* Парк в цифрах */
-      .about-explore__stats {
-        left: var(--m-side);
-        right: var(--m-side);
-        top: auto;
-        bottom: 56px;
-        inset: auto var(--m-side) 56px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 26px 16px;
-      }
-
-      .about-explore__stat,
-      .about-explore__stat--plots,
-      .about-explore__stat--area,
-      .about-explore__stat--plants,
-      .about-explore__stat--zones {
-        position: static;
-        width: auto;
-        align-items: flex-start;
-      }
-
-      .about-explore__value,
-      .about-explore__label,
-      .about-explore__stat--plants .about-explore__value,
-      .about-explore__stat--plants .about-explore__label,
-      .about-explore__stat--zones .about-explore__value,
-      .about-explore__stat--zones .about-explore__label {
-        text-align: left;
-        transform: none;
-      }
-
-      .about-explore__value {
-        font-size: 38px;
-      }
-
-      .about-explore__label {
-        margin-top: 4px;
-        font-size: 14px;
-      }
-
-      .about-explore__line {
-        display: none;
-      }
-
-      .about-explore__vignette {
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(4, 9, 7, 0.72) 100%);
-      }
-
-      .stage.is-about-park-expanded .about-card__dots {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .about-explore__return {
-        position: absolute;
-        left: var(--m-side);
-        top: 70px;
-        z-index: 8;
-        display: inline-flex;
-        height: 36px;
-        padding: 0 16px;
-        font-size: 13px;
-        pointer-events: auto;
-      }
-
-      /* ---------- Мероприятия ---------- */
-      .events-gallery {
-        top: calc(44% - 198px);
-        gap: 14px;
-        height: 396px;
-      }
-
-      .events-gallery__card {
-        flex: 0 0 280px;
-        height: 396px;
-        border-radius: 28px;
-      }
-
-      .events-gallery__card.is-expanded {
-        transform: scale(1.2);
-      }
-
-      .events-screen__title {
-        left: var(--m-side);
-        right: var(--m-side);
-        bottom: 44px;
-        font-size: 30px;
-        line-height: 1.1;
-      }
-
-      /* ---------- Посетителям ---------- */
-      .visitors-screen::before,
-      .contacts-screen::before {
-        inset: 8px;
-        border-radius: 28px;
-      }
-
-      .visitors-screen::after {
-        inset: 40% 8px 8px;
-        border-radius: 0 0 28px 28px;
-      }
-
-      .visitors-copy {
-        left: var(--m-side);
-        right: var(--m-side);
-        top: auto;
-        bottom: 34px;
-        width: auto;
-      }
-
-      .visitors-copy__title {
-        width: auto;
-        margin-bottom: 12px;
-        font-size: 30px;
-      }
-
-      .visitors-copy__script {
-        font-size: 36px;
-      }
-
-      .visitors-copy__text {
-        width: auto;
-        font-size: 13.5px;
-        line-height: 1.35;
-        letter-spacing: 0;
-      }
-
-      .visitors-copy__button {
-        height: 46px;
-        margin-top: 18px;
-        padding: 0 22px;
-        font-size: 15px;
-      }
-
-      .visitors-rules {
-        left: var(--m-gap);
-        right: var(--m-gap);
-        top: 70px;
-        bottom: var(--m-gap);
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: auto;
-        height: auto;
-        padding-bottom: 12px;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        scrollbar-width: none;
-      }
-
-      .visitors-rule-card,
-      .visitors-rule-card--garden {
-        flex: 0 0 auto;
-        height: auto;
-        padding: 24px 20px;
-        border-radius: 26px;
-      }
-
-      .visitors-rule-card h2 {
-        margin-bottom: 16px;
-        font-size: 24px;
-        line-height: 28px;
-      }
-
-      .visitors-rule-card__title-line,
-      .visitors-rule-card h2 .visitors-rule-card__title-script {
-        height: auto;
-        font-size: 24px;
-        line-height: 28px;
-        white-space: normal;
-      }
-
-      .visitors-rule-card ul,
-      .visitors-rule-card:not(.visitors-rule-card--garden) ul {
-        padding-left: 18px;
-        font-size: 14px;
-        line-height: 1.35;
-      }
-
-      .visitors-rule-card li + li {
-        margin-top: 4px;
-      }
-
-      .visitors-rule-card__divider {
-        position: static;
-        display: block;
-        margin: 18px 0 12px;
-      }
-
-      .visitors-rule-card__note {
-        position: static;
-        font-size: 13px;
-        line-height: 1.35;
-        white-space: normal;
-      }
-
-      /* ---------- Контакты ---------- */
-      .contacts-screen {
-        display: flex;
-        flex-direction: column;
-        padding: 76px 8px 8px;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        scrollbar-width: none;
-      }
-
-      .contacts-screen::after {
-        inset: 8px;
-        border-radius: 28px;
-        background: linear-gradient(180deg, rgba(1, 9, 4, 0.66) 0%, rgba(1, 9, 4, 0.3) 42%, rgba(1, 9, 4, 0.4) 100%);
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        -webkit-mask-image: none;
-        mask-image: none;
-      }
-
-      .contacts-copy {
-        position: relative;
-        left: auto;
-        top: auto;
-        width: auto;
-        padding: 0 12px;
-      }
-
-      .contacts-copy h1 {
-        font-size: 30px;
-      }
-
-      .contacts-copy h1 span {
-        font-size: 36px;
-      }
-
-      .contacts-copy p {
-        width: auto;
-        font-size: 13px;
-        line-height: 1.35;
-        letter-spacing: 0;
-      }
-
-      .contacts-card {
-        position: relative;
-        left: auto;
-        top: auto;
-        flex: 0 0 auto;
-        width: auto;
-        height: auto;
-        margin: 24px 4px 4px;
-        padding: 24px 22px;
-        border-radius: 26px;
-      }
-
-      .contacts-card__icons {
-        display: none;
-      }
-
-      .contacts-card__item {
-        margin-bottom: 16px;
-      }
-
-      .contacts-card__label {
-        font-size: 17px;
-      }
-
-      .contacts-card__value {
-        font-size: 15px;
-      }
-
-      /* ---------- Прогулка и карта ---------- */
-      .walk-transition__sequence {
-        object-fit: cover;
-      }
-
-      .second-screen::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        z-index: 25;
-        display: block;
-        height: 230px;
-        inset: 0 0 auto 0;
-        background: linear-gradient(180deg, rgba(6, 12, 10, 0.78) 0%, rgba(6, 12, 10, 0.4) 55%, rgba(6, 12, 10, 0) 100%);
-        pointer-events: none;
-      }
-
-      .second-screen__copy {
-        left: var(--m-side);
-        top: 72px;
-        width: calc(100% - 2 * var(--m-side));
-      }
-
-      .second-screen__title {
-        font-size: 30px;
-        line-height: 1.05;
-      }
-
-      .second-screen__title-script {
-        font-size: 32px;
-        transform: translateY(2px);
-      }
-
-      .second-screen__text {
-        width: auto;
-        margin-top: 10px;
-        font-size: 13px;
-        line-height: 1.3;
-      }
-
-      .second-screen__text br {
-        display: none;
-      }
-
-      .second-screen__actions {
-        left: var(--m-side);
-        right: var(--m-side);
-        top: 20px;
-        justify-content: space-between;
-        gap: 8px;
-      }
-
-      .second-screen__action {
-        height: 33px;
-        padding: 0 18px;
-        font-size: 12px;
-        line-height: 1;
-      }
-
-      .garden-map {
-        overflow-x: auto;
-        overflow-y: hidden;
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        touch-action: pan-x;
-      }
-
-      .garden-map::-webkit-scrollbar {
-        display: none;
-      }
-
-      .garden-map__board {
-        inset: 0 auto 0 0;
-        width: auto;
-        height: 100%;
-        aspect-ratio: 16 / 9;
-      }
-
-      .map-hotspot__plus {
-        width: 52px;
-        height: 52px;
-      }
-
-      .map-info-card {
-        left: var(--m-gap) !important;
-        top: auto !important;
-        bottom: var(--m-gap);
-        scale: var(--map-card-scale, 0.83);
-        transform-origin: 0 100%;
-      }
-    }
-
-    /* низкие телефоны (iPhone SE и т.п.): фото чуть выше, текст на фото короче */
-    @media (max-width: 700px) and (max-height: 760px) and (orientation: portrait), (max-aspect-ratio: 5/4) and (max-height: 760px) and (orientation: portrait), (orientation: landscape) and (max-height: 500px) and (pointer: coarse) and (max-width: 760px) {
-      :root {
-        --m-photo: 50%;
-      }
-
-      .stage.is-about-photo-card.is-about-panel-three .about-card {
-        clip-path: inset(var(--m-gap) var(--m-gap) 50% var(--m-gap) round 28px);
-      }
-
-      .stage.is-about-panel-three .about-card::before {
-        top: calc(50% - 260px);
-      }
-
-      .about-greenhouse {
-        bottom: calc(50% + 16px);
-      }
-
-      .about-routes {
-        top: calc(50% + 8px);
-      }
-
-      .about-greenhouse__title,
-      .museum-tours__title {
-        font-size: 23px;
-      }
-
-      .about-greenhouse__text,
-      .museum-tours__text {
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 5;
-        font-size: 12.5px;
-      }
-
-      .about-route-card__description {
-        font-size: 11.5px;
-      }
-
-      .about-card__text {
-        font-size: 13px;
-      }
-
-    }
-
-    /* ===== Мобильная версия по Figma «мобилки»: m/00 Заставка (35:501), m/01b Меню (35:514) ===== */
-    .nav__link--mobile-only {
-      display: none !important;
-    }
-
-    @media (max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
-      .zero-screen::before {
-        background: rgba(21, 21, 21, 0.5);
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-      }
-
-      .zero-screen__text {
-        bottom: 198px;
-      }
-
-      .zero-screen__actions {
-        bottom: 128px;
-        gap: 12px;
-      }
-
-      .zero-screen.is-assets-ready .zero-screen__actions {
-        opacity: 0.8;
-      }
-
-      .zero-screen__button,
-      .zero-screen__button.zero-screen__button--quiet {
-        width: 150px;
-        height: 50px;
-        border: 0.5px solid #ffffff;
-        background: rgba(172, 172, 172, 0.4);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        font-size: 15px;
-        font-weight: 400;
-      }
-
-      .stage .nav .nav__menu {
-        left: auto !important;
-        right: 20px;
-        top: 65px !important;
-        width: auto !important;
-        padding: 20px 25px;
-        gap: 16px;
-        border: 0.5px solid #ffffff;
-        border-radius: 20px;
-        background: rgba(172, 172, 172, 0.4);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: none;
-        transform-origin: 100% 0;
-      }
-
-      .stage.is-menu-open .nav .nav__menu {
-        opacity: 0.8 !important;
-      }
-
-      .stage .nav .nav__link {
-        display: inline-flex;
-        align-items: center;
-        gap: 13px;
-        min-height: 17px;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.01;
-        text-shadow: none;
-        white-space: nowrap;
-      }
-
-      .stage .nav .nav__link--mobile-only {
-        display: inline-flex !important;
-      }
-
-      .stage .nav .nav__link::before {
-        content: "";
-        flex: 0 0 16px;
-        width: 16px;
-        height: 17px;
-        background: center / contain no-repeat;
-      }
-
-      #aboutNavLink::before { background-image: url("frames/menu/about.svg"); }
-      #eventsNavLink::before { background-image: url("frames/menu/events.svg"); }
-      #visitorsNavLink::before { background-image: url("frames/menu/visitors.svg"); }
-      #bloomNavLink::before { background-image: url("frames/menu/bloom.svg"); }
-      #mapNavLink::before { background-image: url("frames/menu/map.svg"); }
-      #contactsNavLink::before { background-image: url("frames/menu/contacts.svg"); }
-
-      #mapNavLink::after {
-        content: "\00a0сада";
-        margin-left: -13px;
-      }
-
-      /* главная (iPhone 13 & 14 - 1): кнопка «Начать прогулку по саду» с прозрачностью 80% */
-      .stage.is-hero-ready .hero__cta {
-        opacity: 0.8;
-      }
-    }
-
-    /* ===== Мобильная форма покупки билетов — Figma «m/13 Купить билеты» (38:2200) ===== */
-    @media (max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
-      .tickets-screen {
-        background-position: center;
-      }
-
-      .tickets-screen__panel {
-        left: 12px;
-        right: 12px;
-        top: 73px;
-        bottom: 59px;
-        height: auto;
-        border-radius: 28px;
-        background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-      }
-
-      .tickets-form {
-        left: 12px;
-        right: 12px;
-        top: 73px;
-        bottom: 59px;
-        padding: 24px 20px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .tickets-form > * {
-        align-self: stretch;
-      }
-
-      .tickets-form__title {
-        margin: 0 0 14px;
-        font-size: 32px;
-        font-weight: 400;
-        line-height: 36px;
-      }
-
-      .tickets-form__title-line {
-        display: block;
-        height: 36px;
-        line-height: 36px;
-      }
-
-      .tickets-form__submit,
-      .tickets-form__home {
-        box-sizing: border-box;
-        min-height: 50px;
-      }
-
-      .tickets-form__script {
-        font-size: 38px;
-        line-height: 36px;
-      }
-
-      .tickets-form__lead {
-        font-size: 14px;
-        line-height: 1.35;
-        letter-spacing: 0;
-      }
-
-      .tickets-form__fields {
-        gap: 16px;
-        margin-top: 28px;
-      }
-
-      .tickets-field {
-        gap: 8px;
-      }
-
-      .tickets-field__label {
-        font-size: 13px;
-        line-height: normal;
-        letter-spacing: 0;
-      }
-
-      .tickets-field__control {
-        height: 54px;
-      }
-
-      .tickets-field__control > img,
-      .tickets-field--date .tickets-field__control > img:first-of-type {
-        left: 20px;
-        width: 22px;
-        height: 22px;
-      }
-
-      .tickets-field__input {
-        padding: 0 52px 0 54px;
-        border-radius: 28px;
-        background: rgba(172, 172, 172, 0.2);
-        box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.25);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        font-size: 16px;
-        letter-spacing: 0;
-      }
-
-      .tickets-form__note {
-        margin-top: 18px;
-        font-size: 13px;
-        line-height: normal;
-        letter-spacing: 0;
-      }
-
-      .tickets-form__submit {
-        width: 100%;
-        height: 50px;
-        margin-top: 18px;
-        padding: 0 20px;
-        color: #4b4b48;
-        font-size: 14px;
-        font-weight: 400;
-      }
-
-      .tickets-form__terms {
-        align-self: center;
-        gap: 10px;
-        margin-top: 16px;
-      }
-
-      .tickets-form__terms picture {
-        display: flex;
-        flex: 0 0 20px;
-      }
-
-      .tickets-form__terms img {
-        flex: 0 0 20px;
-        width: 20px;
-        height: 23px;
-      }
-
-      .tickets-form__terms p {
-        width: 268px;
-        font-size: 12px;
-        line-height: 1.3;
-        letter-spacing: 0;
-      }
-
-      .tickets-form__home {
-        align-self: center;
-        height: 50px;
-        margin-top: 22px;
-        padding: 0 20px;
-        border: 0.5px solid #ffffff;
-        background: rgba(172, 172, 172, 0.4);
-        font-size: 14px;
-        font-weight: 400;
-      }
-
-      .tickets-field__control > .tickets-field__chevron {
-        display: none;
-      }
-
-      .tickets-form__terms u {
-        text-decoration: none;
-      }
-
-      /* в шапке на этом экране — эмблема и меню, без «Купить билет» */
-      .stage.is-tickets-open .nav .nav__emblem,
-      .stage.is-tickets-open .nav .nav__burger {
-        opacity: 1 !important;
-        visibility: visible !important;
-        filter: none !important;
-        transform: none !important;
-        pointer-events: auto !important;
-      }
-    }
-
-    /* =========================================================
-       Мобильная версия — правки из Figma «мобилки» (m/02–m/15)
-       ========================================================= */
-    .m-back {
-      display: none;
-    }
-
-    @media (max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
-      .m-hide {
-        display: none;
-      }
-
-      /* ---------- Шапка ---------- */
-      .stage .nav .nav__emblem,
-      .stage .nav .ticket,
-      .stage .nav .nav__burger,
-      .stage .nav .nav__burger span {
-        transition:
-          opacity 420ms var(--ease-about-soft),
-          visibility 0s linear 0s,
-          color 420ms var(--ease-about-soft),
-          border-color 420ms var(--ease-about-soft),
-          background-color 420ms var(--ease-about-soft),
-          transform 420ms var(--ease-about-soft);
-      }
-
-      /* на светлом фоне (m/02, m/03, m/10, m/11) — тёмные контурные кнопки */
-      .stage.is-about-open:not(.is-about-panel-two):not(.is-about-panel-three):not(.is-about-panel-four):not(.is-museum-more):not(.is-about-park-expanded):not(.is-events-open):not(.is-contacts-open):not(.is-visitors-open):not(.is-tickets-open) .nav .ticket,
-      .stage.is-visitors-open:not(.is-tickets-open) .nav .ticket {
-        border-color: #4b4b48;
-        background: transparent;
-        color: #4b4b48;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-      }
-
-      .stage.is-about-open:not(.is-about-panel-two):not(.is-about-panel-three):not(.is-about-panel-four):not(.is-museum-more):not(.is-about-park-expanded):not(.is-events-open):not(.is-contacts-open):not(.is-visitors-open):not(.is-tickets-open) .nav__burger,
-      .stage.is-visitors-open:not(.is-tickets-open) .nav__burger {
-        border-color: #4b4b48;
-        background: transparent;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-      }
-
-      .stage.is-about-open:not(.is-about-panel-two):not(.is-about-panel-three):not(.is-about-panel-four):not(.is-museum-more):not(.is-about-park-expanded):not(.is-events-open):not(.is-contacts-open):not(.is-visitors-open):not(.is-tickets-open) .nav__burger span,
-      .stage.is-visitors-open:not(.is-tickets-open) .nav__burger span {
-        background: #4b4b48;
-      }
-
-      .stage.is-about-open:not(.is-about-panel-two):not(.is-about-panel-three):not(.is-about-panel-four):not(.is-museum-more):not(.is-about-park-expanded):not(.is-events-open):not(.is-contacts-open):not(.is-visitors-open):not(.is-tickets-open) .nav .nav__emblem,
-      .stage.is-visitors-open:not(.is-tickets-open) .nav .nav__emblem {
-        filter: invert(0.72);
-      }
-
-      /* на экранах «фото сверху» (m/04–m/07) шапки нет */
-      .stage.is-about-open:is(.is-about-panel-two, .is-about-panel-three, .is-about-panel-four, .is-museum-more):not(.is-about-park-expanded):not(.is-events-open):not(.is-contacts-open):not(.is-visitors-open):not(.is-tickets-open):not(.is-menu-open) .nav :is(.nav__emblem, .ticket, .nav__burger) {
-        opacity: 0 !important;
-        visibility: hidden;
-        pointer-events: none !important;
-        transition:
-          opacity 420ms var(--ease-about-soft),
-          visibility 0s linear 420ms !important;
-      }
-
-      /* точки-переключатели в «О саде» убраны — листаем свайпом */
-      .about-card__dots {
-        display: none !important;
-      }
-
-      .about-card__facts {
-        display: none !important;
-      }
-
-      /* ---------- m/02 «О саде» ---------- */
-      .stage.is-about-photo-wide:not(.is-about-panel-two):not(.is-about-panel-three):not(.is-about-panel-four):not(.is-museum-more) .about-card,
-      .stage.is-about-photo-card:not(.is-about-panel-two):not(.is-about-panel-three):not(.is-about-panel-four):not(.is-museum-more) .about-card {
-        clip-path: inset(73px var(--m-gap) var(--m-gap) var(--m-gap) round 15px);
-      }
-
-      /* под открытым календарём карточка чуть уходит вглубь (m/03) */
-      .stage.is-bloom-sheet.is-about-photo-card:not(.is-about-panel-two):not(.is-about-panel-three):not(.is-about-panel-four):not(.is-museum-more) .about-card {
-        clip-path: inset(80px 20px 99px 20px round 15px);
-      }
-
-      .about-card__image--primary,
-      .stage.is-about-photo-card .about-card__image--primary {
-        top: 73px;
-        height: calc(100% - 73px - var(--m-gap));
-      }
-
-      .about-card__content {
-        bottom: 32px;
-      }
-
-      .about-card__calendar-btn {
-        height: 50px;
-        margin-top: 20px;
-        font-size: 15px;
-        opacity: 0.8;
-      }
-
-      /* ---------- m/03 Календарь цветения ---------- */
-      .stage .bloom-calendar {
-        top: 73px;
-        bottom: 99px;
-        border-radius: 15px;
-        background: rgba(96, 104, 99, 0.72);
-        backdrop-filter: blur(13px);
-        -webkit-backdrop-filter: blur(13px);
-        box-shadow: 0 38px 100px rgba(0, 0, 0, 0.34);
-      }
-
-      .bloom-calendar::before {
-        display: none;
-      }
-
-      .bloom-calendar__inner {
-        padding: 24px 12px 20px;
-      }
-
-      .bloom-calendar__header {
-        position: relative;
-        flex-direction: row;
-        gap: 0;
-        padding-right: 0;
-      }
-
-      .bloom-calendar__title,
-      .bloom-calendar__title-line {
-        font-size: 18px;
-        line-height: 1.12;
-      }
-
-      .bloom-calendar__subtitle {
-        margin-top: 5px;
-        font-size: 14px;
-      }
-
-      .bloom-calendar__mode {
-        position: absolute;
-        right: 9px;
-        top: 0;
-        height: 33px;
-        padding: 0 15px;
-        font-size: 12px;
-      }
-
-      .stage .bloom-calendar__close {
-        display: none;
-      }
-
-      .bloom-calendar__months {
-        margin-top: 16px;
-      }
-
-      .bloom-calendar__plants-title {
-        margin-top: 22px;
-        font-size: 18px;
-        font-weight: 400;
-      }
-
-      .bloom-calendar__plants {
-        --bloom-plant-width: 111px;
-        --bloom-plant-gap: 6px;
-        width: calc(100% + 24px);
-        height: 134px;
-        margin-top: 14px;
-        margin-left: -12px;
-      }
-
-      .bloom-calendar__plants-track {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-
-      .bloom-plant,
-      .bloom-plant__image {
-        height: 134px;
-        border-radius: 25px;
-      }
-
-      .bloom-plant__name {
-        bottom: 12px;
-        font-size: 15px;
-        color: rgba(255, 255, 255, 0.6);
-      }
-
-      .bloom-calendar__note {
-        justify-content: center;
-        margin-top: 16px;
-        gap: 6px;
-        font-size: 11.6px;
-        text-align: center;
-      }
-
-      .bloom-calendar__note::before {
-        width: 15px;
-        height: 15px;
-        font-size: 10px;
-      }
-
-      .m-back {
-        position: absolute;
-        left: 50%;
-        bottom: 39px;
-        z-index: 14;
-        display: inline-flex;
-        height: 36px;
-        padding: 0 20px;
-        font-family: "Manrope", sans-serif;
-        font-size: 13px;
-        font-weight: 400;
-        line-height: 1;
-        white-space: nowrap;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transform: translate3d(-50%, 10px, 0);
-        transition:
-          opacity 420ms var(--ease-about-soft),
-          transform 520ms var(--ease-card-open),
-          visibility 0s linear 520ms;
-      }
-
-      .bloom-back {
-        border-color: #4b4b48;
-        background: transparent;
-        color: #4b4b48;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-      }
-
-      .stage.is-bloom-sheet .bloom-back,
-      .stage.is-museum-more .museum-exhibits__back {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: translate3d(-50%, 0, 0);
-        transition:
-          opacity 420ms var(--ease-about-soft) 160ms,
-          transform 520ms var(--ease-card-open) 160ms,
-          visibility 0s linear 0s;
-      }
-
-      /* ---------- m/04 Парк-дендрарий, m/06 Ботанический музей ---------- */
-      .stage.is-about-photo-card.is-about-panel-two:not(.is-about-panel-three):not(.is-about-panel-four):not(.is-museum-more) .about-card {
-        clip-path: inset(var(--m-gap) var(--m-gap) calc(100% - var(--m-photo)) var(--m-gap) round 15px);
-      }
-
-      .about-detail,
-      .about-detail[data-variant="museum"] {
-        top: calc(var(--m-photo) + 30px);
-      }
-
-      .about-detail__title,
-      .about-detail[data-variant="museum"] .about-detail__title {
-        margin-bottom: 12px;
-        color: #4b4b48;
-      }
-
-      .about-detail__text,
-      .about-detail[data-variant="museum"] .about-detail__text {
-        color: rgba(86, 87, 84, 0.86);
-      }
-
-      .about-detail__button,
-      .about-detail[data-variant="museum"] .about-detail__button {
-        height: 50px;
-        margin-top: 30px;
-        padding: 0 20px;
-        border-color: rgba(75, 75, 72, 0.5);
-      }
-
-      /* ---------- m/05 Оранжерейный комплекс ---------- */
-      .about-greenhouse {
-        bottom: calc(58% + 30px);
-      }
-
-      .about-greenhouse__script {
-        font-size: 34px;
-      }
-
-      /* ---------- m/07 Экспозиции музея ---------- */
-      .museum-tours {
-        bottom: calc(100% - var(--m-photo) + 42px);
-      }
-
-      .museum-tours__script {
-        font-size: 32px;
-      }
-
-      .museum-exhibits__nav {
-        left: calc(50% - 49px);
-      }
-
-      .museum-exhibit,
-      .museum-exhibit[data-exhibit="0"] {
-        bottom: 84px;
-        padding-bottom: 12px;
-      }
-
-      .museum-exhibit__script {
-        font-size: 34px;
-      }
-
-      .museum-exhibit__title {
-        max-width: 270px;
-      }
-
-      .museum-exhibits__back {
-        border-color: #4b4b48;
-        background: transparent;
-        color: #4b4b48;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-      }
-
-      /* ---------- m/08 Парк в цифрах ---------- */
-      .about-explore__mountain {
-        inset: auto;
-        left: -33px;
-        top: -94px;
-        width: 591px;
-        height: 1124px;
-      }
-
-      .about-explore__stats {
-        inset: 0;
-        display: block;
-      }
-
-      .about-explore__stat,
-      .about-explore__stat--plots,
-      .about-explore__stat--area,
-      .about-explore__stat--plants,
-      .about-explore__stat--zones {
-        position: absolute;
-        width: max-content;
-        max-width: 60%;
-      }
-
-      .about-explore__stat--plots { left: 11%; top: 89px; }
-      .about-explore__stat--plants { left: 48%; top: 192px; }
-      .about-explore__stat--area { left: 7.7%; top: 258px; }
-      .about-explore__stat--zones { left: 57%; top: 333px; }
-
-      .about-explore__value {
-        line-height: normal;
-        color: rgba(255, 255, 255, 0.98);
-      }
-
-      .about-explore__label {
-        font-weight: 300;
-        line-height: normal;
-        color: rgba(255, 255, 255, 0.72);
-      }
-
-      .about-explore__return {
-        left: 50%;
-        top: auto;
-        bottom: 25px;
-        padding: 0 20px;
-        transform: translateX(-50%);
-      }
-
-      /* ---------- m/09 Мероприятия ---------- */
-      .events-screen__title {
-        right: auto;
-        max-width: 300px;
-      }
-
-      /* ---------- m/10 Посетителям ---------- */
-      .visitors-screen::before {
-        inset: 73px var(--m-gap) var(--m-gap);
-        border-radius: 15px;
-      }
-
-      .visitors-screen::after {
-        inset: 282px var(--m-gap) var(--m-gap);
-        border-radius: 0 0 15px 15px;
-        background: linear-gradient(180deg, rgba(1, 9, 4, 0) 0%, rgba(1, 9, 4, 0.45) 50%, rgba(1, 9, 4, 0.7) 100%);
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        -webkit-mask-image: none;
-        mask-image: none;
-      }
-
-      .visitors-copy {
-        left: 32px;
-        right: 16px;
-        bottom: 36px;
-      }
-
-      .visitors-copy__title {
-        line-height: 1.12;
-      }
-
-      .visitors-copy__button {
-        height: 50px;
-        margin-top: 14px;
-        padding: 0 20px;
-      }
-
-      /* ---------- m/11 Правила: фото внутри карточек, фон светлый ---------- */
-      .visitors-screen::before,
-      .visitors-screen::after {
-        transition: opacity 520ms var(--ease-about-soft);
-      }
-
-      .stage.is-visitors-rules .visitors-screen::before,
-      .stage.is-visitors-rules .visitors-screen::after {
-        opacity: 0;
-      }
-
-      .visitors-rules {
-        top: 73px;
-        gap: 13px;
-      }
-
-      .visitors-rule-card,
-      .visitors-rule-card--garden {
-        isolation: isolate;
-        border-radius: 15px;
-        background: transparent;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-      }
-
-      .visitors-rule-card::before {
-        content: "";
-        position: absolute;
-        inset: -12px;
-        z-index: -1;
-        background:
-          linear-gradient(rgba(1, 9, 4, 0.3), rgba(1, 9, 4, 0.3)),
-          linear-gradient(180deg, rgba(1, 9, 4, 0) 0%, rgba(1, 9, 4, 0.45) 50%, rgba(1, 9, 4, 0.7) 100%),
-          url("frames/visitors-photo.webp") 30% 20% / cover no-repeat;
-        filter: blur(5px);
-        pointer-events: none;
-      }
-
-      .visitors-rule-card:not(.visitors-rule-card--garden)::before {
-        background-position: center, center, 30% 80%;
-      }
-
-      .visitors-rule-card h2 {
-        margin-bottom: 14px;
-      }
-
-      .visitors-rule-card ul,
-      .visitors-rule-card:not(.visitors-rule-card--garden) ul {
-        padding-left: 21px;
-      }
-
-      .visitors-rule-card li + li {
-        margin-top: 0;
-      }
-
-      .visitors-rule-card__divider {
-        margin: 14px 0;
-      }
-
-      /* ---------- m/12 Контакты ---------- */
-      .contacts-copy h1 {
-        margin-bottom: 12px;
-        line-height: 1.08;
-      }
-
-      .contacts-card {
-        margin-top: 27px;
-        background: rgba(1, 9, 4, 0.3);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-      }
-
-      .contacts-card__label {
-        font-weight: 500;
-        color: #ffffff;
-      }
-
-      .contacts-card__value {
-        margin-top: 3px;
-        line-height: 1.25;
-        color: rgba(255, 255, 255, 0.6);
-      }
-    }
-
-    /* ---------- Мобильная карта: меньше «+» и карточки, карту двигаем пальцем ---------- */
-    .map-hint {
-      display: none;
-    }
-
-    @media (max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse) {
-      .garden-map {
-        overflow: auto;
-        touch-action: pan-x pan-y;
-      }
-
-      .garden-map__board {
-        height: 124%;
-      }
-
-      .map-hotspot__plus {
-        width: 38px;
-        height: 38px;
-      }
-
-      .map-hotspot__plus::before {
-        width: 16px;
-        height: 1.5px;
-      }
-
-      .map-hotspot__plus::after {
-        width: 1.5px;
-        height: 16px;
-      }
-
-      .map-info-card {
-        left: calc(50% - 219.5px) !important;
-        scale: calc(var(--map-card-scale, 0.83) * 0.78);
-        transform-origin: 50% 100%;
-      }
-
-      .second-screen__text {
-        max-width: 250px;
-      }
-
-      /* раскрытая карточка: текст скроллится внутри */
-      .map-info-card__details {
-        left: 21px;
-        right: 22px;
-        top: 374px;
-        bottom: 70px;
-        width: auto;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        scrollbar-width: none;
-      }
-
-      .map-info-card__details::-webkit-scrollbar {
-        display: none;
-      }
-
-      .map-info-card.is-expanded .map-info-card__details {
-        pointer-events: auto;
-      }
-
-      .map-info-card__paragraph:last-child {
-        margin-bottom: 0;
-      }
-
-      /* раскрытая карточка не выше экрана; заголовок карты в это время прячется */
-      .map-info-card.is-expanded {
-        height: min(782px, calc((var(--app-h, 100svh) - 40px) / (var(--map-card-scale, 0.83) * 0.78)));
-      }
-
-      .second-screen__copy {
-        transition: opacity 360ms var(--ease-about-soft);
-      }
-
-      .second-screen:has(.map-info-card.is-expanded) .second-screen__copy {
-        opacity: 0;
-      }
-
-      .map-hint {
-        position: absolute;
-        left: 20px;
-        right: 20px;
-        bottom: calc(18px + env(safe-area-inset-bottom, 0px));
-        z-index: 26;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        margin: 0;
-        font-family: "Manrope", sans-serif;
-        font-size: 11px;
-        font-weight: 300;
-        line-height: 1.3;
-        letter-spacing: 0.02em;
-        text-align: center;
-        color: rgba(237, 245, 242, 0.72);
-        text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 600ms var(--ease-about-soft);
-      }
-
-      .map-hint__icon {
-        position: relative;
-        flex: 0 0 auto;
-        width: 22px;
-        height: 12px;
-      }
-
-      .map-hint__icon::before,
-      .map-hint__icon::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        width: 6px;
-        height: 6px;
-        border-left: 1px solid currentColor;
-        border-bottom: 1px solid currentColor;
-        transform: translateY(-50%) rotate(45deg);
-      }
-
-      .map-hint__icon::before {
-        left: 1px;
-      }
-
-      .map-hint__icon::after {
-        right: 1px;
-        transform: translateY(-50%) rotate(-135deg);
-      }
-
-      .stage.is-second-visible:not(.is-map-panned) .map-hint {
-        opacity: 1;
-        transition-delay: 1200ms;
-        animation: mapHintNudge 2600ms ease-in-out 1800ms infinite;
-      }
-
-      .second-screen:has(.map-info-card.is-open) .map-hint {
-        opacity: 0 !important;
-        animation: none;
-      }
-
-      @keyframes mapHintNudge {
-        0%, 100% { transform: translateX(0); }
-        30% { transform: translateX(-5px); }
-        60% { transform: translateX(5px); }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .stage.is-second-visible:not(.is-map-panned) .map-hint {
-          animation: none;
-        }
-      }
-    }
-
-    /* пока кадры прогулки догружаются — кнопка мягко пульсирует */
-    .stage.is-walk-loading .hero__cta {
-      cursor: progress;
-      animation: walkLoadingPulse 1200ms ease-in-out infinite;
-    }
-
-    @keyframes walkLoadingPulse {
-      0%, 100% { opacity: 0.8; }
-      50% { opacity: 0.45; }
-    }
-
-    /* =========================================================
-       Адаптивный десктоп: 16:10, 3:2, 4:3, 21:9 — без полос.
-       JS задаёт размер сцены --cw × --ch (в пикселях макета) и сдвиги
-       --dx = (cw − 1920)/2, --dy = (ch − 1080)/2.
-       Фоны и фото тянутся на всю сцену, панели — на всю высоту,
-       элементы у правого края едут на 2·dx, у нижнего — на 2·dy,
-       центральные — на dx/dy. Сдвиги сделаны свойством translate,
-       чтобы не мешать анимациям transform.
-       ========================================================= */
-    .stage.is-fluid :is(.zero-screen, .hero, .hero__copy, .about-screen, .about-card, .walk-transition,
-      .second-screen, .tickets-screen, .events-screen, .visitors-screen, .contacts-screen,
-      .museum-exhibits, .about-explore, .about-explore__scene, .about-explore__vignette,
-      .about-explore__stats, .walk-transition__shade) {
-      width: var(--cw);
-      height: var(--ch);
-    }
-
-    .stage.is-fluid .walk-transition__sequence {
-      width: var(--cw);
-      height: var(--ch);
-      object-fit: cover;
-    }
-
-    /* заставка */
-    .stage.is-fluid :is(.zero-screen__text, .zero-screen__actions) {
-      translate: 0 calc(var(--dy) * 2);
-    }
-
-    /* шапка: логотип слева, меню по центру, «Купить билет» у правого края */
-    .stage.is-fluid .nav {
-      width: var(--cw);
-    }
-
-    .stage.is-fluid .nav__menu {
-      translate: var(--dx) 0;
-    }
-
-    .stage.is-fluid .nav .ticket {
-      translate: calc(var(--dx) * 2) 0;
-    }
-
-    /* герой: текст и кнопка держатся низа и центра */
-    .stage.is-fluid .hero__title,
-    .stage.is-fluid .hero__subtitle,
-    .stage.is-fluid .hero__cta {
-      translate: var(--dx) calc(var(--dy) * 2);
-    }
-
-    /* покупка билетов: панель по центру на всю высоту */
-    .stage.is-fluid .tickets-screen__panel {
-      height: calc(var(--ch) - 40px);
-      translate: var(--dx) 0;
-    }
-
-    .stage.is-fluid .tickets-form {
-      translate: var(--dx) var(--dy);
-    }
-
-    /* «О саде»: фото-панель растёт вширь и ввысь, правая колонка у правого края */
-    .stage.is-fluid .about-card__image {
-      height: calc(var(--ch) - 40px);
-    }
-
-    .stage.is-fluid .about-card__image:not(.about-card__image--primary),
-    .stage.is-fluid.is-about-photo-card .about-card__image--primary {
-      width: calc(1066px + var(--dx) * 2);
-    }
-
-    .stage.is-fluid .about-card__image--primary {
-      width: calc(var(--cw) - 40px);
-    }
-
-    .stage.is-fluid .about-card {
-      background-size: cover;
-      background-position: center;
-    }
-
-    .stage.is-fluid .about-card__facts {
-      width: calc(1066px + var(--dx) * 2);
-    }
-
-    .stage.is-fluid .museum-tours__veil {
-      width: calc(1066px + var(--dx) * 2);
-      translate: 0 calc(var(--dy) * 2);
-    }
-
-    .stage.is-fluid :is(.about-greenhouse, .museum-tours) {
-      translate: 0 calc(var(--dy) * 2);
-    }
-
-    /* маршруты делят высоту колонки поровну */
-    .stage.is-fluid .about-routes {
-      justify-content: flex-start;
-      gap: 14px;
-    }
-
-    .stage.is-fluid .about-route-card {
-      flex: 1 1 0;
-      height: auto;
-      min-height: 0;
-    }
-
-    .stage.is-fluid .about-card__dots {
-      translate: 0 var(--dy);
-    }
-
-    .stage.is-fluid :is(.bloom-calendar, .about-routes) {
-      height: calc(var(--ch) - 40px);
-      translate: calc(var(--dx) * 2) 0;
-    }
-
-    .stage.is-fluid :is(.about-detail, .museum-exhibits__nav, .museum-exhibit) {
-      translate: calc(var(--dx) * 2) var(--dy);
-    }
-
-    .stage.is-fluid .about-explore__stat {
-      translate: var(--dx) var(--dy);
-    }
-
-    /* мероприятия */
-    .stage.is-fluid .events-gallery {
-      translate: 0 var(--dy);
-    }
-
-    /* посетителям и правила */
-    .stage.is-fluid .visitors-screen::after {
-      inset: calc(394px + var(--dy) * 2) 20px 20px;
-    }
-
-    .stage.is-fluid .visitors-copy {
-      translate: 0 calc(var(--dy) * 2);
-    }
-
-    .stage.is-fluid .visitors-rules {
-      width: calc(var(--cw) - 140px);
-      translate: 0 var(--dy);
-    }
-
-    /* контакты */
-    .stage.is-fluid .contacts-screen::after {
-      inset: calc(559px + var(--dy) * 2) 20px 20px;
-    }
-
-    .stage.is-fluid .contacts-copy {
-      translate: 0 calc(var(--dy) * 2);
-    }
-
-    .stage.is-fluid .contacts-card {
-      translate: calc(var(--dx) * 2) calc(var(--dy) * 2);
-    }
-
-    /* карта: доска по центру, вокруг — продолжение карты, размытое, чтобы не было пустых краёв */
-    .stage.is-fluid .second-screen::after {
-      content: "";
-      display: block;
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: #0b1212 url("frames/map.webp") center / cover no-repeat;
-      filter: blur(26px) brightness(0.72) saturate(0.9);
-      transform: scale(1.08);
-      pointer-events: none;
-    }
-
-    .stage.is-fluid .garden-map {
-      left: var(--dx);
-      top: var(--dy);
-    }
-
-    .stage.is-fluid-tall .garden-map {
-      -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%);
-      mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%);
-    }
-
-    .stage.is-fluid-wide .garden-map {
-      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
-    }
-
-    .stage.is-fluid .map-info-card {
-      translate: var(--dx) var(--dy);
-    }
-
-    .stage.is-fluid .second-screen__actions {
-      translate: calc(var(--dx) * 2) 0;
-    }
-
-    /* Карточки объектов на карте — как в Figma «second screen map оранжерея» (1:1144):
-       кнопки стоят на нижней кромке фото (отступ 21/22 px по бокам), у всех объектов одинаково;
-       длинные подписи не вылезают за карточку — сжимается плашка с расписанием */
-    .map-info-card__actions {
-      left: 21px;
-      right: 22px;
-      top: 285px;
-      gap: 14px;
-    }
-
-    .map-info-card__hours {
-      flex: 1 1 0;
-      width: auto;
-      min-width: 0;
-      justify-content: center;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    .map-info-card__hours {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    .map-info-card__ticket {
-      flex: 0 0 auto;
-      padding-left: 26px;
-      padding-right: 26px;
-    }
-
-    .map-info-card__stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 0 6px;
-    }
   </style>
 </head>
 <body>
@@ -8688,24 +5808,21 @@
 
         <header class="nav" aria-label="Основная навигация">
           <img class="nav__logo" src="frames/logo-redesign.svg" alt="Ботанический сад Петра Великого" width="371" height="90">
-          <img class="nav__emblem" src="frames/logo-emblem.svg" alt="Ботанический сад Петра Великого" width="24" height="33">
 
           <nav class="nav__menu" id="navMenu" aria-label="Разделы сайта">
             <a class="nav__link" id="aboutNavLink" href="#about">О саде</a>
             <a class="nav__link" id="eventsNavLink" href="#events">Мероприятия</a>
             <a class="nav__link" id="visitorsNavLink" href="#visitors">Посетителям</a>
-            <a class="nav__link nav__link--mobile-only" id="bloomNavLink" href="#bloom">Календарь цветения</a>
             <a class="nav__link" id="mapNavLink" href="#garden-depth">3D-карта</a>
             <a class="nav__link" id="contactsNavLink" href="#contacts">Контакты</a>
           </nav>
 
           <a class="pill ticket" href="#tickets">Купить билет</a>
-          <button class="nav__burger" id="navBurger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
         </header>
 
         <section class="tickets-screen" id="ticketsScreen" aria-label="Покупка билетов" aria-hidden="true">
           <div class="tickets-screen__panel" aria-hidden="true"></div>
-          <form class="tickets-form m-scroll" id="ticketsForm">
+          <form class="tickets-form" id="ticketsForm">
             <h2 class="tickets-form__title"><span class="tickets-form__title-line"><span class="tickets-form__script">К</span>упить билеты</span><span class="tickets-form__title-line">в Ботанический сад</span></h2>
             <p class="tickets-form__lead">Выберите дату посещения и количество билетов. Выбрать экскурсию и формат прогулки сможете дальше.</p>
 
@@ -8758,7 +5875,7 @@
             <button class="pill tickets-form__submit" type="submit">Перейти к выбору экскурсии</button>
 
             <div class="tickets-form__terms">
-              <picture><source media="(max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse)" srcset="frames/tickets-shield.svg"><img src="frames/tickets-check.svg" alt="" aria-hidden="true"></picture>
+              <img src="frames/tickets-check.svg" alt="" aria-hidden="true">
               <p>Нажимая кнопку, вы соглашаетесь с <u>условиями покупки</u> и <u>обработкой персональных данных</u></p>
             </div>
 
@@ -8777,21 +5894,17 @@
 
         <section class="about-screen" id="aboutScreen" aria-label="О саде" aria-hidden="true">
           <article class="about-card" id="about">
-            <picture>
-              <source media="(max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse)" srcset="frames/hero-mobile.webp">
-              <img class="about-card__image about-card__image--primary" src="frames/about.webp" alt="Оранжерея Ботанического сада Петра Великого">
-            </picture>
-            <img class="about-card__image about-card__image--park" src="frames/park.webp" alt="Парк-дендрарий Ботанического сада">
-            <img class="about-card__image about-card__image--orangery" src="frames/orangery/main.webp" width="1066" height="1040" decoding="async" alt="Оранжерейный комплекс Ботанического сада">
-            <img class="about-card__image about-card__image--museum" src="frames/museum/main.webp" width="1066" height="1040" decoding="async" alt="Ботанический музей">
-            <img class="about-card__image about-card__image--exhibit" data-exhibit-image="0" src="frames/museum/exhibit-1.webp" width="1066" height="1040" decoding="async" alt="Экспозиция «Растительность Земного шара»">
-            <img class="about-card__image about-card__image--exhibit" data-exhibit-image="1" src="frames/museum/exhibit-2.webp" width="1066" height="1040" decoding="async" alt="Экспозиция «Растительность СПб и Ленобласти»">
-            <img class="about-card__image about-card__image--exhibit" data-exhibit-image="2" src="frames/museum/exhibit-3.webp" width="1066" height="1040" decoding="async" alt="Экспозиция «История и эволюция растительного мира»">
+            <img class="about-card__image about-card__image--primary" src="frames/about.jpg" alt="Оранжерея Ботанического сада Петра Великого">
+            <img class="about-card__image about-card__image--park" src="frames/park.jpg" alt="Парк-дендрарий Ботанического сада">
+            <img class="about-card__image about-card__image--orangery" src="frames/orangery/main.jpg" width="1066" height="1040" decoding="async" alt="Оранжерейный комплекс Ботанического сада">
+            <img class="about-card__image about-card__image--museum" src="frames/museum/main.jpg" width="1066" height="1040" decoding="async" alt="Ботанический музей">
+            <img class="about-card__image about-card__image--exhibit" data-exhibit-image="0" src="frames/museum/exhibit-1.jpg" width="1066" height="1040" decoding="async" alt="Экспозиция «Растительность Земного шара»">
+            <img class="about-card__image about-card__image--exhibit" data-exhibit-image="1" src="frames/museum/exhibit-2.jpg" width="1066" height="1040" decoding="async" alt="Экспозиция «Растительность СПб и Ленобласти»">
+            <img class="about-card__image about-card__image--exhibit" data-exhibit-image="2" src="frames/museum/exhibit-3.jpg" width="1066" height="1040" decoding="async" alt="Экспозиция «История и эволюция растительного мира»">
 
             <div class="about-card__content">
               <h2 class="about-card__title"><span class="about-card__script">О</span> саде</h2>
               <p class="about-card__text">Ботанический сад Петра Великого - одно из старейших научных и культурных пространств Санкт-Петербурга. Его история началась в 1714 году с Аптекарского огорода, созданного по указу Петра I для того, чтобы выращивать лекарственные травы и редкие заморские растения. Сегодня Сад входит в структуру Ботанического института им. В. Л. Комарова РАН и объединяет парк-дендрарий, исторический оранжерейный комплекс, Ботанический музей и Гербарий БИН РАН.</p>
-              <button class="pill about-card__calendar-btn" id="bloomSheetOpen" type="button">Календарь цветения <span aria-hidden="true">→</span></button>
             </div>
 
             <div class="about-card__facts" aria-hidden="true">
@@ -8803,7 +5916,7 @@
 
             <div class="about-greenhouse" aria-hidden="true">
               <h2 class="about-greenhouse__title"><span class="about-greenhouse__script">О</span>ранжерейный комплекс</h2>
-              <p class="about-greenhouse__text">Оранжерейный комплекс — сердце Ботанического сада и одна из крупнейших коллекций живых растений в мире. Здесь собрано свыше 7,5 тысячи видов и форм растений из тропических и субтропических регионов Земли.<span class="m-hide"> Тропический, Субтропический и Водный маршруты позволяют увидеть редкие растения в условиях, приближенных к их естественной среде.</span></p>
+              <p class="about-greenhouse__text">Оранжерейный комплекс — сердце Ботанического сада и одна из крупнейших коллекций живых растений в мире. Здесь собрано свыше 7,5 тысячи видов и форм растений из тропических и субтропических регионов Земли. Тропический, Субтропический и Водный маршруты позволяют увидеть редкие растения в условиях, приближенных к их естественной среде.</p>
             </div>
 
             <div class="museum-tours__veil" aria-hidden="true"></div>
@@ -8822,11 +5935,11 @@
 
           <section class="events-screen" id="eventsScreen" aria-label="Мероприятия" aria-hidden="true">
             <div class="events-gallery" id="eventsGallery">
-              <button class="events-gallery__card" type="button" data-event-index="0"><img src="frames/events/1.webp" alt="Мероприятие 1"></button>
-              <button class="events-gallery__card" type="button" data-event-index="1"><img src="frames/events/2.webp" alt="Мероприятие 2"></button>
-              <button class="events-gallery__card is-active" type="button" data-event-index="2"><img src="frames/events/3.webp" alt="Мероприятие 3"></button>
-              <button class="events-gallery__card" type="button" data-event-index="3"><img src="frames/events/4.webp" alt="Мероприятие 4"></button>
-              <button class="events-gallery__card" type="button" data-event-index="4"><img src="frames/events/5.webp" alt="Мероприятие 5"></button>
+              <button class="events-gallery__card" type="button" data-event-index="0"><img src="frames/events/1.png" alt="Мероприятие 1"></button>
+              <button class="events-gallery__card" type="button" data-event-index="1"><img src="frames/events/2.png" alt="Мероприятие 2"></button>
+              <button class="events-gallery__card is-active" type="button" data-event-index="2"><img src="frames/events/3.png" alt="Мероприятие 3"></button>
+              <button class="events-gallery__card" type="button" data-event-index="3"><img src="frames/events/4.png" alt="Мероприятие 4"></button>
+              <button class="events-gallery__card" type="button" data-event-index="4"><img src="frames/events/5.png" alt="Мероприятие 5"></button>
             </div>
             <h1 class="events-screen__title"><span class="events-screen__title-script">Т</span>екущие мероприятия в саду</h1>
             <div class="events-screen__controls" aria-label="Переключение афиш">
@@ -8838,7 +5951,7 @@
           <section class="visitors-screen" id="visitorsScreen" aria-label="Информация для посетителей" aria-hidden="true">
             <div class="visitors-copy" id="visitorsCopy">
               <h1 class="visitors-copy__title"><span class="visitors-copy__script">И</span>нформация для посетителей</h1>
-              <p class="visitors-copy__text">Посещая ботанические сады (не только наш, но любой сад), вы обязаны соблюдать правила нахождения на особо охраняемых природных территориях. Два самых важных из них: передвигаться только по дорожкам и не собирать никаких частей растений. Соблюдение этих двух правил — гарантия того, что мы сможем сохранить природное разнообразие. Каждое десятое (!) растение в нашем Саду — эндемик, редкий или исчезающий вид.<span class="m-hide"> Не ходите по газонам — это смертельно опасно для луковичных.</span></p>
+              <p class="visitors-copy__text">Посещая ботанические сады (не только наш, но любой сад), вы обязаны соблюдать правила нахождения на особо охраняемых природных территориях. Два самых важных из них: передвигаться только по дорожкам и не собирать никаких частей растений. Соблюдение этих двух правил — гарантия того, что мы сможем сохранить природное разнообразие. Каждое десятое (!) растение в нашем Саду — эндемик, редкий или исчезающий вид. Не ходите по газонам — это смертельно опасно для луковичных.</p>
               <button class="pill visitors-copy__button" id="visitorsRulesButton" type="button">Читать правила <span aria-hidden="true">→</span></button>
             </div>
             <div class="visitors-rules" id="visitorsRules" aria-hidden="true">
@@ -8918,7 +6031,6 @@
                   <p class="bloom-calendar__subtitle">Выберите дату прогулки</p>
                 </div>
                 <button class="bloom-calendar__mode" type="button" id="bloomModeToggle">Сменить календарь</button>
-                <button class="bloom-calendar__close" type="button" id="bloomSheetClose" aria-label="Закрыть календарь цветения"></button>
               </div>
 
               <div class="bloom-calendar__months" id="bloomMonths" aria-label="Месяц цветения"></div>
@@ -8941,10 +6053,8 @@
               <p class="bloom-calendar__note">Сроки цветения могут меняться в зависимости от погоды</p>
             </div>
           </aside>
-          <button class="pill m-back bloom-back" id="bloomSheetBack" type="button"><span aria-hidden="true">←</span>&nbsp;&nbsp;Назад</button>
 
           <section class="museum-exhibits" id="museumExhibits" aria-label="Экспозиции Ботанического музея" aria-hidden="true">
-            <button class="pill m-back museum-exhibits__back" id="museumExhibitsBack" type="button"><span aria-hidden="true">←</span>&nbsp;&nbsp;Назад</button>
             <div class="museum-exhibits__nav">
               <button class="museum-exhibits__arrow museum-exhibits__arrow--prev" type="button" id="museumExhibitPrev" aria-label="Предыдущая экспозиция"></button>
               <button class="museum-exhibits__arrow" type="button" id="museumExhibitNext" aria-label="Следующая экспозиция"></button>
@@ -8971,7 +6081,7 @@
 
           <aside class="about-routes" id="aboutRoutes" aria-label="Маршруты оранжерейного комплекса" aria-hidden="true">
             <button class="about-route-card" type="button" aria-label="Субтропический маршрут">
-              <img class="about-route-card__image" src="frames/orangery/subtropical.webp" width="791" height="337" decoding="async" alt="">
+              <img class="about-route-card__image" src="frames/orangery/subtropical.png" width="791" height="337" decoding="async" alt="">
               <span class="about-route-card__copy">
                 <span class="about-route-card__title">Субтропический маршрут</span>
                 <span class="about-route-card__subtitle">Наведите курсор, чтобы узнать больше</span>
@@ -8983,7 +6093,7 @@
             </button>
 
             <button class="about-route-card" type="button" aria-label="Тропический маршрут">
-              <img class="about-route-card__image" src="frames/orangery/tropical.webp" width="791" height="337" decoding="async" alt="">
+              <img class="about-route-card__image" src="frames/orangery/tropical.png" width="791" height="337" decoding="async" alt="">
               <span class="about-route-card__copy">
                 <span class="about-route-card__title">Тропический маршрут</span>
                 <span class="about-route-card__subtitle">Наведите курсор, чтобы узнать больше</span>
@@ -8995,7 +6105,7 @@
             </button>
 
             <button class="about-route-card" type="button" aria-label="Водный маршрут">
-              <img class="about-route-card__image" src="frames/orangery/water.webp" width="791" height="337" decoding="async" alt="">
+              <img class="about-route-card__image" src="frames/orangery/water.png" width="791" height="337" decoding="async" alt="">
               <span class="about-route-card__copy">
                 <span class="about-route-card__title">Водный маршрут</span>
                 <span class="about-route-card__subtitle">Наведите курсор, чтобы узнать больше</span>
@@ -9009,12 +6119,11 @@
 
           <section class="about-explore" id="aboutExplore" aria-label="Парк-дендрарий в цифрах" aria-hidden="true">
             <div class="about-explore__scene">
-              <img class="about-explore__back" src="frames/park-back.webp" alt="">
-              <img class="about-explore__mountain" src="frames/mountain.webp" alt="">
-              <img class="about-explore__fog" src="frames/fog.webp" alt="">
+              <img class="about-explore__back" src="frames/бэк парк.png" alt="">
+              <img class="about-explore__mountain" src="frames/гора.png" alt="">
+              <img class="about-explore__fog" src="frames/туман.png" alt="">
             </div>
             <div class="about-explore__vignette" aria-hidden="true"></div>
-            <button class="pill about-explore__return" id="aboutExploreBack" type="button"><span aria-hidden="true">←</span>&nbsp;Назад</button>
 
             <div class="about-explore__stats" aria-hidden="true">
               <div class="about-explore__stat about-explore__stat--plots">
@@ -9062,8 +6171,6 @@
             <p class="second-screen__item second-screen__text">Исследуйте сад в онлайне, узнавайте<br>о маршрутах, выставках и многом другом.</p>
           </div>
 
-          <p class="map-hint" id="mapHint" aria-hidden="true"><span class="map-hint__icon"></span>Проведите пальцем, чтобы увидеть весь сад</p>
-
           <nav class="second-screen__actions" aria-label="Действия на карте">
             <a class="second-screen__action second-screen__action--home" id="mapHomeLink" href="#hero">На главную</a>
             <a class="second-screen__action second-screen__action--ticket" href="#tickets">Купить билет</a>
@@ -9073,7 +6180,7 @@
             <div class="garden-map__ambient" aria-hidden="true"></div>
             <div class="garden-map__board" id="gardenMapBoard">
               <div class="garden-map__camera" aria-hidden="true">
-                <img class="garden-map__image" id="gardenMapImage" src="frames/map.webp" alt="" draggable="false">
+                <img class="garden-map__image" id="gardenMapImage" src="frames/map.jpg" alt="" draggable="false">
               </div>
 
               <button class="map-object map-object--herbarium" type="button" style="--x:12.8; --y:69.6;" data-map-object="herbarium" aria-label="Здание гербария">
@@ -9102,7 +6209,7 @@
 
               <article class="map-info-card" id="mapInfoCard" aria-hidden="true">
                 <div class="map-info-card__media">
-                  <img class="map-info-card__image" src="frames/orangery-card.webp" alt="Оранжерейный комплекс">
+                  <img class="map-info-card__image" src="frames/orangery-card.png" alt="Оранжерейный комплекс">
                 </div>
 
                 <div class="map-info-card__intro">
@@ -9159,40 +6266,6 @@
       "use strict";
 
       var DESIGN_WIDTH = 1920;
-      var MOBILE_QUERY = window.matchMedia ? window.matchMedia("(max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse)") : null;
-      /* телефон лёжа: сайт не поворачивается — вёрстка остаётся портретной относительно корпуса */
-      var ROTATED_QUERY = window.matchMedia ? window.matchMedia("(orientation: landscape) and (max-height: 500px) and (pointer: coarse)") : null;
-      var rotationAngle = 0;
-
-      function readScreenAngle() {
-        var angle = window.screen && window.screen.orientation && typeof window.screen.orientation.angle === "number"
-          ? window.screen.orientation.angle
-          : Number(window.orientation) || 0;
-
-        angle = ((angle % 360) + 360) % 360;
-        return angle === 270 ? 270 : 90;
-      }
-
-      /* координаты касания в системе портретной вёрстки (с учётом поворота) */
-      function layoutPoint(touch) {
-        var width;
-        var height;
-
-        if (!rotationAngle) {
-          return { x: touch.clientX, y: touch.clientY };
-        }
-
-        width = window.visualViewport ? window.visualViewport.width : window.innerWidth;
-        height = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-
-        return rotationAngle === 90
-          ? { x: height - touch.clientY, y: touch.clientX }
-          : { x: touch.clientY, y: width - touch.clientX };
-      }
-
-      function isMobileLayout() {
-        return Boolean(MOBILE_QUERY && MOBILE_QUERY.matches);
-      }
       var DESIGN_HEIGHT = 1080;
       var stage = document.getElementById("stage");
       var scaled = document.getElementById("scaled");
@@ -9261,43 +6334,37 @@
       var startButtons = document.querySelectorAll("[data-start-mode]");
       var UI_CLICK_SOUND_SRC = "audio/volshebnyiy-dzyin--skazochnyiy.mp3";
       var uiClickAudio = window.Audio ? new Audio(UI_CLICK_SOUND_SRC) : null;
-      /* Загрузка по приоритету: сначала то, что видно сразу (герой, «О саде»),
-         кадры прогулки и цветы календаря — фоном, уже после старта */
-      var heroImageReady = preloadImage(
-        window.matchMedia && window.matchMedia("(max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse)").matches
-          ? "frames/hero-mobile.webp"
-          : "frames/hero.webp"
-      );
+      var heroImageReady = preloadImage("frames/hero screen.jpg");
       var aboutAssetsReady = Promise.all([
-        preloadImage("frames/about.webp"),
-        preloadImage("frames/park.webp"),
-        preloadImage("frames/park-back.webp"),
-        preloadImage("frames/mountain.webp"),
-        preloadImage("frames/fog.webp"),
-        preloadImage("frames/calendar.webp"),
-        preloadImage("frames/orangery/main.webp"),
-        preloadImage("frames/orangery/subtropical.webp"),
-        preloadImage("frames/orangery/tropical.webp"),
-        preloadImage("frames/orangery/water.webp"),
-        preloadImage("frames/museum/main.webp"),
-        preloadImage("frames/events/background.webp"),
-        preloadImage("frames/events/1.webp"),
-        preloadImage("frames/events/2.webp"),
-        preloadImage("frames/events/3.webp"),
-        preloadImage("frames/events/4.webp"),
-        preloadImage("frames/events/5.webp"),
-        preloadImage("frames/visitors-photo.webp"),
-        preloadImage("frames/contacts-photo.webp"),
-        preloadImage("frames/tickets-bg.webp")
+        preloadImage("frames/about.jpg"),
+        preloadImage("frames/park.jpg"),
+        preloadImage("frames/бэк парк.png"),
+        preloadImage("frames/гора.png"),
+        preloadImage("frames/туман.png"),
+        preloadImage("frames/calendar.png"),
+        preloadImage("frames/orangery/main.jpg"),
+        preloadImage("frames/orangery/subtropical.png"),
+        preloadImage("frames/orangery/tropical.png"),
+        preloadImage("frames/orangery/water.png"),
+        preloadImage("frames/museum/main.jpg"),
+        preloadImage("frames/events/background.jpg"),
+        preloadImage("frames/events/1.png"),
+        preloadImage("frames/events/2.png"),
+        preloadImage("frames/events/3.png"),
+        preloadImage("frames/events/4.png"),
+        preloadImage("frames/events/5.png"),
+        preloadImage("frames/посетителям.jpg"),
+        preloadImage("frames/контакты.jpg"),
+        preloadImage("frames/tickets-bg-1.png")
       ]);
-      var mapEntryReady = preloadImage("frames/map.webp");
+      var mapEntryReady = preloadImage("frames/map.jpg");
       var WALK_FRAME_COUNT = 241;
       var WALK_DURATION = 8000;
       var SECOND_REVEAL_DURATION = 1550;
       var HERO_REVEAL_DURATION = 6200;
       var walkFrameUrls = buildWalkFrameUrls();
       var walkFrameCache = [];
-      var walkAssetsReady = Promise.all([heroImageReady, aboutAssetsReady]).then(preloadWalkFrames);
+      var walkAssetsReady = preloadWalkFrames();
       var walkTransitionReady = Promise.all([walkAssetsReady, mapEntryReady]);
       var zeroAssetsReady;
       var heroRevealTimer = 0;
@@ -9310,39 +6377,14 @@
       var walkStartPending = false;
       var heroEnterPending = false;
 
-      /* Геометрия ленты афиш: на десктопе — как было (шаг 529, база -330),
-         на телефоне — активная афиша по центру экрана */
-      function getEventsMetrics() {
-        var width;
-        var card;
-        var step;
-
-        if (!isMobileLayout()) {
-          return { base: -330, step: 529 };
-        }
-
-        width = scaled.offsetWidth || window.innerWidth;
-        card = 280;
-        step = card + 14;
-
-        return { base: Math.round(width / 2 - (2 * step + card / 2)), step: step };
-      }
-
       function setEventsIndex(index) {
-        var metrics = getEventsMetrics();
-
+        var cardWidth = 529;
         eventsIndex = (index + eventsCards.length) % eventsCards.length;
         eventsCards.forEach(function (card) {
           card.classList.toggle("is-active", Number(card.dataset.eventIndex) === eventsIndex);
         });
         if (eventsGallery) {
-          if (isMobileLayout()) {
-            var activeCard = eventsGallery.querySelector(".events-gallery__card.is-active");
-            var order = Array.prototype.indexOf.call(eventsGallery.children, activeCard);
-            eventsGallery.style.transform = "translateX(" + (metrics.base - (order - 2) * metrics.step) + "px)";
-            return;
-          }
-          eventsGallery.style.transform = "translateX(" + (-(eventsIndex * 529) + 728) + "px)";
+          eventsGallery.style.transform = "translateX(" + (-(eventsIndex * cardWidth) + 728) + "px)";
         }
       }
 
@@ -9370,12 +6412,12 @@
           card.classList.remove("is-active");
         });
         targetCard.classList.add("is-active");
-        eventsGallery.style.transform = "translateX(" + (getEventsMetrics().base - getEventsMetrics().step) + "px)";
+        eventsGallery.style.transform = "translateX(-859px)";
 
         window.setTimeout(function () {
           eventsGallery.appendChild(firstCard);
           eventsGallery.style.transition = "none";
-          eventsGallery.style.transform = "translateX(" + getEventsMetrics().base + "px)";
+          eventsGallery.style.transform = "translateX(-330px)";
           eventsGallery.offsetHeight;
           eventsGallery.style.transition = "transform 720ms var(--ease-about-slide)";
           eventsIndex = Number(targetCard.dataset.eventIndex);
@@ -9402,14 +6444,14 @@
 
         eventsGallery.style.transition = "none";
         eventsGallery.insertBefore(lastCard, eventsGallery.firstElementChild);
-        eventsGallery.style.transform = "translateX(" + (getEventsMetrics().base - getEventsMetrics().step) + "px)";
+        eventsGallery.style.transform = "translateX(-859px)";
         eventsGallery.offsetHeight;
 
         activeCard = eventsGallery.querySelector(".events-gallery__card.is-active");
         targetCard = activeCard && activeCard.previousElementSibling;
 
         if (!activeCard || !targetCard) {
-          eventsGallery.style.transform = "translateX(" + getEventsMetrics().base + "px)";
+          eventsGallery.style.transform = "translateX(-330px)";
           eventsIsMoving = false;
           return;
         }
@@ -9419,7 +6461,7 @@
         });
         targetCard.classList.add("is-active");
         eventsGallery.style.transition = "transform 720ms var(--ease-about-slide)";
-        eventsGallery.style.transform = "translateX(" + getEventsMetrics().base + "px)";
+        eventsGallery.style.transform = "translateX(-330px)";
 
         window.setTimeout(function () {
           eventsIndex = Number(targetCard.dataset.eventIndex);
@@ -9930,14 +6972,6 @@
       var BLOOM_MONTH_SLIDE_DURATION = 430;
       var BLOOM_PLANT_WIDTH = 179;
       var BLOOM_PLANT_GAP = 10;
-
-      function getBloomPlantStep() {
-        var styles = bloomPlants ? window.getComputedStyle(bloomPlants) : null;
-        var width = styles ? parseFloat(styles.getPropertyValue("--bloom-plant-width")) : NaN;
-        var gap = styles ? parseFloat(styles.getPropertyValue("--bloom-plant-gap")) : NaN;
-
-        return (isFinite(width) ? width : BLOOM_PLANT_WIDTH) + (isFinite(gap) ? gap : BLOOM_PLANT_GAP);
-      }
       var BLOOM_MODE_BUTTON_LABEL = "Сменить календарь";
       var NO_HANGING_WORDS = "а|без|безо|в|во|до|для|за|и|из|изо|к|ко|на|над|надо|не|ни|но|о|об|обо|от|по|под|подо|при|про|с|со|у|через";
       var noHangingPattern = new RegExp("(^|[\\s([{«„“\"'])(" + NO_HANGING_WORDS + ")\\s+", "gi");
@@ -9958,7 +6992,7 @@
       });
 
       function flowerAsset(mode, name) {
-        return BLOOM_IMAGE_DIRS[mode] + "/" + name.normalize("NFC") + ".webp";
+        return BLOOM_IMAGE_DIRS[mode] + "/" + name.normalize("NFC") + ".png";
       }
 
       function bloomPlant(mode, name, assetName) {
@@ -10120,10 +7154,11 @@
 
       zeroAssetsReady = Promise.all([
         heroImageReady,
+        walkAssetsReady,
         aboutAssetsReady,
-        mapEntryReady
+        mapEntryReady,
+        preloadBloomAssets()
       ]);
-      zeroAssetsReady.then(preloadBloomAssets);
 
       function getBloomMode() {
         return bloomModes[bloomState.mode] || bloomModes.greenhouse;
@@ -10172,14 +7207,12 @@
         var urls = [];
         var index;
         var number;
-        /* на телефоне хватает кадров половинного размера — вдвое меньше трафика */
-        var walkFrameDir = window.matchMedia && window.matchMedia("(max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse)").matches
-          ? "frames/walk-sm"
-          : "frames/walk";
+        var extension;
 
         for (index = 1; index <= WALK_FRAME_COUNT; index += 1) {
           number = String(index).padStart(3, "0");
-          urls.push(walkFrameDir + "/frame_" + number + ".webp");
+          extension = index === WALK_FRAME_COUNT ? "png" : "jpg";
+          urls.push("frames/walk/frame_" + number + "." + extension);
         }
 
         return urls;
@@ -10289,84 +7322,10 @@
         var scale = Math.min(viewportWidth / DESIGN_WIDTH, viewportHeight / DESIGN_HEIGHT);
         var sx = (viewportWidth - DESIGN_WIDTH * scale) / 2;
         var sy = (viewportHeight - DESIGN_HEIGHT * scale) / 2;
-        var wasMobile = stage.classList.contains("is-mobile");
-        var mobile = isMobileLayout();
 
         stage.style.width = viewportWidth + "px";
         stage.style.height = viewportHeight + "px";
-        stage.classList.toggle("is-mobile", mobile);
-
-        var rotated = mobile && Boolean(ROTATED_QUERY && ROTATED_QUERY.matches);
-
-        rotationAngle = rotated ? readScreenAngle() : 0;
-        stage.classList.toggle("is-rotated", rotated);
-
-        if (mobile) {
-          /* телефонная раскладка; на планшете она масштабируется целиком, как десктоп */
-          var portraitWidth = rotated ? viewportHeight : viewportWidth;
-          var portraitHeight = rotated ? viewportWidth : viewportHeight;
-          var mobileScale = rotated ? 1 : Math.max(1, Math.min(portraitWidth / 430, portraitHeight / 932));
-          var layoutWidth = portraitWidth / mobileScale;
-          var layoutHeight = portraitHeight / mobileScale;
-
-          scaled.style.width = layoutWidth + "px";
-          scaled.style.height = layoutHeight + "px";
-
-          if (rotated) {
-            scaled.style.transform = rotationAngle === 90
-              ? "translate(0px, " + viewportHeight + "px) rotate(-90deg)"
-              : "translate(" + viewportWidth + "px, 0px) rotate(90deg)";
-          } else {
-            scaled.style.transform = mobileScale === 1 ? "none" : "scale(" + mobileScale + ")";
-          }
-
-          stage.style.setProperty("--app-h", layoutHeight + "px");
-          stage.classList.remove("is-fluid");
-          stage.style.setProperty(
-            "--map-card-scale",
-            Math.min(1.25, (layoutWidth - 24) / 439, (layoutHeight - 24) / 782).toFixed(4)
-          );
-        } else {
-          /* Десктоп под любой формат: высота макета 1080, а ширина растёт на широких экранах;
-             на более «квадратных» (16:10, 3:2, 4:3) — ширина 1920, а растёт высота.
-             Сцена занимает весь экран без полос, раскладка перестраивается через --cw/--ch/--dx/--dy. */
-          var aspect = viewportWidth / viewportHeight;
-          var canvasWidth = DESIGN_WIDTH;
-          var canvasHeight = DESIGN_HEIGHT;
-
-          if (aspect > DESIGN_WIDTH / DESIGN_HEIGHT) {
-            canvasWidth = Math.round(DESIGN_HEIGHT * Math.min(aspect, 2.4));
-          } else {
-            canvasHeight = Math.round(DESIGN_WIDTH / aspect);
-          }
-
-          scale = Math.min(viewportWidth / canvasWidth, viewportHeight / canvasHeight);
-          sx = (viewportWidth - canvasWidth * scale) / 2;
-          sy = (viewportHeight - canvasHeight * scale) / 2;
-
-          stage.style.setProperty("--cw", canvasWidth + "px");
-          stage.style.setProperty("--ch", canvasHeight + "px");
-          stage.style.setProperty("--dx", (canvasWidth - DESIGN_WIDTH) / 2 + "px");
-          stage.style.setProperty("--dy", (canvasHeight - DESIGN_HEIGHT) / 2 + "px");
-          stage.style.setProperty("--cover", Math.max(canvasWidth / DESIGN_WIDTH, canvasHeight / DESIGN_HEIGHT).toFixed(4));
-          stage.classList.toggle("is-fluid", canvasWidth !== DESIGN_WIDTH || canvasHeight !== DESIGN_HEIGHT);
-          stage.classList.toggle("is-fluid-tall", canvasHeight !== DESIGN_HEIGHT);
-          stage.classList.toggle("is-fluid-wide", canvasWidth !== DESIGN_WIDTH);
-
-          scaled.style.width = canvasWidth + "px";
-          scaled.style.height = canvasHeight + "px";
-          scaled.style.transform = "translate(" + sx + "px," + sy + "px) scale(" + scale + ")";
-          if (wasMobile) {
-            closeMobileMenu();
-          }
-        }
-
-        if (typeof setEventsIndex === "function" && eventsGallery && !eventsIsMoving) {
-          eventsGallery.style.transition = "none";
-          setEventsIndex(eventsIndex);
-          eventsGallery.offsetHeight;
-          eventsGallery.style.transition = "";
-        }
+        scaled.style.transform = "translate(" + sx + "px," + sy + "px) scale(" + scale + ")";
       }
 
       window.addEventListener("resize", resize, { passive: true });
@@ -10836,7 +7795,7 @@
           }
         });
 
-        return best && bestOpacity > 0.5 ? (best.currentSrc || best.getAttribute("src")) : null;
+        return best && bestOpacity > 0.5 ? best.getAttribute("src") : null;
       }
 
       function holdAboutCardBackdrop() {
@@ -10853,20 +7812,8 @@
         }
 
         aboutCard.style.backgroundImage = "url(\"" + src + "\")";
-
-        if (isMobileLayout()) {
-          aboutCard.classList.add("is-backdrop-held");
-          return;
-        }
-
-        /* фото-панель может быть шире/выше макета (адаптивный десктоп) — повторяем её object-fit: cover */
-        var photoBox = aboutCard.querySelector(".about-card__image--park");
-        var boxW = photoBox ? photoBox.offsetWidth || 1066 : 1066;
-        var boxH = photoBox ? photoBox.offsetHeight || 1040 : 1040;
-        var coverK = Math.max(boxW / 1066, boxH / 1040);
-
-        aboutCard.style.backgroundSize = 1066 * coverK + "px " + 1040 * coverK + "px";
-        aboutCard.style.backgroundPosition = 20 + (boxW - 1066 * coverK) / 2 + "px " + (20 + (boxH - 1040 * coverK) / 2) + "px";
+        aboutCard.style.backgroundSize = "1066px 1040px";
+        aboutCard.style.backgroundPosition = "20px 20px";
       }
 
       function releaseAboutCardBackdrop() {
@@ -10877,7 +7824,6 @@
         aboutCard.style.removeProperty("background-image");
         aboutCard.style.removeProperty("background-size");
         aboutCard.style.removeProperty("background-position");
-        aboutCard.classList.remove("is-backdrop-held");
       }
 
       function setAboutPanel(targetPanel) {
@@ -11579,7 +8525,7 @@
         if (isCarousel) {
           bloomPlants.style.setProperty(
             "--bloom-carousel-distance",
-            (plants.length * getBloomPlantStep()) + "px"
+            (plants.length * (BLOOM_PLANT_WIDTH + BLOOM_PLANT_GAP)) + "px"
           );
           bloomPlants.style.setProperty(
             "--bloom-carousel-duration",
@@ -11906,10 +8852,8 @@
 
         walkStartPending = true;
         finishHeroIntro();
-        stage.classList.add("is-walk-loading");
 
         walkTransitionReady.then(function () {
-          stage.classList.remove("is-walk-loading");
           var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
           var duration = reduceMotion ? 0 : WALK_DURATION;
           var revealDuration = reduceMotion ? 0 : SECOND_REVEAL_DURATION;
@@ -12106,7 +9050,6 @@
             "is-visitors-open",
             "is-contacts-open",
             "is-tickets-open",
-            "is-menu-open",
             "is-direct-map-transition"
           ].some(function (className) {
             return stage.classList.contains(className);
@@ -12124,7 +9067,7 @@
       var heroTouchStartY = null;
 
       window.addEventListener("touchstart", function (event) {
-        heroTouchStartY = event.touches.length === 1 ? layoutPoint(event.touches[0]).y : null;
+        heroTouchStartY = event.touches.length === 1 ? event.touches[0].clientY : null;
       }, { passive: true });
 
       window.addEventListener("touchend", function (event) {
@@ -12134,7 +9077,7 @@
           return;
         }
 
-        endY = layoutPoint(event.changedTouches[0]).y;
+        endY = event.changedTouches[0].clientY;
 
         if (heroTouchStartY - endY > 60 && isHeroIdle()) {
           startWalkTransition();
@@ -12160,7 +9103,7 @@
           greenhouse: {
             left: 1056,
             top: 274,
-            image: "frames/orangery-card.webp",
+            image: "frames/orangery-card.png",
             imageAlt: "Оранжерейный комплекс",
             title: "Оранжерейный комплекс",
             lead: "c коллекциями растений со всего мира.",
@@ -12184,7 +9127,7 @@
           alpine: {
             left: 912,
             top: 216,
-            image: "frames/gorki-card.webp",
+            image: "frames/gorki-card.png",
             imageAlt: "Альпийские горки",
             title: "Альпийские горки",
             lead: "Высокогорные растения Европы, Азии и\u00a0Америки.",
@@ -12208,7 +9151,7 @@
           herbarium: {
             left: 322,
             top: 279,
-            image: "frames/gerbari-card.webp",
+            image: "frames/gerbari-card.png",
             imageAlt: "Гербарий БИН РАН",
             title: "Гербарий БИН РАН",
             lead: "Крупнейшее в России собрание высших растений.",
@@ -12232,7 +9175,7 @@
           museum: {
             left: 903,
             top: 198,
-            image: "frames/museum-card.webp",
+            image: "frames/museum-card.png",
             imageAlt: "Ботанический музей",
             title: "Ботанический музей",
             lead: "История и разнообразие растительного мира Земли.",
@@ -12254,7 +9197,7 @@
           japanese: {
             left: 1328,
             top: 216,
-            image: "frames/japgarden-card.webp",
+            image: "frames/japgarden-card.png",
             imageAlt: "Японский сад",
             title: "Японский сад",
             lead: "Традиционный сад по проекту Ямада Мидори.",
@@ -12274,7 +9217,7 @@
           peony: {
             left: 1002,
             top: 263,
-            image: "frames/pion-card.webp",
+            image: "frames/pion-card.png",
             imageAlt: "Пионарий",
             title: "Пионарий",
             lead: "Японские древовидные и травянистые пионы.",
@@ -12302,12 +9245,6 @@
         }
 
         gardenMap.classList.add("is-map-ready");
-
-        /* карточка — соседний слой карты, а не её часть: на телефоне карта прокручивается
-           вбок, а карточка остаётся на месте */
-        if (mapInfoCard && gardenMap.parentElement && mapInfoCard.parentElement !== gardenMap.parentElement) {
-          gardenMap.parentElement.appendChild(mapInfoCard);
-        }
 
         function renderMapCard(data) {
           var image;
@@ -12446,31 +9383,6 @@
           }
 
           gardenMap.dispatchEvent(new CustomEvent("map-card-open"));
-          centerMobileHotspot(hotspot);
-        }
-
-        /* телефон: выбранная точка встаёт по центру, прямо над карточкой — крестик всегда виден */
-        function centerMobileHotspot(hotspot) {
-          var mapRect;
-          var spotRect;
-          var targetX;
-          var targetY;
-
-          if (!isMobileLayout()) {
-            return;
-          }
-
-          /* позиция точки на доске в процентах (--x/--y) — не зависит от поворота экрана */
-          mapRect = document.getElementById("gardenMapBoard");
-          spotRect = getComputedStyle(hotspot);
-          targetX = mapRect.offsetLeft + mapRect.offsetWidth * parseFloat(spotRect.getPropertyValue("--x")) / 100 - gardenMap.clientWidth / 2;
-          targetY = mapRect.offsetTop + mapRect.offsetHeight * parseFloat(spotRect.getPropertyValue("--y")) / 100 - gardenMap.clientHeight * 0.52;
-
-          gardenMap.scrollTo({
-            left: Math.max(0, Math.min(targetX, gardenMap.scrollWidth - gardenMap.clientWidth)),
-            top: Math.max(0, Math.min(targetY, gardenMap.scrollHeight - gardenMap.clientHeight)),
-            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
-          });
         }
 
         hotspots.forEach(function (hotspot) {
@@ -12533,385 +9445,6 @@
       }
 
       initGardenMap();
-
-      /* ================= Мобильная версия: взаимодействия ================= */
-      var navBurger = document.getElementById("navBurger");
-      var bloomSheetOpen = document.getElementById("bloomSheetOpen");
-      var bloomSheetClose = document.getElementById("bloomSheetClose");
-      var aboutExploreBack = document.getElementById("aboutExploreBack");
-      var mobileGardenMap = document.getElementById("gardenMap");
-
-      function openMobileMenu() {
-        stage.classList.add("is-menu-open");
-        if (navBurger) {
-          navBurger.setAttribute("aria-expanded", "true");
-          navBurger.setAttribute("aria-label", "Закрыть меню");
-        }
-      }
-
-      function closeMobileMenu() {
-        stage.classList.remove("is-menu-open");
-        if (navBurger) {
-          navBurger.setAttribute("aria-expanded", "false");
-          navBurger.setAttribute("aria-label", "Открыть меню");
-        }
-      }
-
-      if (navBurger) {
-        navBurger.addEventListener("click", function (event) {
-          event.preventDefault();
-          if (stage.classList.contains("is-menu-open")) {
-            closeMobileMenu();
-          } else {
-            openMobileMenu();
-          }
-        });
-      }
-
-      /* пункт меню выбран — меню закрывается, раздел открывается как обычно */
-      document.querySelectorAll(".nav__link").forEach(function (link) {
-        link.addEventListener("click", function () {
-          closeMobileMenu();
-        }, true);
-      });
-
-      document.addEventListener("click", function (event) {
-        if (
-          stage.classList.contains("is-menu-open")
-          && !event.target.closest("#navMenu")
-          && !event.target.closest("#navBurger")
-        ) {
-          closeMobileMenu();
-        }
-        if (stage.classList.contains("is-menu-open") && event.target.closest('a[href="#tickets"]')) {
-          closeMobileMenu();
-        }
-      }, true);
-
-      document.addEventListener("keydown", function (event) {
-        if (event.key !== "Escape") {
-          return;
-        }
-        closeMobileMenu();
-        stage.classList.remove("is-bloom-sheet");
-      });
-
-      /* пункт меню «Календарь цветения»: открывает «О саде» и сразу панель календаря */
-      var bloomNavLink = document.getElementById("bloomNavLink");
-
-      if (bloomNavLink) {
-        bloomNavLink.addEventListener("click", function (event) {
-          event.preventDefault();
-          closeMobileMenu();
-
-          if (stage.classList.contains("is-about-open") && stage.classList.contains("is-about-content-in")) {
-            if (aboutPanelIndex !== 0) {
-              setAboutPanel(0);
-            }
-            stage.classList.add("is-bloom-sheet");
-            renderBloomCalendar();
-            return;
-          }
-
-          if (!stage.classList.contains("is-about-open")) {
-            openAboutScreen();
-          }
-
-          queueAboutStep(3500, function () {
-            stage.classList.add("is-bloom-sheet");
-            renderBloomCalendar();
-          });
-        });
-      }
-
-      /* календарь цветения — выезжающая панель */
-      if (bloomSheetOpen) {
-        bloomSheetOpen.addEventListener("click", function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          stage.classList.add("is-bloom-sheet");
-          renderBloomCalendar();
-        });
-      }
-
-      if (bloomSheetClose) {
-        bloomSheetClose.addEventListener("click", function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          stage.classList.remove("is-bloom-sheet");
-        });
-      }
-
-      /* мобильные «Назад»: календарь цветения и экспозиции музея (Figma m/03, m/07) */
-      var bloomSheetBack = document.getElementById("bloomSheetBack");
-      var museumExhibitsBack = document.getElementById("museumExhibitsBack");
-
-      if (bloomSheetBack) {
-        bloomSheetBack.addEventListener("click", function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          stage.classList.remove("is-bloom-sheet");
-        });
-      }
-
-      if (museumExhibitsBack) {
-        museumExhibitsBack.addEventListener("click", function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-
-          if (!stage.classList.contains("is-museum-more")) {
-            return;
-          }
-
-          holdAboutCardBackdrop();
-          closeMuseumMore();
-          setAboutPanelAccessibility(3);
-        });
-      }
-
-      /* «Назад» из парка в цифрах */
-      if (aboutExploreBack) {
-        aboutExploreBack.addEventListener("click", function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          closeAboutExploreLayer();
-          setAboutPanelAccessibility(aboutPanelIndex);
-        });
-      }
-
-      /* маршруты оранжереи: на тач-экране раскрываются тапом */
-      function syncRouteHints() {
-        document.querySelectorAll(".about-route-card__subtitle").forEach(function (hint) {
-          if (!hint.dataset.desktopText) {
-            hint.dataset.desktopText = hint.textContent;
-          }
-          hint.textContent = isMobileLayout() ? typographText("Нажмите, чтобы узнать больше") : hint.dataset.desktopText;
-        });
-      }
-
-      syncRouteHints();
-      document.querySelectorAll(".about-route-card").forEach(function (card) {
-        card.addEventListener("click", function () {
-          if (!isMobileLayout()) {
-            return;
-          }
-          var willOpen = !card.classList.contains("is-open");
-          document.querySelectorAll(".about-route-card.is-open").forEach(function (other) {
-            other.classList.remove("is-open");
-          });
-          card.classList.toggle("is-open", willOpen);
-        });
-      });
-
-      /* свайпы */
-      function onSwipe(element, handler) {
-        var startX = null;
-        var startY = null;
-
-        if (!element) {
-          return;
-        }
-
-        element.addEventListener("touchstart", function (event) {
-          if (event.touches.length !== 1) {
-            startX = null;
-            return;
-          }
-          startX = layoutPoint(event.touches[0]).x;
-          startY = layoutPoint(event.touches[0]).y;
-        }, { passive: true });
-
-        element.addEventListener("touchend", function (event) {
-          var dx;
-          var dy;
-
-          if (startX === null || !event.changedTouches.length) {
-            return;
-          }
-
-          dx = layoutPoint(event.changedTouches[0]).x - startX;
-          dy = layoutPoint(event.changedTouches[0]).y - startY;
-          startX = null;
-
-          if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) {
-            handler(dx < 0 ? 1 : -1, event);
-          }
-        }, { passive: true });
-      }
-
-      /* «О саде»: вертикальная прокрутка пальцем листает экраны (как колесо на десктопе).
-         Если текст внутри блока ещё прокручивается — сначала прокручивается он. */
-      function onVerticalScroll(element, handler) {
-        var startY = null;
-        var startX = null;
-        var scroller = null;
-        var atTop = true;
-        var atBottom = true;
-
-        if (!element) {
-          return;
-        }
-
-        function findScroller(node) {
-          var style;
-
-          while (node && node !== element) {
-            if (node.nodeType === 1) {
-              style = getComputedStyle(node);
-              if ((style.overflowY === "auto" || style.overflowY === "scroll") && node.scrollHeight > node.clientHeight + 2) {
-                return node;
-              }
-            }
-            node = node.parentNode;
-          }
-
-          return null;
-        }
-
-        element.addEventListener("touchstart", function (event) {
-          if (event.touches.length !== 1) {
-            startY = null;
-            return;
-          }
-
-          startY = layoutPoint(event.touches[0]).y;
-          startX = layoutPoint(event.touches[0]).x;
-          scroller = findScroller(event.target);
-          atTop = !scroller || scroller.scrollTop <= 2;
-          atBottom = !scroller || scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 2;
-        }, { passive: true });
-
-        element.addEventListener("touchend", function (event) {
-          var dx;
-          var dy;
-
-          if (startY === null || !event.changedTouches.length) {
-            return;
-          }
-
-          dy = layoutPoint(event.changedTouches[0]).y - startY;
-          dx = layoutPoint(event.changedTouches[0]).x - startX;
-          startY = null;
-
-          if (Math.abs(dy) < 50 || Math.abs(dy) < Math.abs(dx) * 1.2) {
-            return;
-          }
-
-          /* палец вверх = прокрутка вниз = следующий экран */
-          if (dy < 0 && atBottom) {
-            handler(1, event);
-          } else if (dy > 0 && atTop) {
-            handler(-1, event);
-          }
-        }, { passive: true });
-      }
-
-      onVerticalScroll(aboutScreen, function (direction, event) {
-        if (!isMobileLayout() || !stage.classList.contains("is-about-open") || stage.classList.contains("is-bloom-sheet")) {
-          return;
-        }
-
-        if (event.target.closest(".events-screen, .visitors-screen, .contacts-screen, .bloom-calendar")) {
-          return;
-        }
-
-        if (stage.classList.contains("is-museum-more")) {
-          if (direction < 0 && museumExhibitIndex === 0) {
-            holdAboutCardBackdrop();
-            closeMuseumMore();
-            setAboutPanelAccessibility(3);
-          } else {
-            stepMuseumExhibit(direction);
-          }
-          return;
-        }
-
-        if (stage.classList.contains("is-about-park-expanded")) {
-          if (direction < 0) {
-            closeAboutExploreLayer();
-            setAboutPanelAccessibility(aboutPanelIndex);
-          }
-          return;
-        }
-
-        setAboutPanel(clamp(aboutPanelIndex + direction, 0, ABOUT_PANEL_MAX));
-      });
-
-      /* афиши: свайп листает ленту */
-      onSwipe(eventsScreen, function (direction) {
-        if (!stage.classList.contains("is-events-open") || document.querySelector(".events-gallery__card.is-expanded")) {
-          return;
-        }
-        if (direction > 0) {
-          advanceEventsLoop();
-        } else {
-          retreatEventsLoop();
-        }
-      });
-
-      /* при уходе из «О саде» панель календаря закрывается */
-      new MutationObserver(function () {
-        if (!stage.classList.contains("is-about-open") && stage.classList.contains("is-bloom-sheet")) {
-          stage.classList.remove("is-bloom-sheet");
-        }
-      }).observe(stage, { attributes: true, attributeFilter: ["class"] });
-
-      /* подсказка «двигайте карту» гаснет, когда карту сдвинули пальцем */
-      var mapPanStart = null;
-
-      if (mobileGardenMap) {
-        mobileGardenMap.addEventListener("scroll", function () {
-          var here = mobileGardenMap.scrollLeft + mobileGardenMap.scrollTop;
-
-          if (mapPanStart === null) {
-            mapPanStart = here;
-            return;
-          }
-
-          if (Math.abs(here - mapPanStart) > 40) {
-            stage.classList.add("is-map-panned");
-          }
-        }, { passive: true });
-      }
-
-      /* карта на телефоне: открывается с оранжереей по центру */
-      function centerMobileMap() {
-        var board = document.getElementById("gardenMapBoard");
-
-        if (!isMobileLayout() || !mobileGardenMap || !board) {
-          return;
-        }
-
-        mobileGardenMap.scrollLeft = Math.max(0, board.offsetWidth * 0.5 - mobileGardenMap.clientWidth / 2);
-        mobileGardenMap.scrollTop = Math.max(0, board.offsetHeight * 0.46 - mobileGardenMap.clientHeight / 2);
-        stage.classList.remove("is-map-panned");
-        mapPanStart = null;
-      }
-
-      new MutationObserver(function (records) {
-        records.forEach(function (record) {
-          var had = (record.oldValue || "").indexOf("is-second-visible") !== -1;
-          if (!had && stage.classList.contains("is-second-visible")) {
-            centerMobileMap();
-          }
-        });
-      }).observe(stage, { attributes: true, attributeFilter: ["class"], attributeOldValue: true });
-
-      if (MOBILE_QUERY) {
-        var onLayoutChange = function () {
-          syncRouteHints();
-          resize();
-          renderBloomCalendar();
-          centerMobileMap();
-        };
-        if (MOBILE_QUERY.addEventListener) {
-          MOBILE_QUERY.addEventListener("change", onLayoutChange);
-        } else if (MOBILE_QUERY.addListener) {
-          MOBILE_QUERY.addListener(onLayoutChange);
-        }
-      }
-
-      resize();
     })();
   </script>
 </body>
