@@ -8675,6 +8675,58 @@
       cursor: grabbing !important;
       user-select: none !important;
     }
+    /* узкий десктоп (окно ~1180 и меньше): карта крупнее, её тянут мышью или пальцем */
+    .stage.is-map-zoom:not(.is-mobile) .garden-map {
+      transform-origin: 0 0;
+      scale: var(--map-zoom, 1);
+      translate: var(--map-px, 0px) var(--map-py, 0px);
+      transition: scale 1400ms var(--ease-about-soft), translate 1400ms var(--ease-about-soft);
+      cursor: grab;
+      touch-action: none;
+    }
+
+    .stage.is-map-zoom.is-map-panning:not(.is-mobile) .garden-map {
+      transition: none;
+      cursor: grabbing;
+    }
+
+    .stage.is-map-zoom.is-map-gliding:not(.is-mobile) .garden-map {
+      transition: scale 700ms var(--ease-about-soft), translate 700ms var(--ease-about-soft);
+    }
+
+    .stage.is-map-zoom:not(.is-mobile) .map-info-card {
+      cursor: auto;
+    }
+    /* подсказка на узком десктопе: карту можно двигать */
+    .stage.is-map-zoom:not(.is-mobile) .map-hint {
+      position: absolute;
+      left: 50%;
+      bottom: 40px;
+      z-index: 26;
+      display: block;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      color: rgba(237, 245, 242, 0.78);
+      text-shadow: 0 1px 14px rgba(0, 0, 0, 0.6);
+      transform: translateX(-50%);
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 700ms var(--ease-about-soft) 2600ms;
+    }
+
+    .stage.is-map-zoom:not(.is-mobile):not(.is-map-panned) .map-hint {
+      opacity: 1;
+    }
+
+    .stage.is-map-zoom:not(.is-mobile) .second-screen:has(.map-info-card.is-open) .map-hint,
+    .stage.is-map-zoom.is-map-panned:not(.is-mobile) .map-hint {
+      opacity: 0;
+      transition-delay: 0ms;
+    }
   </style>
 </head>
 <body>
@@ -10195,14 +10247,20 @@
         var urls = [];
         var index;
         var number;
-        /* на телефоне хватает кадров половинного размера — вдвое меньше трафика */
-        var walkFrameDir = window.matchMedia && window.matchMedia("(max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse)").matches
-          ? "frames/walk-sm"
-          : "frames/walk";
+        /* десктоп: исходные кадры без пережатия; вертикальный экран (телефон, планшет стоя)
+           видит только середину кадра — для него квадратная вырезка 1080×1080 в полном разрешении */
+        var vertical = window.matchMedia && window.matchMedia("(max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse)").matches;
+        var walkFrameDir = vertical ? "frames/walk-v" : "frames/walk-hd";
+        var walkFrameExt = vertical ? ".webp" : ".jpg";
+
+        if (walkFrameCanvas) {
+          walkFrameCanvas.width = vertical ? 1080 : 1920;
+          walkFrameCanvas.height = 1080;
+        }
 
         for (index = 1; index <= WALK_FRAME_COUNT; index += 1) {
           number = String(index).padStart(3, "0");
-          urls.push(walkFrameDir + "/frame_" + number + ".webp");
+          urls.push(walkFrameDir + "/frame_" + number + walkFrameExt);
         }
 
         return urls;
@@ -10288,7 +10346,8 @@
           return;
         }
 
-        walkFrameContext.drawImage(image, 0, 0, 1920, 1080);
+        walkFrameContext.imageSmoothingQuality = "high";
+        walkFrameContext.drawImage(image, 0, 0, walkFrameCanvas.width, walkFrameCanvas.height);
         walkFrameDrawn = index;
       }
 
@@ -13097,6 +13156,171 @@
           }
         }, { passive: false });
       }
+
+      /* ---------- карта на узком десктопе / планшете лёжа: увеличение и перетаскивание ---------- */
+      var deskMap = { zoom: 1, px: 0, py: 0, on: false, timer: 0 };
+
+      function deskMapGeometry() {
+        var cw = parseFloat(stage.style.getPropertyValue("--cw")) || DESIGN_WIDTH;
+        var ch = parseFloat(stage.style.getPropertyValue("--ch")) || DESIGN_HEIGHT;
+        var dx = parseFloat(stage.style.getPropertyValue("--dx")) || 0;
+        var dy = parseFloat(stage.style.getPropertyValue("--dy")) || 0;
+        return { cw: cw, ch: ch, dx: dx, dy: dy };
+      }
+
+      function deskMapWanted() {
+        var vw = window.visualViewport ? window.visualViewport.width : window.innerWidth;
+        return !isMobileLayout() && vw < 1500;
+      }
+
+      function applyDeskMap(px, py) {
+        var g = deskMapGeometry();
+        var w = DESIGN_WIDTH * deskMap.zoom;
+        var h = DESIGN_HEIGHT * deskMap.zoom;
+        deskMap.px = clamp(px, g.cw - g.dx - w, -g.dx);
+        deskMap.py = clamp(py, g.ch - g.dy - h, -g.dy);
+        stage.style.setProperty("--map-zoom", deskMap.zoom.toFixed(4));
+        stage.style.setProperty("--map-px", deskMap.px.toFixed(1) + "px");
+        stage.style.setProperty("--map-py", deskMap.py.toFixed(1) + "px");
+      }
+
+      /* навести камеру на точку карты (координаты макета 1920×1080) */
+      function deskMapLookAt(x, y) {
+        var g = deskMapGeometry();
+        applyDeskMap(g.cw / 2 - g.dx - x * deskMap.zoom, g.ch / 2 - g.dy - y * deskMap.zoom);
+      }
+
+      function syncDeskMap() {
+        var want = deskMapWanted() && stage.classList.contains("is-second-visible");
+
+        if (!want) {
+          window.clearTimeout(deskMap.timer);
+          deskMap.on = false;
+          stage.classList.remove("is-map-zoom");
+          deskMap.zoom = 1;
+          applyDeskMap(-deskMapGeometry().dx, -deskMapGeometry().dy);
+          return;
+        }
+
+        var vw = window.visualViewport ? window.visualViewport.width : window.innerWidth;
+        var targetZoom = clamp(1600 / vw, 1.3, 1.7);
+
+        if (!deskMap.on) {
+          /* карта проявляется целиком, затем камера мягко приближается к оранжерее */
+          deskMap.on = true;
+          deskMap.zoom = 1;
+          stage.classList.remove("is-map-panned");
+          applyDeskMap(-deskMapGeometry().dx, -deskMapGeometry().dy);
+          stage.classList.add("is-map-zoom");
+          window.clearTimeout(deskMap.timer);
+          deskMap.timer = window.setTimeout(function () {
+            deskMap.zoom = targetZoom;
+            deskMapLookAt(1010, 560);
+          }, 1700);
+        } else {
+          deskMap.zoom = targetZoom;
+          applyDeskMap(deskMap.px, deskMap.py);
+        }
+      }
+
+      new MutationObserver(function () {
+        var visible = stage.classList.contains("is-second-visible");
+        if (visible !== deskMap.on || (visible && deskMapWanted() !== stage.classList.contains("is-map-zoom"))) {
+          syncDeskMap();
+        }
+      }).observe(stage, { attributes: true, attributeFilter: ["class"] });
+
+      window.addEventListener("resize", function () {
+        if (deskMap.on) {
+          syncDeskMap();
+        }
+      }, { passive: true });
+
+      (function () {
+        var gardenMapEl = document.getElementById("gardenMap");
+        var drag = null;
+
+        if (!gardenMapEl) {
+          return;
+        }
+
+        function stageScale() {
+          var g = deskMapGeometry();
+          return scaled.getBoundingClientRect().width / g.cw || 1;
+        }
+
+        gardenMapEl.addEventListener("pointerdown", function (event) {
+          if (!stage.classList.contains("is-map-zoom") || isMobileLayout() || event.button > 0
+            || event.target.closest(".map-info-card")) {
+            return;
+          }
+          drag = { x: event.clientX, y: event.clientY, px: deskMap.px, py: deskMap.py, moved: false, id: event.pointerId };
+        });
+
+        window.addEventListener("pointermove", function (event) {
+          if (!drag || event.pointerId !== drag.id) {
+            return;
+          }
+          var ddx = event.clientX - drag.x;
+          var ddy = event.clientY - drag.y;
+          if (!drag.moved && Math.hypot(ddx, ddy) > 6) {
+            drag.moved = true;
+            stage.classList.add("is-map-panning");
+            stage.classList.add("is-map-panned");
+          }
+          if (drag.moved) {
+            var k = stageScale();
+            applyDeskMap(drag.px + ddx / k, drag.py + ddy / k);
+          }
+        }, { passive: true });
+
+        function endDrag() {
+          if (!drag) {
+            return;
+          }
+          if (drag.moved) {
+            var swallow = function (clickEvent) {
+              clickEvent.stopPropagation();
+              clickEvent.preventDefault();
+              window.removeEventListener("click", swallow, true);
+            };
+            window.addEventListener("click", swallow, true);
+            window.setTimeout(function () {
+              window.removeEventListener("click", swallow, true);
+            }, 0);
+          }
+          drag = null;
+          stage.classList.remove("is-map-panning");
+        }
+
+        window.addEventListener("pointerup", endDrag);
+        window.addEventListener("pointercancel", endDrag);
+
+        /* при открытии карточки камера плавно подъезжает так, чтобы точка и карточка были в кадре */
+        document.querySelectorAll("[data-map-object]").forEach(function (hotspot) {
+          hotspot.addEventListener("click", function () {
+            window.setTimeout(function () {
+              var card = document.getElementById("mapInfoCard");
+              if (!stage.classList.contains("is-map-zoom") || isMobileLayout() || !card) {
+                return;
+              }
+              var hx = parseFloat(hotspot.style.getPropertyValue("--x")) / 100 * DESIGN_WIDTH;
+              var hy = parseFloat(hotspot.style.getPropertyValue("--y")) / 100 * DESIGN_HEIGHT;
+              var cl = parseFloat(card.style.left) || hx;
+              var ct = parseFloat(card.style.top) || hy;
+              var x0 = Math.min(hx - 40, cl);
+              var x1 = Math.max(hx + 40, cl + 439);
+              var y0 = Math.min(hy - 40, ct);
+              var y1 = Math.max(hy + 40, ct + 425);
+              stage.classList.add("is-map-gliding");
+              deskMapLookAt((x0 + x1) / 2, (y0 + y1) / 2);
+              window.setTimeout(function () {
+                stage.classList.remove("is-map-gliding");
+              }, 760);
+            }, 0);
+          });
+        });
+      })();
 
       if (MOBILE_QUERY) {
         var onLayoutChange = function () {
