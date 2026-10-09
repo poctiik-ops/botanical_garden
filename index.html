@@ -13194,6 +13194,9 @@
         var want = deskMapWanted() && stage.classList.contains("is-second-visible");
 
         if (!want) {
+          if (!deskMap.on && !stage.classList.contains("is-map-zoom")) {
+            return;
+          }
           window.clearTimeout(deskMap.timer);
           deskMap.on = false;
           stage.classList.remove("is-map-zoom");
@@ -13224,8 +13227,8 @@
       }
 
       new MutationObserver(function () {
-        var visible = stage.classList.contains("is-second-visible");
-        if (visible !== deskMap.on || (visible && deskMapWanted() !== stage.classList.contains("is-map-zoom"))) {
+        var visible = stage.classList.contains("is-second-visible") && deskMapWanted();
+        if (visible !== deskMap.on) {
           syncDeskMap();
         }
       }).observe(stage, { attributes: true, attributeFilter: ["class"] });
