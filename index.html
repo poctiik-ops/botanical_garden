@@ -9028,7 +9028,11 @@
       margin-top: 6px;
     }
 
-    .contacts-card__item--extra .contacts-card__label {
+    .stage.is-mobile .contacts-card__item--extra .contacts-card__label {
+      font-size: 14px;
+    }
+
+    .stage:not(.is-mobile) .contacts-card__item--extra .contacts-card__label {
       font-size: 22px;
       font-weight: 400;
       color: rgba(255, 255, 255, 0.72);
@@ -9043,6 +9047,75 @@
       .zero-screen.is-assets-ready .zero-screen__dot { animation: none; }
       .stage:not(.is-mobile) .about-card::before,
       .stage:not(.is-mobile) .about-card::after { transition: none; }
+    }
+
+    /* ===== Кнопки и меню — то же матовое стекло, что у карточек на карте: без обводки и теней ===== */
+    :root {
+      --button-bg: rgba(172, 172, 172, 0.3);
+      --button-bg-hover: rgba(172, 172, 172, 0.42);
+      --button-border: transparent;
+      --glass-dark: rgba(172, 172, 172, 0.3);
+      --glass-dark-hover: rgba(172, 172, 172, 0.42);
+      --glass-line: transparent;
+    }
+
+    .pill,
+    .ticket,
+    .second-screen__action,
+    .map-info-card__ticket,
+    .tickets-form__submit {
+      border-color: transparent !important;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+
+    .pill:hover,
+    .pill:focus-visible,
+    .stage.is-hero-ready .pill:hover,
+    .stage.is-hero-ready .pill:focus-visible,
+    .second-screen__action--home:hover,
+    .second-screen__action--home:focus-visible {
+      border-color: transparent;
+      background: var(--button-bg-hover);
+    }
+
+    .stage:not(.is-mobile) .nav__menu {
+      border-color: transparent;
+      background: rgba(172, 172, 172, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: none;
+    }
+
+    .zero-screen__button.zero-screen__button--quiet {
+      background: rgba(172, 172, 172, 0.16);
+      border-color: transparent;
+    }
+
+    .zero-screen__button.is-selected {
+      border-color: transparent;
+      background: rgba(172, 172, 172, 0.46);
+    }
+
+    .about-detail__button {
+      border-color: transparent !important;
+    }
+
+    .stage.is-mobile .nav .nav__menu {
+      border-color: transparent;
+    }
+
+    .contacts-card__copy {
+      border-color: transparent;
+      background: rgba(172, 172, 172, 0.3);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+
+    .contacts-card__copy:hover,
+    .contacts-card__copy:focus-visible {
+      border-color: transparent;
+      background: rgba(172, 172, 172, 0.44);
     }
 
     /* видео прогулки только источник кадров для canvas — само не показывается */
