@@ -9044,6 +9044,17 @@
       .stage:not(.is-mobile) .about-card::before,
       .stage:not(.is-mobile) .about-card::after { transition: none; }
     }
+
+    /* видео прогулки только источник кадров для canvas — само не показывается */
+    .walk-transition__video {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 2px;
+      opacity: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -9434,6 +9445,7 @@
 
       <section class="walk-transition" id="walkTransition" aria-hidden="true">
         <canvas class="walk-transition__sequence" id="walkFrameCanvas" width="1920" height="1080" aria-hidden="true"></canvas>
+        <video class="walk-transition__video" id="walkVideo" muted playsinline preload="auto" aria-hidden="true" tabindex="-1"></video>
         <div class="walk-transition__shade" aria-hidden="true"></div>
 
         <section class="second-screen" id="garden-depth" aria-label="Продолжение прогулки по саду">
@@ -9649,6 +9661,7 @@
       var walkFrameCanvas = document.getElementById("walkFrameCanvas");
       var walkFrameContext = walkFrameCanvas ? walkFrameCanvas.getContext("2d", { alpha: false }) : null;
       var walkFrameDrawn = -1;
+      var walkVideo = document.getElementById("walkVideo");
       var startButtons = document.querySelectorAll("[data-start-mode]");
       var UI_CLICK_SOUND_SRC = "audio/volshebnyiy-dzyin--skazochnyiy.mp3";
       var uiClickAudio = window.Audio ? new Audio(UI_CLICK_SOUND_SRC) : null;
@@ -9682,8 +9695,9 @@
         preloadImage("frames/tickets-bg.webp")
       ]);
       var mapEntryReady = preloadImage("frames/map.webp");
-      var WALK_FRAME_COUNT = 241;
-      var WALK_DURATION = 8000;
+      var WALK_FRAME_COUNT = 181;
+      /* 7% — вход, остальное — само видео (181 кадр × 24 к/с ≈ 7,54 с) */
+      var WALK_DURATION = 8110;
       var SECOND_REVEAL_DURATION = 1550;
       var HERO_REVEAL_DURATION = 6200;
       var walkFrameUrls = buildWalkFrameUrls();
@@ -10559,56 +10573,51 @@
         });
       }
 
+      /* Прогулка — короткое видео (H.264): весит в разы меньше 181 отдельного кадра
+         и декодируется видеокартой, поэтому не подтормаживает. Кадры рисуются на canvas,
+         он держит последний показанный кадр до плавной смены на карту. */
       function buildWalkFrameUrls() {
-        var urls = [];
-        var index;
-        var number;
-        /* десктоп: исходные кадры без пережатия; вертикальный экран (телефон, планшет стоя)
-           видит только середину кадра — для него квадратная вырезка 1080×1080 в полном разрешении */
         var vertical = window.matchMedia && window.matchMedia("(max-width: 700px), (max-aspect-ratio: 5/4), (orientation: landscape) and (max-height: 500px) and (pointer: coarse)").matches;
-        var walkFrameDir = vertical ? "frames/walk-v" : "frames/walk-hd";
-        var walkFrameExt = vertical ? ".webp" : ".jpg";
 
         if (walkFrameCanvas) {
           walkFrameCanvas.width = vertical ? 1080 : 1920;
           walkFrameCanvas.height = 1080;
         }
 
-        for (index = 1; index <= WALK_FRAME_COUNT; index += 1) {
-          number = String(index).padStart(3, "0");
-          urls.push(walkFrameDir + "/frame_" + number + walkFrameExt);
-        }
+        var probe = document.createElement("video");
+        var h264 = probe.canPlayType && probe.canPlayType('video/mp4; codecs="avc1.640028"');
+        var ext = h264 ? ".mp4" : ".webm";
 
-        return urls;
+        return [(vertical ? "frames/walk-v" : "frames/walk") + ext];
       }
 
       function preloadWalkFrames() {
-        var cursor = 0;
-        var workers = [];
-        var concurrency = 6;
-        var workerIndex;
+        return new Promise(function (resolve) {
+          var settled = false;
 
-        function loadNext() {
-          var src = walkFrameUrls[cursor];
-          cursor += 1;
-
-          if (!src) {
-            return Promise.resolve();
+          function done() {
+            if (settled) {
+              return;
+            }
+            settled = true;
+            walkVideo.removeEventListener("canplaythrough", done);
+            walkVideo.removeEventListener("error", done);
+            resolve();
           }
 
-          var frameIndex = cursor - 1;
+          if (!walkVideo) {
+            resolve();
+            return;
+          }
 
-          return preloadImage(src, null, true).then(function (image) {
-            walkFrameCache[frameIndex] = image;
-            return loadNext();
-          });
-        }
-
-        for (workerIndex = 0; workerIndex < concurrency; workerIndex += 1) {
-          workers.push(loadNext());
-        }
-
-        return Promise.all(workers);
+          walkVideo.muted = true;
+          walkVideo.addEventListener("canplaythrough", done);
+          walkVideo.addEventListener("error", done);
+          walkVideo.src = walkFrameUrls[0];
+          walkVideo.load();
+          /* медленная сеть: не держим прогулку дольше 9 секунд — видео догрузится по ходу */
+          window.setTimeout(done, 9000);
+        });
       }
 
       function typographText(value) {
@@ -10649,93 +10658,44 @@
         });
       }
 
-      /* Кадры прогулки рисуются на canvas: он всегда держит последний показанный кадр,
-         поэтому медленный кадр не даёт пустого мигания. Последний кадр (frame_241.png)
-         по цвету уже совпадает с картой, а не с видео, — его не показываем,
-         вместо него в конце идёт плавная смена на саму карту. */
       var WALK_PLAYABLE_FRAMES = WALK_FRAME_COUNT - 1;
 
-      /* кадры прогулки декодируются заранее небольшим «окном» вне основного потока (createImageBitmap)
-         и сразу освобождаются после показа — память не раздувается, кадры не подтормаживают */
-      var walkBitmaps = {};
-      var WALK_PREDECODE_AHEAD = 14;
-
-      function primeWalkFrames(from) {
-        var key;
-        var index;
-
-        if (!window.createImageBitmap) {
-          return;
-        }
-
-        for (index = Math.max(0, from); index < Math.min(walkFrameCache.length, from + WALK_PREDECODE_AHEAD); index += 1) {
-          (function (frameIndex) {
-            var image = walkFrameCache[frameIndex];
-
-            if (walkBitmaps[frameIndex] || !image || !image.naturalWidth) {
-              return;
-            }
-
-            walkBitmaps[frameIndex] = "pending";
-            window.createImageBitmap(image).then(function (bitmap) {
-              if (walkBitmaps[frameIndex] === "pending") {
-                walkBitmaps[frameIndex] = bitmap;
-              } else if (bitmap.close) {
-                bitmap.close();
-              }
-            }, function () {
-              delete walkBitmaps[frameIndex];
-            });
-          })(index);
-        }
-
-        for (key in walkBitmaps) {
-          if (Number(key) < from - 2) {
-            if (walkBitmaps[key] && walkBitmaps[key].close) {
-              walkBitmaps[key].close();
-            }
-            delete walkBitmaps[key];
-          }
-        }
-      }
-
-      function releaseWalkFrames() {
-        var key;
-
-        for (key in walkBitmaps) {
-          if (walkBitmaps[key] && walkBitmaps[key].close) {
-            walkBitmaps[key].close();
-          }
-          delete walkBitmaps[key];
-        }
-      }
-
-      function drawWalkFrame(index) {
-        var image = walkFrameCache[index];
-        var bitmap = walkBitmaps[index];
-        var source = bitmap && bitmap !== "pending" ? bitmap : image;
-
-        if (!walkFrameContext || index === walkFrameDrawn || !image || !image.naturalWidth) {
+      function drawWalkFrame() {
+        if (!walkFrameContext || !walkVideo || walkVideo.readyState < 2) {
           return;
         }
 
         walkFrameContext.imageSmoothingQuality = "high";
-        walkFrameContext.drawImage(source, 0, 0, walkFrameCanvas.width, walkFrameCanvas.height);
-        walkFrameDrawn = index;
-        primeWalkFrames(index + 1);
+        walkFrameContext.drawImage(walkVideo, 0, 0, walkFrameCanvas.width, walkFrameCanvas.height);
+        walkFrameDrawn = 1;
+      }
+
+      function resetWalkVideo() {
+        if (!walkVideo) {
+          return;
+        }
+
+        walkVideo.pause();
+
+        try {
+          walkVideo.currentTime = 0;
+        } catch (error) {}
       }
 
       function setWalkFrameByProgress(progress) {
-        var index = Math.round(clamp(progress, 0, 1) * (WALK_PLAYABLE_FRAMES - 1));
-        var target = clamp(index, 0, WALK_PLAYABLE_FRAMES - 1);
-        var fallback = target;
-
-        /* если нужный кадр почему-то ещё не готов — держим ближайший предыдущий */
-        while (fallback > 0 && !(walkFrameCache[fallback] && walkFrameCache[fallback].naturalWidth)) {
-          fallback -= 1;
+        if (!walkVideo) {
+          return;
         }
 
-        drawWalkFrame(fallback);
+        if (progress > 0 && walkVideo.paused && !walkVideo.ended) {
+          var playRequest = walkVideo.play();
+
+          if (playRequest && playRequest.catch) {
+            playRequest.catch(function () {});
+          }
+        }
+
+        drawWalkFrame();
       }
 
       function resize() {
@@ -12479,8 +12439,8 @@
 
           window.cancelAnimationFrame(walkFrame);
           walkFrameDrawn = -1;
-          primeWalkFrames(0);
-          drawWalkFrame(0);
+          resetWalkVideo();
+          drawWalkFrame();
           stage.classList.remove("is-second-visible", "is-walk-complete");
           stage.classList.add("is-walking");
           applyWalkProgress(0, 0);
@@ -12506,7 +12466,9 @@
             walkFrame = 0;
             applyWalkProgress(1, 1);
             stage.classList.add("is-walk-complete");
-            window.setTimeout(releaseWalkFrames, 600);
+            if (walkVideo) {
+              walkVideo.pause();
+            }
           }
 
           walkFrame = window.requestAnimationFrame(tick);
