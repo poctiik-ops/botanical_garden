@@ -8727,6 +8727,323 @@
       opacity: 0;
       transition-delay: 0ms;
     }
+
+    /* ===================== Правки по разбору (октябрь) ===================== */
+    /* 1. Единые кнопки: тёмное полупрозрачное стекло, светлая обводка и текст, без теней и свечения */
+    :root {
+      --button-bg: rgba(20, 24, 21, 0.42);
+      --button-bg-hover: rgba(20, 24, 21, 0.58);
+      --button-border: rgba(255, 255, 255, 0.62);
+      --button-glow: transparent;
+      --glass-dark: rgba(20, 24, 21, 0.42);
+      --glass-dark-hover: rgba(20, 24, 21, 0.6);
+      --glass-line: rgba(255, 255, 255, 0.62);
+      --ink-button: rgba(44, 47, 43, 0.94);
+      --ink-button-hover: rgba(30, 33, 30, 0.98);
+    }
+
+    .pill,
+    .second-screen__action,
+    .map-info-card__ticket,
+    .map-info-card__hours {
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    .pill:hover,
+    .pill:focus-visible,
+    .stage.is-hero-ready .pill:hover,
+    .stage.is-hero-ready .pill:focus-visible {
+      border-color: rgba(255, 255, 255, 0.95);
+      background: var(--button-bg-hover);
+      transform: translateY(-1px);
+    }
+
+    .ticket,
+    .second-screen__action--ticket,
+    .map-info-card__ticket,
+    .tickets-form__submit {
+      border: 1px solid var(--glass-line) !important;
+      background: var(--glass-dark) !important;
+      color: #ffffff !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .ticket:hover,
+    .ticket:focus-visible,
+    .second-screen__action--ticket:hover,
+    .second-screen__action--ticket:focus-visible,
+    .map-info-card__ticket:hover,
+    .map-info-card__ticket:focus-visible,
+    .tickets-form__submit:hover,
+    .tickets-form__submit:focus-visible {
+      border-color: rgba(255, 255, 255, 0.95) !important;
+      background: var(--glass-dark-hover) !important;
+      color: #ffffff !important;
+    }
+
+    .second-screen__action--home {
+      border: 1px solid var(--glass-line);
+      background: var(--glass-dark);
+    }
+
+    .second-screen__action--home:hover,
+    .second-screen__action--home:focus-visible {
+      border-color: rgba(255, 255, 255, 0.95);
+      background: var(--glass-dark-hover);
+    }
+
+    .zero-screen__button.zero-screen__button--quiet {
+      background: rgba(20, 24, 21, 0.28);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .zero-screen__button.is-selected {
+      border-color: rgba(255, 255, 255, 0.95);
+      background: var(--glass-dark-hover);
+    }
+
+    /* кнопки на светлом фоне «О саде»: тёмная заливка, светлый текст и стрелка */
+    .about-detail__button {
+      border-color: transparent;
+      background: var(--ink-button);
+      color: #ffffff;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .about-detail__button:hover,
+    .about-detail__button:focus-visible {
+      border-color: transparent;
+      background: var(--ink-button-hover);
+      color: #ffffff;
+    }
+
+    /* «Купить билет» в шапке — второстепенная: компактнее, первое внимание — «Начать прогулку» */
+    .stage:not(.is-mobile) .nav .ticket {
+      width: 164px;
+      height: 54px;
+      margin: 5.5px 0 0 22px;
+      font-size: 18px;
+      font-weight: 300;
+    }
+
+    /* 2. Без тёмных теней под текстом — они дают «грязь» */
+    .stage h1, .stage h2, .stage h3, .stage p, .stage span, .stage a, .stage strong, .stage button, .stage li {
+      text-shadow: none !important;
+    }
+
+    /* 3. Меню не меняется: текущий раздел отмечен, на главную — по логотипу */
+    .nav__link.is-current {
+      color: #ffffff;
+    }
+
+    .nav__link.is-current::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 1px;
+      width: 4px;
+      height: 4px;
+      margin-left: -2px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .stage.is-hero-ready .nav__logo,
+    .stage.is-hero-ready .nav__emblem {
+      cursor: pointer;
+    }
+
+    /* 4. Нулевой экран: точки после загрузки не застывают, а спокойно «дышат» — видно, что сайт ждёт выбора */
+    .zero-screen.is-assets-ready .zero-screen__dot {
+      opacity: 0.9;
+      animation: zeroDotBreath 2600ms cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+
+    .zero-screen.is-assets-ready .zero-screen__dot:nth-child(2) { animation-delay: 200ms; }
+    .zero-screen.is-assets-ready .zero-screen__dot:nth-child(3) { animation-delay: 400ms; }
+    .zero-screen.is-assets-ready .zero-screen__dot:nth-child(4) { animation-delay: 600ms; }
+
+    @keyframes zeroDotBreath {
+      0%, 100% { opacity: 0.38; transform: scale(0.86); }
+      45% { opacity: 0.95; transform: scale(1); }
+    }
+
+    .stage:not(.is-mobile) .zero-screen__text {
+      top: 826px;
+      width: 640px;
+      font-size: 24px;
+      line-height: 1.22;
+    }
+
+    /* 5. Главный экран появляется на ~45% быстрее, порядок тот же */
+    @media (prefers-reduced-motion: no-preference) {
+      .stage.is-entered:not(.is-hero-ready) .nav__logo,
+      .stage.is-entered:not(.is-hero-ready) .nav__emblem { animation: heroNavReveal 720ms var(--ease-out) 380ms forwards; }
+      .stage.is-entered:not(.is-hero-ready) .nav__menu,
+      .stage.is-entered:not(.is-hero-ready) .nav__burger { animation: heroNavReveal 720ms var(--ease-out) 760ms forwards; }
+      .stage.is-entered:not(.is-hero-ready) .ticket { animation: heroNavReveal 720ms var(--ease-out) 1060ms forwards; }
+      .stage.is-entered:not(.is-hero-ready) .hero__title-line--first { animation: heroTitleReveal 980ms var(--ease-out) 1140ms forwards; }
+      .stage.is-entered:not(.is-hero-ready) .hero__title-line--second { animation: heroTitleReveal 980ms var(--ease-out) 1290ms forwards; }
+      .stage.is-entered:not(.is-hero-ready) .hero__subtitle { animation: heroTextReveal 820ms var(--ease-out) 2060ms forwards; }
+      .stage.is-entered:not(.is-hero-ready) .hero__cta { animation: heroButtonReveal 820ms var(--ease-out) 2460ms forwards; }
+      .stage.is-entered:not(.is-hero-ready) .hero__copy::before { animation: heroBackdropReveal 820ms var(--ease-out) 1100ms forwards; }
+    }
+
+    /* 6. «О саде»: размытие снизу делается кодом и проявляется плавно, без подмены картинки */
+    .stage:not(.is-mobile) .about-card__image--primary {
+      visibility: hidden;
+    }
+
+    .stage:not(.is-mobile) .about-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      height: 58%;
+      pointer-events: none;
+      backdrop-filter: blur(22px) saturate(1.04);
+      -webkit-backdrop-filter: blur(22px) saturate(1.04);
+      -webkit-mask-image: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.92) 30%, rgba(0, 0, 0, 0.5) 62%, transparent 100%);
+      mask-image: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.92) 30%, rgba(0, 0, 0, 0.5) 62%, transparent 100%);
+      opacity: 0;
+      transition: opacity 1400ms cubic-bezier(0.33, 0, 0.2, 1);
+    }
+
+    .stage.is-about-photo-card:not(.is-mobile) .about-card::before {
+      opacity: 1;
+      transition-delay: 260ms;
+    }
+
+    .stage:not(.is-mobile) .about-card::after {
+      opacity: 0;
+      transition: opacity 1400ms cubic-bezier(0.33, 0, 0.2, 1);
+    }
+
+    .stage.is-about-photo-card:not(.is-mobile) .about-card::after {
+      opacity: 1;
+      transition-delay: 160ms;
+    }
+
+    /* 7. Контакты: иконки у каждой строки, кнопка «скопировать» рядом с почтой */
+    .stage:not(.is-mobile) .contacts-card__icons {
+      display: none;
+    }
+
+    .contacts-card__item {
+      position: relative;
+    }
+
+    .stage:not(.is-mobile) .contacts-card__item::before {
+      content: "";
+      position: absolute;
+      left: -62px;
+      top: 1px;
+      width: 29px;
+      height: 32px;
+      background: center top / contain no-repeat;
+      background-image: var(--contact-icon);
+    }
+
+    .contacts-card__item--pin { --contact-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 32'%3E%3Cpath fill='white' d='M14.5 0C22.5 0 29 6.29 29 14.04 29 24.66 17.2 30.81 14.89 31.92a.9.9 0 0 1-.78 0C11.8 30.81 0 24.66 0 14.04 0 6.29 6.49 0 14.5 0Zm0 8.02c-3.43 0-6.21 2.7-6.21 6.02 0 3.32 2.78 6.02 6.21 6.02s6.21-2.7 6.21-6.02c0-3.32-2.78-6.02-6.21-6.02Z'/%3E%3C/svg%3E"); }
+    .contacts-card__item--phone { --contact-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 28'%3E%3Cpath fill='white' d='M3.76 3.95 7 .71a1 1 0 0 1 1.42 0l4.69 4.69a1 1 0 0 1 0 1.41l-3.1 3.11c-.46.46-.57 1.15-.28 1.73a15.4 15.4 0 0 0 6.7 6.7c.58.29 1.28.18 1.73-.28l3.11-3.11a1 1 0 0 1 1.41 0l4.69 4.69a1 1 0 0 1 0 1.42l-3.24 3.24a4.6 4.6 0 0 1-6.85.56l-5.42-4.06a19.4 19.4 0 0 1-4.6-4.6L3.2 11.8a4.6 4.6 0 0 1 .56-7.85Z'/%3E%3C/svg%3E"); }
+    .contacts-card__item--mail { --contact-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 23'%3E%3Cpath fill='white' d='M23 0c2.83 0 4.24 0 5.12.88.88.88.88 2.29.88 5.12v10.56c0 2.83 0 4.24-.88 5.12-.88.88-2.29.88-5.12.88H6c-2.83 0-4.24 0-5.12-.88C0 20.8 0 19.39 0 16.56V6C0 3.17 0 1.76.88.88 1.76 0 3.17 0 6 0h17Zm2 5.89a1 1 0 0 0-1.39-.28L14.5 11.69 5.39 5.61A1 1 0 1 0 4.28 7.28l9.11 6.07a2 2 0 0 0 2.22 0l9.11-6.07a1 1 0 0 0 .28-1.39Z'/%3E%3C/svg%3E"); }
+
+    .contacts-card__item--mail::before { top: 6px !important; height: 23px !important; }
+
+    .contacts-card__row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 3px;
+    }
+
+    .contacts-card__row .contacts-card__value {
+      margin-top: 0;
+    }
+
+    .contacts-card__copy {
+      position: relative;
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      border-radius: 50%;
+      background: rgba(20, 24, 21, 0.32);
+      color: rgba(255, 255, 255, 0.86);
+      cursor: pointer;
+      transition: border-color 200ms ease, background 200ms ease, color 200ms ease, transform 200ms ease;
+    }
+
+    .contacts-card__copy svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .contacts-card__copy .is-done { display: none; }
+    .contacts-card__copy.is-copied .is-idle { display: none; }
+    .contacts-card__copy.is-copied .is-done { display: block; }
+
+    .contacts-card__copy:hover,
+    .contacts-card__copy:focus-visible {
+      border-color: rgba(255, 255, 255, 0.95);
+      background: rgba(20, 24, 21, 0.55);
+      color: #ffffff;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .contacts-card__copy::after {
+      content: "Скопировано";
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(20, 24, 21, 0.78);
+      color: #ffffff;
+      font-size: 13px;
+      line-height: 1;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translate(-50%, 4px);
+      transition: opacity 180ms ease, transform 220ms ease;
+      pointer-events: none;
+    }
+
+    .contacts-card__copy.is-copied::after {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .contacts-card__item--extra {
+      margin-top: 6px;
+    }
+
+    .contacts-card__item--extra .contacts-card__label {
+      font-size: 22px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .stage.is-mobile .contacts-card__copy {
+      width: 32px;
+      height: 32px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .zero-screen.is-assets-ready .zero-screen__dot { animation: none; }
+      .stage:not(.is-mobile) .about-card::before,
+      .stage:not(.is-mobile) .about-card::after { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -8965,12 +9282,11 @@
             </div>
             <div class="contacts-card">
               <img class="contacts-card__icons" src="frames/contact-icons.svg" width="29" height="536" alt="" aria-hidden="true">
-              <p class="contacts-card__item"><span class="contacts-card__label">Адрес</span><span class="contacts-card__value">Санкт-Петербург, ул. Профессора Попова, д. 2<br>ст. м. Петроградская</span></p>
-              <p class="contacts-card__item"><span class="contacts-card__label">Номер телефона</span><a class="contacts-card__value" href="tel:+78123725464">+7 (812) 372-54-64</a></p>
-              <p class="contacts-card__item"><span class="contacts-card__label">По вопросам сотрудничества</span><a class="contacts-card__value" href="mailto:garden_bin_ran@mail.ru">garden_bin_ran@mail.ru</a></p>
-              <p class="contacts-card__item"><span class="contacts-card__label">Для резюме</span><a class="contacts-card__value" href="mailto:garden_spb_vacancies@mail.ru">garden_spb_vacancies@mail.ru</a></p>
-              <p class="contacts-card__item"><span class="contacts-card__label">Возврат электронных билетов</span><a class="contacts-card__value" href="mailto:botsad_spb_tickets@binran.ru">botsad_spb_tickets@binran.ru</a></p>
-              <p class="contacts-card__item"><span class="contacts-card__label">Проблемы с электронными билетами</span><a class="contacts-card__value" href="mailto:garden_bin_ran@mail.ru">garden_bin_ran@mail.ru</a></p>
+              <p class="contacts-card__item contacts-card__item--pin"><span class="contacts-card__label">Адрес</span><span class="contacts-card__value">Санкт-Петербург, ул. Профессора Попова, д. 2<br>ст. м. Петроградская</span></p>
+              <p class="contacts-card__item contacts-card__item--phone"><span class="contacts-card__label">Номер телефона</span><a class="contacts-card__value" href="tel:+78123725464">+7 (812) 372-54-64</a></p>
+              <p class="contacts-card__item contacts-card__item--mail"><span class="contacts-card__label">Сотрудничество и вопросы по билетам</span><span class="contacts-card__row"><a class="contacts-card__value" href="mailto:garden_bin_ran@mail.ru">garden_bin_ran@mail.ru</a><button class="contacts-card__copy" type="button" data-copy="garden_bin_ran@mail.ru" aria-label="Скопировать адрес garden_bin_ran@mail.ru"><svg class="is-idle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5"/><path d="M15.5 8.5V6.5A2 2 0 0 0 13.5 4.5H6.5A2 2 0 0 0 4.5 6.5v7a2 2 0 0 0 2 2h2"/></svg><svg class="is-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></button></span></p>
+              <p class="contacts-card__item contacts-card__item--mail"><span class="contacts-card__label">Возврат электронных билетов</span><span class="contacts-card__row"><a class="contacts-card__value" href="mailto:botsad_spb_tickets@binran.ru">botsad_spb_tickets@binran.ru</a><button class="contacts-card__copy" type="button" data-copy="botsad_spb_tickets@binran.ru" aria-label="Скопировать адрес botsad_spb_tickets@binran.ru"><svg class="is-idle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5"/><path d="M15.5 8.5V6.5A2 2 0 0 0 13.5 4.5H6.5A2 2 0 0 0 4.5 6.5v7a2 2 0 0 0 2 2h2"/></svg><svg class="is-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></button></span></p>
+              <p class="contacts-card__item contacts-card__item--mail contacts-card__item--extra"><span class="contacts-card__label">Для резюме</span><span class="contacts-card__row"><a class="contacts-card__value" href="mailto:garden_spb_vacancies@mail.ru">garden_spb_vacancies@mail.ru</a><button class="contacts-card__copy" type="button" data-copy="garden_spb_vacancies@mail.ru" aria-label="Скопировать адрес garden_spb_vacancies@mail.ru"><svg class="is-idle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5"/><path d="M15.5 8.5V6.5A2 2 0 0 0 13.5 4.5H6.5A2 2 0 0 0 4.5 6.5v7a2 2 0 0 0 2 2h2"/></svg><svg class="is-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></button></span></p>
             </div>
           </section>
 
@@ -9555,7 +9871,7 @@
           eventsScreen.setAttribute("aria-hidden", isOpen ? "false" : "true");
         }
         if (eventsNavLink) {
-          eventsNavLink.textContent = typographText(isOpen ? "Главная" : "Мероприятия");
+          setNavCurrent(eventsNavLink, isOpen);
           eventsNavLink.setAttribute("href", isOpen ? "#hero" : "#events");
         }
         if (!isOpen) {
@@ -9597,7 +9913,7 @@
           visitorsScreen.setAttribute("aria-hidden", isOpen ? "false" : "true");
         }
         if (visitorsNavLink) {
-          visitorsNavLink.textContent = typographText(isOpen ? "Главная" : "Посетителям");
+          setNavCurrent(visitorsNavLink, isOpen);
           visitorsNavLink.setAttribute("href", isOpen ? "#hero" : "#visitors");
         }
         if (isOpen) {
@@ -9623,7 +9939,7 @@
         }
         aboutScreen.setAttribute("aria-hidden", isOpen ? "false" : "true");
         contactsScreen.setAttribute("aria-hidden", isOpen ? "false" : "true");
-        contactsNavLink.textContent = isOpen ? "Главная" : "Контакты";
+        setNavCurrent(contactsNavLink, isOpen);
         contactsNavLink.setAttribute("href", isOpen ? "#hero" : "#contacts");
         if (isOpen) {
           window.setTimeout(function () {
@@ -9647,7 +9963,7 @@
         if (except !== "events") {
           stage.classList.remove("is-events-open", "is-events-entering");
           eventsScreen.setAttribute("aria-hidden", "true");
-          eventsNavLink.textContent = "Мероприятия";
+          setNavCurrent(eventsNavLink, false);
           eventsNavLink.setAttribute("href", "#events");
           eventsCards.forEach(function (card) { card.classList.remove("is-expanded"); });
           window.clearTimeout(eventsEnterTimer);
@@ -9662,13 +9978,13 @@
           if (visitorsRules) {
             visitorsRules.setAttribute("aria-hidden", "true");
           }
-          visitorsNavLink.textContent = "Посетителям";
+          setNavCurrent(visitorsNavLink, false);
           visitorsNavLink.setAttribute("href", "#visitors");
         }
         if (except !== "contacts") {
           stage.classList.remove("is-contacts-open", "is-contacts-content");
           contactsScreen.setAttribute("aria-hidden", "true");
-          contactsNavLink.textContent = "Контакты";
+          setNavCurrent(contactsNavLink, false);
           contactsNavLink.setAttribute("href", "#contacts");
         }
         if (except !== "tickets") {
@@ -10204,7 +10520,7 @@
         return bloomModes[bloomState.mode] || bloomModes.greenhouse;
       }
 
-      function preloadImage(src, cache) {
+      function preloadImage(src, cache, skipDecode) {
         return new Promise(function (resolve) {
           var image = new Image();
           var settled = false;
@@ -10225,7 +10541,7 @@
 
             settled = true;
 
-            if (image.decode && image.naturalWidth) {
+            if (!skipDecode && image.decode && image.naturalWidth) {
               image.decode().then(finish, finish);
               return;
             }
@@ -10282,7 +10598,7 @@
 
           var frameIndex = cursor - 1;
 
-          return preloadImage(src).then(function (image) {
+          return preloadImage(src, null, true).then(function (image) {
             walkFrameCache[frameIndex] = image;
             return loadNext();
           });
@@ -10339,16 +10655,74 @@
          вместо него в конце идёт плавная смена на саму карту. */
       var WALK_PLAYABLE_FRAMES = WALK_FRAME_COUNT - 1;
 
+      /* кадры прогулки декодируются заранее небольшим «окном» вне основного потока (createImageBitmap)
+         и сразу освобождаются после показа — память не раздувается, кадры не подтормаживают */
+      var walkBitmaps = {};
+      var WALK_PREDECODE_AHEAD = 14;
+
+      function primeWalkFrames(from) {
+        var key;
+        var index;
+
+        if (!window.createImageBitmap) {
+          return;
+        }
+
+        for (index = Math.max(0, from); index < Math.min(walkFrameCache.length, from + WALK_PREDECODE_AHEAD); index += 1) {
+          (function (frameIndex) {
+            var image = walkFrameCache[frameIndex];
+
+            if (walkBitmaps[frameIndex] || !image || !image.naturalWidth) {
+              return;
+            }
+
+            walkBitmaps[frameIndex] = "pending";
+            window.createImageBitmap(image).then(function (bitmap) {
+              if (walkBitmaps[frameIndex] === "pending") {
+                walkBitmaps[frameIndex] = bitmap;
+              } else if (bitmap.close) {
+                bitmap.close();
+              }
+            }, function () {
+              delete walkBitmaps[frameIndex];
+            });
+          })(index);
+        }
+
+        for (key in walkBitmaps) {
+          if (Number(key) < from - 2) {
+            if (walkBitmaps[key] && walkBitmaps[key].close) {
+              walkBitmaps[key].close();
+            }
+            delete walkBitmaps[key];
+          }
+        }
+      }
+
+      function releaseWalkFrames() {
+        var key;
+
+        for (key in walkBitmaps) {
+          if (walkBitmaps[key] && walkBitmaps[key].close) {
+            walkBitmaps[key].close();
+          }
+          delete walkBitmaps[key];
+        }
+      }
+
       function drawWalkFrame(index) {
         var image = walkFrameCache[index];
+        var bitmap = walkBitmaps[index];
+        var source = bitmap && bitmap !== "pending" ? bitmap : image;
 
         if (!walkFrameContext || index === walkFrameDrawn || !image || !image.naturalWidth) {
           return;
         }
 
         walkFrameContext.imageSmoothingQuality = "high";
-        walkFrameContext.drawImage(image, 0, 0, walkFrameCanvas.width, walkFrameCanvas.height);
+        walkFrameContext.drawImage(source, 0, 0, walkFrameCanvas.width, walkFrameCanvas.height);
         walkFrameDrawn = index;
+        primeWalkFrames(index + 1);
       }
 
       function setWalkFrameByProgress(progress) {
@@ -11218,12 +11592,107 @@
         }
       }
 
+      /* меню не меняется: текущий раздел подсвечен, повторное нажатие или логотип — на главную */
+      function setNavCurrent(link, isCurrent) {
+        if (!link) {
+          return;
+        }
+        link.classList.toggle("is-current", Boolean(isCurrent));
+        if (isCurrent) {
+          link.setAttribute("aria-current", "page");
+          link.setAttribute("title", "Вернуться на главную");
+        } else {
+          link.removeAttribute("aria-current");
+          link.removeAttribute("title");
+        }
+      }
+
+      function goHome(event) {
+        if (event) {
+          event.preventDefault();
+        }
+        closeMobileMenu();
+        if (stage.classList.contains("is-tickets-open")) {
+          closeTicketsToHero(event);
+          return;
+        }
+        if (stage.classList.contains("is-about-open")) {
+          closeAboutScreen(event);
+          return;
+        }
+        if (stage.classList.contains("is-events-open")) {
+          toggleEvents(event);
+          return;
+        }
+        if (stage.classList.contains("is-visitors-open")) {
+          toggleVisitors(event);
+          return;
+        }
+        if (stage.classList.contains("is-contacts-open")) {
+          toggleContacts(event);
+          return;
+        }
+        if (stage.classList.contains("is-second-visible") || stage.classList.contains("is-walking")) {
+          returnToHeroFromMap(event);
+        }
+      }
+
+      document.querySelectorAll(".nav__logo, .nav__emblem").forEach(function (logo) {
+        logo.setAttribute("role", "link");
+        logo.setAttribute("tabindex", "0");
+        logo.setAttribute("aria-label", "На главную");
+        logo.addEventListener("click", function (event) {
+          if (stage.classList.contains("is-entered")) {
+            goHome(event);
+          }
+        });
+        logo.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            goHome(event);
+          }
+        });
+      });
+
+      /* контакты: скопировать почту в один клик */
+      document.querySelectorAll(".contacts-card__copy").forEach(function (button) {
+        var resetTimer = 0;
+        button.addEventListener("click", function (event) {
+          var value = button.getAttribute("data-copy") || "";
+          event.preventDefault();
+          event.stopPropagation();
+          function done() {
+            button.classList.add("is-copied");
+            window.clearTimeout(resetTimer);
+            resetTimer = window.setTimeout(function () {
+              button.classList.remove("is-copied");
+            }, 1600);
+          }
+          function fallback() {
+            var field = document.createElement("textarea");
+            field.value = value;
+            field.setAttribute("readonly", "");
+            field.style.position = "fixed";
+            field.style.opacity = "0";
+            document.body.appendChild(field);
+            field.select();
+            try { document.execCommand("copy"); } catch (error) {}
+            field.remove();
+            done();
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(value).then(done, fallback);
+          } else {
+            fallback();
+          }
+        });
+      });
+
       function setAboutNavMode(isAboutMode) {
         if (!aboutNavLink) {
           return;
         }
 
-        aboutNavLink.textContent = typographText(isAboutMode ? "Главная" : "О саде");
+        setNavCurrent(aboutNavLink, isAboutMode);
         aboutNavLink.setAttribute("href", isAboutMode ? "#hero" : "#about");
         aboutNavLink.setAttribute(
           "aria-label",
@@ -12010,6 +12479,7 @@
 
           window.cancelAnimationFrame(walkFrame);
           walkFrameDrawn = -1;
+          primeWalkFrames(0);
           drawWalkFrame(0);
           stage.classList.remove("is-second-visible", "is-walk-complete");
           stage.classList.add("is-walking");
@@ -12036,6 +12506,7 @@
             walkFrame = 0;
             applyWalkProgress(1, 1);
             stage.classList.add("is-walk-complete");
+            window.setTimeout(releaseWalkFrames, 600);
           }
 
           walkFrame = window.requestAnimationFrame(tick);
