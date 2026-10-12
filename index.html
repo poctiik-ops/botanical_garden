@@ -8309,7 +8309,7 @@
 
       .map-info-card {
         left: calc(50% - 219.5px) !important;
-        scale: calc(var(--map-card-scale, 0.83) * 0.78);
+        scale: calc(var(--map-card-scale, 0.83) * 0.92);
         transform-origin: 50% 100%;
       }
 
@@ -9155,6 +9155,17 @@
     .contacts-card__copy:hover,
     .contacts-card__copy:focus-visible {
       background: rgba(22, 26, 23, 0.75);
+    }
+
+    /* ===== Подписи цифр в карточке объекта читаемы ===== */
+    .map-info-card__label {
+      font-size: 12px;
+      line-height: 1.2;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .stage.is-mobile .map-info-card__label {
+      font-size: 14px;
     }
 
     /* ===== Прогулка → карта в окне не 16:9: последний кадр совпадает с картой ===== */
