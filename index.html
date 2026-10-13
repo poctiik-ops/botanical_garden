@@ -9208,6 +9208,131 @@
       transform-origin: 0 0;
     }
 
+    /* ===== Ноутбуки и небольшие окна: текст и кнопки не мельче ~14 px на экране ===== */
+    .stage:not(.is-mobile) :is(.hero__subtitle, .visitors-copy__text, .visitors-rule-card__note, .contacts-copy p,
+      .tickets-form__lead, .tickets-field__label, .tickets-form__note, .tickets-form__terms p,
+      .about-greenhouse__text, .museum-tours__text, .second-screen__text, .tickets-form__submit) {
+      font-size: calc(20px * var(--ui-boost, 1));
+    }
+
+    .stage:not(.is-mobile) .about-card__fact span:last-child {
+      font-size: calc(24px * var(--ui-boost-soft, 1));
+    }
+
+    .stage:not(.is-mobile) .visitors-rule-card li {
+      font-size: calc(20px * var(--ui-boost-soft, 1));
+    }
+
+    .stage:not(.is-mobile) :is(.bloom-calendar__month, .bloom-calendar__day, .bloom-calendar__mode) {
+      font-size: calc(20px * var(--ui-boost-soft, 1));
+    }
+
+    .stage:not(.is-mobile) .nav__menu {
+      scale: var(--ui-boost-nav, 1);
+    }
+
+    .stage:not(.is-mobile) .nav .ticket {
+      scale: var(--ui-boost-nav, 1);
+      transform-origin: 100% 50%;
+    }
+
+    .stage:not(.is-mobile) :is(.hero__cta, .zero-screen__button, .visitors-copy__button, .about-detail__button, .tickets-form__home, .about-explore__return, .museum-exhibits__back) {
+      scale: var(--ui-boost-nav, 1);
+    }
+
+    .stage:not(.is-mobile) .second-screen__actions {
+      scale: var(--ui-boost-nav, 1);
+      transform-origin: 100% 0;
+    }
+
+    /* абзац «Посетителям» стал крупнее — поднимаем блок, чтобы кнопка осталась в карточке */
+    .stage:not(.is-mobile) .visitors-copy {
+      translate: 0 calc(var(--dy, 0px) * 2 + (1 - var(--ui-boost, 1)) * 260px);
+    }
+
+    /* в нави «О саде» меню стоит внутри карточки рядом с кнопкой билета — не увеличиваем, чтобы не наезжали */
+    .stage.is-about-nav-shift:not(.is-mobile) .nav__menu,
+    .stage.is-about-nav-shift:not(.is-mobile) .nav .ticket {
+      scale: 1;
+    }
+
+    /* «Узнать больше» у музея: светлый текст на тёмной кнопке */
+    .about-detail[data-variant="museum"] .about-detail__button,
+    .about-detail[data-variant="museum"] .about-detail__button:hover,
+    .about-detail[data-variant="museum"] .about-detail__button:focus-visible {
+      color: #ffffff;
+    }
+
+    /* ===== Телефон и планшет: зоны касания не меньше 44 px ===== */
+    .stage.is-mobile .nav .nav__menu .nav__link {
+      min-height: 44px;
+    }
+
+    .stage.is-mobile :is(.nav .ticket, .nav__burger, .second-screen__action, .map-info-card__toggle, .m-back, .about-explore__return) {
+      overflow: visible;
+    }
+
+    .stage.is-mobile :is(.nav .ticket, .nav__burger, .second-screen__action, .map-info-card__toggle, .m-back, .about-explore__return)::after {
+      content: "";
+      position: absolute;
+      inset: -8px;
+    }
+
+    .stage.is-mobile .map-info-card__toggle::after {
+      inset: -14px -18px;
+    }
+
+    /* ===== Компьютер: из «Парк в цифрах» и «Экспозиций музея» есть видимый выход ===== */
+    .stage:not(.is-mobile) .about-explore__return {
+      display: inline-flex;
+      position: absolute;
+      left: 76px;
+      bottom: 64px;
+      z-index: 6;
+      height: 58px;
+      padding: 0 28px;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 300;
+      color: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 420ms var(--ease-out) 300ms;
+    }
+
+    .stage.is-about-park-expanded:not(.is-mobile) .about-explore__return {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .stage:not(.is-mobile) .museum-exhibits__back {
+      display: inline-flex;
+      position: absolute;
+      left: 1282px;
+      top: 185px;
+      z-index: 6;
+      height: 58px;
+      padding: 0 28px;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 300;
+      border: 0 !important;
+      background: var(--ink-button);
+      color: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 420ms var(--ease-out) 300ms;
+    }
+
+    .stage.is-fluid:not(.is-mobile) .museum-exhibits__back {
+      translate: calc(var(--dx) * 2) var(--dy);
+    }
+
+    .stage.is-museum-more:not(.is-mobile) .museum-exhibits__back {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
     /* видео прогулки только источник кадров для canvas — само не показывается */
     .walk-transition__video {
       position: absolute;
@@ -10932,6 +11057,11 @@
           stage.style.setProperty("--dy", (canvasHeight - DESIGN_HEIGHT) / 2 + "px");
           stage.style.setProperty("--cover", Math.max(canvasWidth / DESIGN_WIDTH, canvasHeight / DESIGN_HEIGHT).toFixed(4));
           /* на небольших окнах карточка объекта крупнее, чтобы текст оставался читаемым */
+          /* мелкий текст на ноутбуках: при сильном уменьшении макета подтягиваем текст и кнопки */
+          var uiBoost = clamp(14 / (20 * scale), 1, 1.25);
+          stage.style.setProperty("--ui-boost", uiBoost.toFixed(4));
+          stage.style.setProperty("--ui-boost-soft", (1 + (uiBoost - 1) * 0.5).toFixed(4));
+          stage.style.setProperty("--ui-boost-nav", Math.min(uiBoost, 1.2).toFixed(4));
           stage.style.setProperty("--card-boost", clamp(0.84 / scale, 1, Math.min(1.5, (canvasHeight - 144) / 782)).toFixed(4));
           stage.classList.toggle("is-fluid", canvasWidth !== DESIGN_WIDTH || canvasHeight !== DESIGN_HEIGHT);
           stage.classList.toggle("is-fluid-tall", canvasHeight !== DESIGN_HEIGHT);
